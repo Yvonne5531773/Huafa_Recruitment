@@ -1,0 +1,38 @@
+<div class="views">
+    <div class="view view-main">
+        <div class="navbar">
+            <div class="navbar-inner">
+                <div class="left">
+                    <a href="#" class="back link icon-only"><i class="icon icon-back"></i></a>
+                </div>
+                <div class="center sliding">我的活动列表</div>
+                <div class="right">
+                    <a href="#" class="link icon-only open-panel"><i class="icon icon-bars"></i></a>
+                </div>
+            </div>
+        </div>
+        <div class="pages navbar-through toolbar-through">
+            <div data-page="myActivities" class="page" id="myActivities">
+                <div class="page-content">
+                    <div class="content-block-title">我的活动列表</div>
+                    <div class="list-block list-block-search searchbar-found">
+                        <ul data-bind="foreach: {data: clubs, as: 'club'}">
+                            <li>
+                                <a data-bind="attr: { href: 'javascript:myRoute.loadClubActivities(\''+ _id +'\');' }" class="item-link item-content">
+                                    <div class="item-media"><img data-bind="attr: {'src': icon}" width="50px" height="50px"></div>
+                                    <div class="item-inner">
+                                        <div class="item-title" style="height: 30px" data-bind="text: name">俱乐部名字</div>
+                                        <div class="item-after"></div>
+                                    </div>
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+
+
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

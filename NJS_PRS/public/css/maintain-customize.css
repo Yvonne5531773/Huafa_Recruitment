@@ -1,0 +1,14 @@
+/*弹出框的*/
+.label-font {
+    font-size: 16px;
+}
+
+
+/*活动卡片的操作按钮*/
+.activity-op-btn {
+    margin: 0;
+    padding-left: 0px;
+    padding-right: 5px;
+    border: 0;
+}
+

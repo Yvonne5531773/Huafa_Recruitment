@@ -1,0 +1,72 @@
+
+<link rel="stylesheet" type="text/css" href="../../../css/remodal.css" />
+<link rel="stylesheet" type="text/css" href="../../../css/remodal-default-theme.css" />
+<div class="login_wrapper" data-remodal-id="register" style="background: #08b291;bottom: 150px">
+    <div class="login_header">
+    </div>
+    <input type="hidden" id="resubmitToken" value="" />
+    <div class="login_box register_check">
+        <form id="loginForm" action="/applicant/register" method='post'>
+            <input style="margin-right: 60px" type="text" id="email" name="email" value="" tabindex="1" placeholder="请输入常用邮箱地址" />
+            <span class="error" style="display:none;" id="beError"></span>
+            <input style="margin-right: 60px" type="password" id="password" name="password" tabindex="2" placeholder="请输入密码" />
+            <span class="error" style="display:none;" id="beError"></span>
+            <input type="submit" id="submitLogin" value="注 &nbsp; &nbsp; 册" />
+        </form>
+        <div class="login_right">
+            <div>已有帐号？</div>
+            <a class="login_now">直接登录</a>
+        </div>
+    </div>
+    <div class="login_box_btm"></div>
+</div>
+<script type="text/javascript" src="../../../javascripts/jquery.1.10.1.min.js"></script>
+<script type="text/javascript" src="../../../javascripts/jquery.lib.min.js"></script>
+<script src="../../../javascripts/remodal.js"></script>
+<script type="text/javascript">
+    var ep = false, pp = false;
+    $('.register_check #email').blur(function(){
+        var email=$('.register_check #email').val();
+        var reg=/^([a-zA-Z0-9_-])+@([a-zA-Z0-9_-])+(\.[a-zA-Z0-9_-])+/;
+        var res=reg.test(email);
+        if(!res){
+            $('.register_check #email').next().css({display:'block',color:'red'});
+            $('.register_check #email').next().html('您的输入的邮箱格式不正确');
+        }else {
+            $.post('/login/checkUsername', {'email': $('.register_check #email').val()}, function (obj) {
+                if (!obj) {
+                    $('.register_check #email').next().html('');
+                    ep = true;
+                } else {
+                    $('.register_check #email').next().css({display: 'block', color: 'red'});
+                    $('.register_check #email').next().html('邮箱已经被注册');
+                }
+            });
+        }
+    });
+    $('.register_check #password').blur(function (){
+            var pass=$('.register_check #password').val();
+            var reg = /^[\w]{6,12}$/;
+            var res = reg.test(pass);
+            if(!res || pass==''){
+                $('.register_check #password').next().css({display: 'block', color: 'red'})
+                $('.register_check #password').next().html('邮箱密码不正确,6-12位长度');
+            }else{
+                $('.register_check #password').next().html('');
+                pp=true;
+            }
+        }
+    );
+    $('.register_check #submitLogin').click(function(){
+        if(ep && pp){
+            $.cookie('applicant', $('.register_check #email').val(), { expires: 1/24 });
+            $('.register_check #loginForm').submit();
+        }else{
+            return false;
+        }
+    });
+    $('.login_now').click(function(){
+        var inst = $('[data-remodal-id=login]').remodal();
+        inst.open();
+    })
+</script>

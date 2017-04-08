@@ -1,0 +1,64 @@
+<section class="content-header">
+	<div class="col-md-6 col-sm-6">
+		<span style="font-size: x-large">活动审核</span>
+	</div>
+	<div class="col-md-6 col-sm-6">
+		<ol class="breadcrumb" style="margin: 5px 0 5px 0; float: right">
+			<li><a ui-sref="home"><i class="fa fa-home"></i> 主页</a></li>
+			<li class="active"><i class="fa fa-gavel"></i> 活动审核</li>
+		</ol>
+	</div>
+</section>
+
+<section class="content col-md-12 col-sm-12" style="margin-top: 0px; padding-top: 0;">
+	<div class="panel panel-default col-md-6 col-sm-8" style="padding: 0">
+		<div class="panel-heading">
+			<h4 class="panel-title">
+				<span class="fa fa-th-list"></span>
+				<span class="pull-right pointer-cursor"><i ng-class="vm.collapsed?'fa fa-chevron-down':'fa fa-chevron-up'" ng-click="vm.collapsed = !vm.collapsed"></i></span>
+				<label class="control-label">搜索</label>
+			</h4>
+		</div>
+		<div class="panel-collapse collapse" ng-class="{in: vm.collapsed}">
+			<div class="panel-body">
+				<div class="form-group row">
+					<div class="col-md-6 col-sm-6">
+						<label class="control-label">活动名称</label>
+						<input type="text" class="form-control" ng-model="vm.criteria.title" />
+					</div>
+					<div class="col-md-6 col-sm-6">
+						<label class="control-label">俱乐部名称</label>
+						<input type="text" class="form-control" ng-model="vm.criteria.clubName" />
+					</div>
+				</div>
+				<div class="row col-md-6 col-sm-6 pull-right">
+					<div class="col-md-6 col-sm-6">
+						<button type="button" class="btn btn-primary btn-block" ng-click="vm.searchActivity()">搜索</button>
+					</div>
+					<div class="col-md-6 col-sm-6">
+						<button type="button" class="btn btn-info btn-block" ng-click="vm.resetSearch()">重置</button>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!-- Your Page Content Here -->
+	<div class="carrier-section-position col-md-12 col-sm-12" style="padding: 0;">
+		<div class="panel panel-default">
+			<div class="panel-heading">
+				<label class="control-label">活动审核列表</label>
+
+				<div class="text-right" style="float: right; margin-top: -6px;">
+                    <button class="btn btn-primary" ng-click="reviewClubActivity()">查看</button>
+                    <button class="btn btn-primary" ng-click="publishClubActivitys()">审核通过</button>
+                    <button class="btn btn-primary" ng-click="stopPublishClubActivitys()">撤销</button>
+                </div>
+			</div>
+			<div class="panel-body">
+				<div ui-grid="vm.activityReviewGrid" ui-grid-pagination ui-grid-cellnav ui-grid-resize-columns ui-grid-pinning ui-grid-selection ui-grid-move-columns
+					ui-grid-exporter></div>
+			</div>
+		</div>
+	</div>
+	<toaster-container toaster-options="{'time-out': 3000, 'animation-class': 'toast-center'}"></toaster-container>
+</section>

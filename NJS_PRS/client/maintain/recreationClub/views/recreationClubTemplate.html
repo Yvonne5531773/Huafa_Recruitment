@@ -1,0 +1,66 @@
+<div class="modal-body">
+  <form name="recreationclubForm" class="form-horizontal inline-block">
+
+    <input type="text" name="clubName" class="form-control hidden" ng-model="recreationclub._id">
+
+    <div class="form-group">
+      <label class="col-md-3 control-label">名称<span style="color:red">*</span></label>
+      <div class="col-md-9">
+        <input type="text" name="clubName" class="form-control" ng-model="recreationclub.name" required>
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label class="col-md-3 control-label">队长<span style="color:red">*</span></label>
+      <div class="col-md-9">
+        <select class="form-control" ng-model="recreationclub.captain._id" ng-options="x._id as x.userid for x in users">
+            <option value="">&nbsp;</option>
+        </select>
+      </div>
+    </div>
+    
+    <!--<div class="form-group">
+      <label class="col-md-1 control-label">图标</label>
+      <div class="col-md-4">
+        <input type="file" name="icon" class="form-control" ng-model="recreationclub.icon" >
+      </div>
+    </div>
+
+    <div class="form-group">
+      <div class="col-md-2">
+        <label class="col-md-12">
+          <input type="radio" name="optionsRadios" value="true" ng-model="h5Radio"> H5介绍
+        </label>
+      </div>
+
+      <div class="col-md-3">
+        <select ng-model="recreationclub.introduce" class="form-control" ng-disabled="!h5Radio">
+          <option ng-repeat="h5Intr in allH5Introduces" value="{{h5Intr.link}}">{{h5Intr.name}}</option>
+        </select>
+      </div>
+    </div>
+
+    <div class="form-group">
+      <div class="col-md-2">
+        <label class="col-md-12">
+          <input type="radio" name="optionsRadios" value="false" ng-model="h5Radio" checked> 图文介绍
+        </label>
+      </div>
+    </div>
+
+    <div class="form-group">
+        <div class="col-md-12">
+            <label class="control-label">俱乐部描述</label>
+            <div class="ueditor" ng-model="recreationclub.description" config="_simpleConfig" style="height: 100px"></div>
+        </div>
+    </div>-->
+
+    <div class="form-group">
+        <div class="col-md-4 col-md-offset-4">
+            <button type="submit" class="btn btn-primary" ng-click="submit(recreationclubForm.$valid)">保存</button>
+            <button type="reset" class="btn btn-primary" ng-click="cancel()">取消</button>
+        </div>
+    </div>
+
+  </form>
+</div>

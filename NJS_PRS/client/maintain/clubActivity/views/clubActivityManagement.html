@@ -1,0 +1,122 @@
+<section class="content-header">
+	<div class="col-md-6 col-sm-6">
+		<span style="font-size: x-large">活动管理</span>
+	</div>
+	<div class="col-md-6 col-sm-6">
+		<ol class="breadcrumb" style="margin: 5px 0 5px 0; float: right">
+			<li><a ui-sref="home"><i class="fa fa-dashboard"></i> 主页</a></li>
+			<li class="active">活动管理</li>
+		</ol>
+	</div>
+</section>
+<!-- Main content -->
+<section class="content" style="margin-top: 5px;">
+	<div class="panel panel-default col-md-6 col-sm-8" style="padding: 0">
+		<div class="panel-heading">
+			<h4 class="panel-title">
+				<span class="fa fa-th-list"></span>
+				<span class="pull-right pointer-cursor">
+					<i ng-class="vm.collapsed?'fa fa-chevron-down':'fa fa-chevron-up'" ng-click="vm.collapsed = !vm.collapsed"></i>
+				</span>
+				<label class="control-label">搜索</label>
+			</h4>
+		</div>
+		<div class="panel-collapse collapse" ng-class="{in: vm.collapsed}">
+			<div class="panel-body">
+				<div class="form-group row">
+					<div class="col-md-6 col-sm-6">
+						<label class="control-label">活动地点</label>
+						<input type="text" class="form-control" ng-model="vm.criteria.location" />
+					</div>
+					<div class="col-md-6 col-sm-6">
+						<label class="control-label">状态</label>
+						<input type="text" class="form-control" ng-model="vm.criteria.name" />
+					</div>
+				</div>
+				<div class="row col-md-5">
+					<div style="float:left; width:45%">
+						<button type="button" class="btn btn-primary btn-block" ng-click="vm.searchClub()">搜索</button>
+					</div>
+					<div style="float:right; width:45%">
+						<button type="button" class="btn btn-info btn-block" ng-click="vm.resetSearch()">重置</button>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<!-- Your Page Content Here -->
+	<div class="carrier-section-position col-md-12 col-sm-12" style="padding: 0">
+		<div class="panel panel-default">
+			<div class="panel-heading">
+				<label class="control-label">俱乐部活动列表</label>
+				<div class="text-right" style="float: right; margin-top: -6px;">
+					<button class="btn btn-primary" ng-click="addClubActivity()">添加</button>
+					<!--<button class="btn btn-primary" ng-click="updateClubActivity()">修改</button>-->
+				</div>
+			</div>
+			<div class="panel-body">
+				<!--				
+				<div class="text-right" style="margin-bottom:5px;">
+					<button class="btn btn-primary" ng-click="addClubActivity()">添加</button>
+					<button class="btn btn-primary" ng-click="updateClubActivity()">修改</button>
+					<button class="btn btn-primary" ng-click="deleteClubActivity()">删除</button>
+					<button class="btn btn-primary" ng-click="publishClubActivity()">发布</button>
+					<button class="btn btn-primary" ng-click="stopPublishClubActivity()">停止发布</button>
+				</div>
+				-->
+				<div class="col-md-4 col-sm-8 col-xs-12" ng-repeat="clubActivity in vm.clubActivityList" style="padding-left: 0">
+					<div class="box box-widget widget-user">
+                        <div class="box-tools pull-right">
+                            <button type="button" ng-click="updateClubActivity(clubActivity)" title="编辑" class="btn btn-box-tool" style="padding-right: 0px;">
+								<i class="fa fa-fw fa-edit" style="color: antiquewhite;"></i>
+                            </button>
+							<button type="button" ng-click="viewClubActivity(clubActivity)" title="查看详情" class="btn btn-box-tool" style="padding-right: 0px;padding-left: 0px;">
+								<i class="fa fa-fw fa-sticky-note-o" style="color: antiquewhite;"></i>
+                            </button>
+                            <button type="button" ng-click="deleteClubActivity(clubActivity)" title="删除" class="btn btn-box-tool" style="padding-left: 0px;padding-right: 5px;">
+								<i class="fa fa-fw fa-trash-o" style="color: antiquewhite;"></i>
+                            </button>
+                        </div>
+						<!-- Add the bg color to the header using any of the bg-* classes -->
+						<div class="widget-user-header bg-aqua-active" style="height: inherit;">
+							<h3 class="widget-user-username">{{clubActivity.title}}</h3>
+							<h5 class="widget-user-desc">{{clubActivity.startDateTime | date: 'medium' }}({{clubActivity.location}})</h5>
+						</div>
+						<div class="box-footer" style="background-color: rgba(207, 203, 203, 0.29);">
+							<div class="row">
+								<div class="col-sm-3 border-right">
+									<div class="description-block">
+										<h5 class="description-header" style="margin-bottom: 8px;">截止时间</h5>
+										<span class="description-text">{{clubActivity.cutoffDate | date: 'MMM d' }}</span>
+									</div>
+								</div>
+								<div class="col-sm-3 border-right">
+									<div class="description-block">
+										<h5 class="description-header" style="margin-bottom: 8px;">报名人数</h5>
+										<span class="description-text">{{clubActivity.currentCount}}</span>
+									</div>
+								</div>
+								<div class="col-sm-3 border-right">
+									<div class="description-block">
+										<h5 class="description-header" style="margin-bottom: 8px;">人数限制</h5>
+										<span class="description-text">{{clubActivity.totalCount}}</span>
+									</div>
+								</div>
+                                <div class="col-sm-3 border-right">
+									<div class="description-block">
+										<h5 class="description-header" style="margin-bottom: 8px;">状态</h5>
+										<span class="description-text">{{clubActivity.status}}</span>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+				<!--<div ui-grid="vm.rcGrid" ui-grid-pagination ui-grid-cellnav ui-grid-resize-columns ui-grid-pinning ui-grid-selection ui-grid-move-columns ui-grid-exporter></div>-->
+				<!--</section>-->
+			</div>
+		</div>
+	</div>
+	<toaster-container toaster-options="{'time-out': 3000, 'animation-class': 'toast-center'}"></toaster-container>
+</section>

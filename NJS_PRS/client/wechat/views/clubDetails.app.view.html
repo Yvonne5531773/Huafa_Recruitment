@@ -1,0 +1,38 @@
+<!-- Views -->
+<div class="views">
+  <div class="view view-main">
+    <div class="navbar">
+      <div class="navbar-inner">
+        <div class="left">
+          <a href="#" class="back link icon-only"><i class="icon icon-back"></i></a>
+        </div>
+        <div class="center sliding">俱乐部详情</div>
+        <div class="right">
+          <a href="#" class="link icon-only open-panel"><i class="icon icon-bars"></i></a>
+        </div>
+      </div>
+    </div>
+    <div class="pages navbar-through toolbar-through">
+      <div data-page="myClubDetails" class="page" id="myClubDetails">
+        <div class="page-content">
+          <!-- ko foreach: clubDetail -->
+          <div class="club-top">
+            <div class="logo-center"><img alt="" style="width: 40px; height: 40px; border-radius: 14px;" data-bind="attr:{src:icon}"></div>
+            <a data-bind="attr: { href: 'javascript:myRoute.focusClub(\''+ _id +'\');' }" class="item-link item-content">
+              <div class="set-top"><img class="favorImg" alt="" src="./images/demo/unfocused.png"><span class="favorWord">关注</span></div>
+            </a>
+          </div>
+          <div>
+            <div class="Active-bottom">
+              <div class="title-tip"><span>俱乐部简介</span></div>
+              <div class="Active-detail">
+                <div data-bind="html: description">俱乐部介绍</div>
+              </div>
+            </div>
+          </div>
+          <!-- /ko -->
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

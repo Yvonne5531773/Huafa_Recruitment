@@ -1,0 +1,16 @@
+.club-img {
+    /*width: 70%;*/
+    border-radius: 20px;
+    background: #fff;
+    padding: 0 auto;
+    margin-top: 2rem;
+}
+
+.center {
+    text-align: center;
+}
+
+.favorImg {
+    width: 15px;
+    height: 15px
+}

@@ -1,0 +1,47 @@
+@charset "utf-8";
+.preview_header{height:40px;background:#019875;padding:9px 20px;color:#fff;overflow:hidden}
+.preview_header h1{margin:0;font-size:18px;font-weight:600;line-height:26px;float:left}
+.preview_header a{float:right;background:#006b52;color:#fff;padding:2px 12px}
+.preview_content{padding:12px 20px 2px 20px}
+#resume_name,#resumeScore,#basicInfo,#expectJob,#workExperience,#projectExperience,#educationalBackground,#selfDescription,#worksShow,#myInfo,#myResume,#resumeSet,#certificate{position:relative;/*overlay*/}
+#basicInfo{min-height:116px;}
+#basicInfo .basicEdit{overflow: hidden;padding:0;}
+#basicInfo .basicShow{font-size:16px;padding:0 130px 0 20px; line-height: 28px; position: relative;}
+#basicInfo .basicShow span.nofill{color:#e46a4a;}
+#basicInfo .basicShow .m_portrait{position: absolute;right: 0; top: -35px;}
+#basicInfo .basicShow a{}
+.profile_box{clear:both;background: #fafafa;border:2px solid #fafafa;word-wrap:break-word; padding:18px; margin-bottom: 20px; position: relative;}
+.profile_box td{vertical-align: top;}
+.profile_box span.error{margin:3px 0 0 0;}
+.profile_box h2{font-size: 18px;font-weight: 600;margin:0 0 10px 0; background: url('../../img/profile_square.png') 0 3px no-repeat; padding-left: 20px;}
+.profile_box h2 span{color:#777;}
+.profile_box .c_add{right: 7px;top:7px;}
+.profile_box .pAdd{min-height:76px;cursor:pointer;background: url('../../img/profile_add.png') 20px 0 no-repeat; padding:0px 0 0 140px;}
+.profile_box .pAdd:hover{background-position: 20px -76px;}
+.profile_box .pAdd span{display:block;font-size:16px;color: #0d9572; text-decoration: underline; margin-top: 5px;}
+.profile_box td{padding:8px 0 8px 20px;}
+.m_portrait {float:left; width:122px; height:122px;}
+.m_portrait div{ background:url(../../img/profile_cover.png) no-repeat; width:122px; height:122px; position:absolute; z-index:5;}
+.m_portrait img{width:120px; height:120px; position:absolute; z-index:4;}
+#workExperience .experienceShow,#educationalBackground .educationalShow,#certificate .certificateShow{font-size:16px;}
+#workExperience .experienceShow ul.wlist,#educationalBackground .educationalShow ul.elist,#certificate .certificateShow ul.clist{list-style:none;margin:0;padding:0 0 0 10px;}
+#workExperience .experienceShow .wlist li,#educationalBackground .educationalShow .elist li,#certificate .certificateShow .clist li{float:left;width:290px;min-height:80px;margin:13px 10px;position:relative;}
+#educationalBackground .educationalShow li div,#certificate .certificateShow li div{background:#fff;width:276px;padding:0 7px;overflow:hidden}
+#workExperience .experienceShow li img,{position:absolute;float:left;border:2px solid #f1f1f1;*left:0;*top:28px;}
+#workExperience .experienceShow li h3{width:220px;font-size:18px;font-weight:500}
+#educationalBackground .educationalShow li h3,#certificate .certificateShow li h3{float:left;width:100%;font-size:18px;font-weight:500;margin:5px 0;}
+#workExperience .experienceShow li h4{font-size:14px;font-weight:normal;color:#555}
+#educationalBackground .educationalShow li h4,#certificate .certificateShow li h4{float:left;font-size:14px;font-weight:normal;color:#555;margin:0;}
+.clearfix:after{content: "";height: 0;clear: both;visibility: hidden;}
+.clearfix{display: inline-block;}  /* for IE/Mac */
+#projectExperience .projectShow,#worksShow .workShow{padding:0 20px}
+#projectExperience .projectShow ul,#worksShow .workShow ul{width:100%;list-style:none;margin:0;padding:0;*margin-top:10px;}
+#projectExperience .projectShow .plist > li,#worksShow .workShow li{padding:10px 0;border-bottom:1px solid #e5e5e5;*overflow:hidden;*margin-top:15px;}
+#projectExperience .projectShow .plist > li.noborder,#worksShow .workShow li.noborder{border-bottom:none;}
+#projectExperience .projectShow .plist > li .projectList,#worksShow .workShow li .workList{position:relative}
+#projectExperience .projectList .f16,#worksShow .workList .f16{*margin-top:-22px}
+#worksShow .workList .f16{width:560px;word-wrap:break-word; overflow:hidden;}
+#projectExperience .projectList .dl1{color:#777;}
+#projectExperience .projectShow dl{clear:both;width:100%;min-height:22px;}
+#projectExperience .projectShow dt{position:absolute;*left:0}
+#projectExperience .projectShow dd{color:#777;float:left;margin-left:65px}

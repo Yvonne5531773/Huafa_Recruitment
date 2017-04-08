@@ -1,0 +1,68 @@
+
+<section class="content-header">
+	<div class="col-md-6 col-sm-6">
+		<span style="font-size: x-large">活动审核</span>
+	</div>
+	<div class="col-md-6 col-sm-6">
+		<ol class="breadcrumb" style="margin: 5px 0 5px 0; float: right">
+			<li><a ui-sref="home"><i class="fa fa-home"></i> 主页</a></li>
+			<li class="active"><i class="fa fa-gavel"></i>活动审核</li>
+		</ol>
+	</div>
+</section>
+<!-- Main content -->
+<section class="invoice" style="margin-top: 43px; padding-top: 10px;">
+	<!-- title row -->
+	<div class="row">
+		<div class="col-xs-12">
+			<h2 class="page-header" style="margin-top: 10px;">
+				{{clubActivity.title}}
+				<small class="pull-right"><strong>活动时间:</strong> {{clubActivity.startDateTime | date: 'yyyy-MM-dd HH:mm'}} - {{clubActivity.endDateTime | date: 'yyyy-MM-dd HH:mm'}}</small>
+			</h2>
+		</div>
+		<!-- /.col -->
+	</div>
+	<div class="row">
+		<div class="col-sm-2  invoice-col">
+			<strong>俱乐部：</strong> {{clubActivity.club.name}}
+		</div>
+		<div class="col-sm-1 invoice-col">
+			<strong>队长：</strong> {{clubActivity.club.captain.userid}}
+		</div>
+		<div class="col-sm-2 invoice-col">
+			<strong>活动地点：</strong> {{clubActivity.location}}
+		</div>
+		<div class="col-sm-3 invoice-col">
+			<strong>报名时间：</strong> {{clubActivity.cutoffDate | date: 'yyyy-MM-dd HH:mm'}} - {{clubActivity.regBeginDate | date: 'yyyy-MM-dd HH:mm'}}
+		</div>
+		<div class="col-sm-1 invoice-col">
+			<strong>报名人数：</strong> {{clubActivity.currentCount}}
+		</div>
+		<div class="col-sm-2 invoice-col">
+			<strong>状态: </strong> {{clubActivity.status}}
+		</div>
+	</div>
+
+	<br><br>
+	<!-- info row -->
+	<div class="row invoice-info">
+		<div class="col-sm-8 col-sm-offset-2 invoice-col">
+			<div ng-bind-html="clubActivity.description|to_trusted"></div>
+		</div>
+	</div>
+	<!-- /.row -->
+	<br><br>
+
+    <hr class="row" />
+    <!-- /.row -->
+    <div class="row no-print"  ng-show="clubActivity.status=='待审核'">
+        <div class="col-xs-12">
+            <button type="button" ng-click="changeClubActivityStatus('准备报名')" class="btn btn-success pull-right">审核通过</button>
+        </div>
+    </div>
+	<div class="row no-print"  ng-show="clubActivity.status!='待审核'">
+        <div class="col-xs-12">
+            <button type="button" ng-click="changeClubActivityStatus('待审核')" class="btn btn-success pull-right">撤销</button>
+        </div>
+    </div>
+</section>

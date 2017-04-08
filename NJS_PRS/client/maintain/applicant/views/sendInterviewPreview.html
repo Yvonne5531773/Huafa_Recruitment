@@ -1,0 +1,41 @@
+
+<style>
+    .modal-dialog{width:650px}
+    #back {
+        font-size:20px;
+        background:#019875;
+        padding:0 25px;
+        text-decoration:none;
+        display:inline-block;
+        text-align:center;
+        height:37px;
+        color:#fff;
+        border:0;
+        line-height:37px;
+        transition:background 0.2s ease-in 0s;
+        margin-top: 30px;
+    }
+</style>
+<div class="modal-body" style="height:655px;">
+    <h1 style="background:#019875;color:#f7f7f7;padding:5px 5px;font-size: 17px;font-weight: 600;margin-bottom: 20px" title="通知面试预览">通知面试预览</h1>
+    <div id="noticeInterviewPreview" class="popup" style="height:500px;width:615px">
+        <div class="f18">
+            {{data.topic}}
+        </div>
+        <div class="c9">
+            发给：
+            <span>{{data.resume.email}}</span>
+        </div>
+        <div id="emailText">
+            <!--{{preview}}-->
+            {{data.resume.name}}, 您好: <br/>
+            {{data.successMessage}}<br /><br />
+            面试时间: {{data.interviewTime}}<br />
+            面试地点: {{data.positionCompanyLocation}}<br />
+            <span ng-if="data.contact">联系人: {{data.contact}}<br /></span>
+            联系电话: {{data.contactPhone}}<br /><br />
+            <span ng-if="data.content">{{data.content}}</span>
+        </div>
+    </div>
+    <input ng-if="!data.withoutEdit" id="back" class="btn" value="返回修改" type="submit" ng-click="back()">
+</div>

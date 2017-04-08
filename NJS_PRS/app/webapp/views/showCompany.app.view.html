@@ -1,0 +1,241 @@
+﻿<html>
+<head>
+    <meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=0">
+    <meta charset="UTF-8">
+    <meta http-equiv="Cache-Control" content="no-siteapp" />
+    <link rel="alternate" media="handheld" />
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <title>Huafa Education Recruitment</title>
+    <link rel="Shortcut Icon" href="#">
+    <link rel="stylesheet" type="text/css" href="../../../css/style.css" />
+    <link rel="stylesheet" type="text/css" href="../../../css/external.min.css"/>
+    <link rel="stylesheet" type="text/css" href="../../../css/popup.css" />
+    <link rel="stylesheet" href="../../../css/remodal.css">
+    <link rel="stylesheet" href="../../../css/remodal-default-theme.css">
+    <link rel="stylesheet" type="text/css" href="../../../css/app.css" />
+    <link rel="stylesheet" type="text/css" href="../../../css/app-common.css" />
+    <link rel="stylesheet" type="text/css" href="../../../css/company.css" />
+    <link rel="stylesheet" type="text/css" href="../../../lib/font-awesome/css/font-awesome.min.css" />
+    <script type="text/javascript">
+        var youdao_conv_id = 271546;
+        var ctx = "h";
+    </script>
+</head>
+<body>
+<div id="body">
+    {% include "./header.app.view.html" %}
+            <div id="container">
+                <div class="clearfix">
+                    <div class="content_l" style="width:500px">
+                        <div class="c_detail">
+                            <div style="background-color:#fff;" class="c_logo">
+                                <a id="logoShow" style="border: none;">
+                                    <img class="logo_success" width="190" height="190" alt="icon" src="../../../{{companyInfo.icon}}">
+                                </a>
+                            </div>
+                            <div class="c_box companyName">
+                                <h2 style="height: 30px;margin-bottom: 35px;" title="{{companyInfo.type}}">
+                                    {{companyInfo.type}}
+                                </h2>
+                                <div id="Tags">
+                                    <div id="c_tags_show" class="c_tags solveWrap">
+                                        <table>
+                                            <tbody>
+                                            <tr>
+                                                <td width="45">
+                                                    地址
+                                                </td>
+                                                <td class="companyCity">
+                                                    {{companyInfo.address}}
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td>
+                                                    规模
+                                                </td>
+                                                <td class="companyScale">
+                                                    {{companyInfo.scale}}
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td>
+                                                    主页
+                                                </td>
+                                                <td>
+                                                    <a rel="nofollow" title="http://www.weimob.com" target="_blank" href="{$company.web}" class="companyWeb">
+                                                        {{companyInfo.web}}
+                                                    </a>
+                                                </td>
+                                            </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="clear"></div>
+                        </div>
+                        <div class="c_breakline"></div>
+                        <!-- end #Profile -->
+                        <!--[if IE 7]>
+                        <br />
+                        <![endif]-->
+                        <!--无招聘职位-->
+                        <dl class="c_section">
+                            <dt>
+                                <h2>
+                                    <em></em>
+                                    招聘职位
+                                </h2>
+                            {% if positions.length>0 %}
+                                <span class="jobsTotal">
+                                    该单位共有
+                                    <i>
+                                        {{positions.length}}
+                                    </i>
+                                    个职位正在招聘
+                                </span>
+                            {% else %}
+                                <span class="jobsTotal">
+                                    该单位暂无职位招聘
+                                </span>
+                            {% endif %}
+                            </dt>
+                            <dd>
+                                <ul class="reset c_jobs" id="jobList">
+                                    {% for vo in positions %}
+                                    <li>
+                                        <a href="/job/{{vo._id}}" target="_blank">
+                                            <h3>
+                                                <span class="pos" title="{{vo.name}}">
+                                                    {{vo.name}}
+                                                </span>
+                                                <span>
+                                                    {{vo.city}}
+                                                </span>
+                                            </h3>
+                                            <span style="margin-top: -20px">
+                                                {{vo.updated}}
+                                            </span>
+                                            <div>
+                                                {{vo.nature}} / {{vo.salaryLow}}k-{{vo.salaryHigh}}k / {{vo.experience}} / {{vo.certificate}}
+                                            </div>
+                                        </a>
+                                    </li>
+                                    {% endfor %}
+                                </ul>
+                            </dd>
+                        </dl>
+                    </div>
+                    <!-- end .content_l -->
+                    <div class="content_r" style="width: 460px;">
+                        <div id="Profile">
+                            <div class="profile_wrap">
+                                <dl class="c_section hasdesc">
+                                    <dt>
+                                    <h2>
+                                        <em></em>
+                                        单位介绍
+                                    </h2>
+                                    </dt>
+                                    <dd style="padding: 45px 5px 5px 5px;">
+                                        <div class="c_intro">
+                                            {% if companyInfo.company.length<=0 %}
+                                            <div class="row" style="margin-left: 30px">暂无</div>
+                                            {% else %}
+                                            {% for company in companyInfo.company %}
+                                            <div class="flow-box">
+                                                <div class="oocl">
+                                                    <div class="container-con" style="margin-top: 0px;">
+                                                        <div class="container-con-hd" style="margin-top: 0px;">
+                                                            <h3 class="oocl-title">{{company.title}}</h3>
+                                                        </div>
+                                                        <div class="container-con-bd">
+                                                            {{company.content | raw}}
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            {% endfor %}
+                                            {% endif %}
+                                        </div>
+                                    </dd>
+                                </dl>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="clear"></div>
+                <a rel="nofollow" title="回到顶部" id="backtop" style="display: inline;"></a>
+            </div>
+        </div>
+        <!-- end #body -->
+        <script type="text/javascript" src="../../../javascripts/core.min.js"></script>
+        <script type="text/javascript">
+            jQuery(function($) {
+                if ($('.hasProduct').length <= 0) {
+                    $('.no_product').removeClass('dn');
+                }
+
+                if ($('.hasTeam').length <= 0) {
+                    $('.noTeam').removeClass('dn');
+                }
+
+                $.extend({
+                    sub : function(obj) {
+                        obj = $(obj);
+                        $.ajax({
+                            url : obj.attr('action'),
+                            type : 'post',
+                            data : obj.serialize(),
+                            success : function(data) {
+
+                                if (data.code == 0) {
+                                    $('.fullname').html(data.name);
+                                    $('.fullname').attr('title', data.name);
+                                    $('.oneword').children('span').html(data.one_desc);
+                                    obj.parents('#c_tags_edit').addClass('dn');
+                                    obj.parents('#c_tags_edit').prev().removeClass('dn');
+                                    obj.parents('#c_tags_edit').prev().find('.companyCity').html(data.city);
+                                    obj.parents('#c_tags_edit').prev().find('.companyTrade').html(data.trade);
+                                    obj.parents('#c_tags_edit').prev().find('.companyTrade').attr('title', data.trade);
+                                    obj.parents('#c_tags_edit').prev().find('.companyScale').html(data.scale);
+                                    obj.parents('#c_tags_edit').prev().find('.companyWeb').html(data.web);
+                                    obj.parents('#c_tags_edit').prev().find('.companyWeb').attr('title', data.web);
+                                    obj.parents('#c_tags_edit').prev().find('.companyWeb').attr('href', data.web);
+                                    obj.addClass('dn');
+                                    obj.prev().removeClass('dn');
+                                    obj.prev().find('.c5').html(data.stage);
+                                } else if (data.code == 1) {
+                                    obj.parents('dl').addClass('dn');
+                                    obj.parents('dl').next().removeClass('dn');
+                                    obj.parents('dl').next().find('img').attr('alt', data.name);
+                                    obj.parents('dl').next().find('h3').children('a').attr('href', data.link).html(data.name);
+                                    data.image = data.image + '?' + parseInt(Math.random()*10000);
+                                    obj.parents('dl').next().find('img').attr('src', data.image);
+                                    obj.parents('dl').next().find('.proDesc').html(data.desc);
+                                } else if (data.code == 2) {
+                                    obj.parents('dl').addClass('dn');
+                                    obj.parents('dl').next().removeClass('dn');
+                                    obj.parents('dl').next().find('.c_intro').html(data.desc);
+                                } else if (data.code == -1) {
+                                    obj.parents('dl').addClass('dn');
+                                    obj.parents('dl').prev().removeClass('dn');
+                                } else if (data.code == 3) {
+                                    obj.parents('.member_info').addClass('dn');
+                                    obj.parents('.member_info').next().removeClass('dn');
+                                    obj.parents('.member_info').next().find('img').attr('alt', data.name);
+                                    obj.parents('.member_info').next().find('img').attr('src', data.image);
+                                    obj.parents('.member_info').next().find('.m_name').html(data.name);
+                                    obj.parents('.member_info').next().find('.m_name').children('a').attr('href', data.weibo);
+                                    obj.parents('.member_info').next().find('.m_position').html(data.position);
+                                    obj.parents('.member_info').next().find('.m_intro').html(data.desc);
+                                }
+                            }
+                        })
+                        return false;
+                    }
+                })
+        </script>
+    </body>
+
+</html>

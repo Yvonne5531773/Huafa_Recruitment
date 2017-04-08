@@ -1,0 +1,549 @@
+<html>
+    <head>
+        <meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=0">
+        <meta charset="UTF-8">
+        <meta http-equiv="Cache-Control" content="no-siteapp" />
+        <link rel="alternate" media="handheld" />
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+        <title>Huafa Education Recruitment</title>
+        <link rel="Shortcut Icon" href="#">
+        <link rel="stylesheet" type="text/css" href="css/style.css" />
+        <link rel="stylesheet" type="text/css" href="css/external.min.css"/>
+        <link rel="stylesheet" type="text/css" href="css/popup.css" />
+        <link rel="stylesheet" href="css/remodal.css">
+        <link rel="stylesheet" href="css/remodal-default-theme.css">
+        <script type="text/javascript">
+            var youdao_conv_id = 271546;
+            var ctx = "h";
+        </script>
+    </head>
+
+    <body>
+        <div id="body">
+            {% include "./header.app.view.html" %}
+            <div id="container">
+                <div class="sidebar">
+                	<div class="greybg {{search.all}}" id="selected">
+                		<div>已选择</div>
+               			<ul class="reset">
+                            <li class="{{search.salaryShow}}"><span><strong>月薪范围</strong>：{{search.salary}}</span>
+                                <a href="/clearSearch/1"><span class="select_remove"></span></a>
+                            </li>
+                            <li class="{{search.experienceShow}}"><span><strong>工作经验</strong>：{{search.experience}}</span>
+                                <a href="/clearSearch/2"><span class="select_remove"></span></a>
+                            </li>
+                            <li class="{{search.cityShow}}"><span><strong>工作城市</strong>：{{search.city}}</span>
+                                <a href="/clearSearch/3"><span class="select_remove"></span></a>
+                            </li>
+                            <li class="{{search.certificateShow}}"><span><strong>最低学历</strong>：{{search.certificate}}</span>
+                                <a href="/clearSearch/4"><span class="select_remove"></span></a>
+                            </li>
+                            <li class="{{search.natureShow}}"><span><strong>工作性质</strong>：{{search.nature}}</span>
+                                <a href="/clearSearch/5"><span class="select_remove"></span></a>
+                            </li>
+                            <li class="{{search.nameShow}}"><span><strong>职位名称</strong>：{{search.name}}</span>
+                                <a href="/clearSearch/6"><span class="select_remove"></span></a>
+                            </li>
+                            <li class="{{search.workAddressShow}}"><span><strong>工作单位</strong>：{{search.workAddress}}</span>
+                                <a href="/clearSearch/7"><span class="select_remove"></span></a>
+                            </li>
+                        </ul>
+           			</div>
+                    <div id="options" class="greybg">
+                        <dl>
+                            <dt>
+                                月薪范围
+                                <em>
+                                </em>
+                            </dt>
+                            <dd>
+                                <div>2k以下</div>
+                                <div>2k-5k</div>
+                                <div>5k-10k</div>
+                                <div>10k-15k</div>
+                                <div>15k-25k</div>
+                                <div>25k-50k</div>
+                                <div>50k以上</div>
+                                <div>面议</div>
+                            </dd>
+                        </dl>
+                        <dl>
+                            <dt>
+                                工作经验
+                                <em>
+                                </em>
+                            </dt>
+                            <dd>
+                                <div>不限</div>
+                                <div>应届毕业生</div>
+                                <div>1年以下</div>
+                                <div>1-3年</div>
+                                <div>3-5年</div>
+                                <div>5-10年</div>
+                                <div>10年以上</div>
+                            </dd>
+                        </dl>
+                        <dl>
+                            <dt>
+                                最低学历
+                                <em>
+                                </em>
+                            </dt>
+                            <dd>
+                                <div>不限</div>
+                                <div>大专</div>
+                                <div>本科</div>
+                                <div>硕士</div>
+                                <div>博士</div>
+                            </dd>
+                        </dl>
+                        <dl>
+                            <dt>
+                                工作性质
+                                <em>
+                                </em>
+                            </dt>
+                            <dd>
+                                <div>全职</div>
+                                <div>实习</div>
+                                <div>返聘</div>
+                            </dd>
+                        </dl>
+                    </div>
+                </div>
+                <div class="content">
+                    <div id="search_box">
+                        <form name="searchForm" action="/index" method="get" id="searchform">
+                            <div id="searchType">
+                                <img src="../../../images/search.png" width="30px" height="30px">
+                            </div>
+                            <input type="text" id="search_input" name="name" tabindex="1" value="{{search.name}}"
+                            placeholder="请输入职位名称" />
+                            <input type="hidden" name="city" id="cityInput" value="" />
+                            <input type="hidden" name="workAddress" id="addressInput" value="" />
+                            <input type="hidden" name="salary" id="salaryInput" value="" />
+                            <input type="hidden" name="experience" id="experienceInput" value="" />
+                            <input type="hidden" name="certificate" id="certificateInput" value="" />
+                            <input type="hidden" name="nature" id="natureInput" value="" />
+                            <input type="submit" id="search_button" value="搜索" />
+                        </form>
+                    </div>
+                    <dl class="hotSearch">
+                        <!--<dt>-->
+                            <!--热门搜索：-->
+                        <!--</dt>-->
+                        <!--<dd>-->
+                            <!--<a href="#">信息化</a>-->
+                        <!--</dd>-->
+                        <!--<dd>-->
+                            <!--<a href="#">教育研究</a>-->
+                        <!--</dd>-->
+                        <!--<dd>-->
+                            <!--<a href="#">运营</a>-->
+                        <!--</dd>-->
+                        <!--<dd>-->
+                            <!--<a href="#">实习</a>-->
+                        <!--</dd>-->
+                    </dl>
+                    <div class="breakline">
+                    </div>
+                    <dl class="workCity" id="workCitySelect">
+                        <dt class="fl">
+                            工作城市：
+                        </dt>
+                        <dd>
+                            <a href="javascript:;">全国</a>
+                            |
+                        </dd>
+                        <dd>
+                            <a href="javascript:;">珠海</a>
+                            |
+                        </dd>
+                        <dd>
+                            <a href="javascript:;">中山</a>
+                            |
+                        </dd>
+                        <dd>
+                            <a href="javascript:;">南宁</a>
+                            |
+                        </dd>
+                        <dd class="more">
+                            <div class="triangle citymore_arrow">
+                            </div>
+                        </dd>
+                        <dd id="box_expectCity" class="searchlist_expectCity dn">
+                            <span class="bot">
+                            </span>
+                            <span class="top">
+                            </span>
+                            <dl>
+                                <dt>
+                                    ABCDEF
+                                </dt>
+                                <dd>
+                                    <span>北京</span>
+                                    <span>长春</span>
+                                    <span>成都</span>
+                                    <span>重庆</span>
+                                    <span>长沙</span>
+                                    <span>常州</span>
+                                    <span>东莞</span>
+                                    <span>大连</span>
+                                    <span>佛山</span>
+                                    <span>福州</span>
+                                </dd>
+                            </dl>
+                            <dl>
+                                <dt>
+                                    GHIJ
+                                </dt>
+                                <dd>
+                                    <span>贵阳</span>
+                                    <span>广州</span>
+                                    <span>哈尔滨</span>
+                                    <span>合肥</span>
+                                    <span>海口</span>
+                                    <span>杭州</span>
+                                    <span>惠州</span>
+                                    <span>金华</span>
+                                    <span>济南</span>
+                                    <span>嘉兴</span>
+                                </dd>
+                            </dl>
+                            <dl>
+                                <dt>
+                                    KLMN
+                                </dt>
+                                <dd>
+                                    <span>昆明</span>
+                                    <span>廊坊</span>
+                                    <span>宁波</span>
+                                    <span>南昌</span>
+                                    <span>南京</span>
+                                    <span>南宁</span>
+                                    <span>南通</span>
+                                </dd>
+                            </dl>
+                            <dl>
+                                <dt>
+                                    OPQR
+                                </dt>
+                                <dd>
+                                    <span>青岛</span>
+                                    <span>泉州</span>
+                                </dd>
+                            </dl>
+                            <dl>
+                                <dt>
+                                    STUV
+                                </dt>
+                                <dd>
+                                    <span>上海</span>
+                                    <span>石家庄</span>
+                                    <span>绍兴</span>
+                                    <span>沈阳</span>
+                                    <span>深圳</span>
+                                    <span>苏州</span>
+                                    <span>天津</span>
+                                    <span>太原</span>
+                                    <span>台州</span>
+                                </dd>
+                            </dl>
+                            <dl>
+                                <dt>
+                                    WXYZ
+                                </dt>
+                                <dd>
+                                    <span>武汉</span>
+                                    <span>无锡</span>
+                                    <span>温州</span>
+                                    <span>西安</span>
+                                    <span>厦门</span>
+                                    <span>烟台</span>
+                                    <span>珠海</span>
+                                    <span>中山</span>
+                                    <span>郑州</span>
+                                </dd>
+                            </dl>
+                        </dd>
+                    </dl>
+                    <dl class="workplace" id="workplaceSelect">
+                        <dt class="fl">
+                            工作单位：
+                        </dt>
+                        <dd>
+                            <a href="javascript:;">全部</a>
+                            |
+                        </dd>
+                        {% for wa in showWorkAddrs %}
+                        <dd>
+                            <a href="javascript:;">{{ wa.value }}</a>
+                            |
+                        </dd>
+                        {% endfor %}
+                        <dd class="more">
+                            <div class="triangle citymore_arrow">
+                            </div>
+                        </dd>
+                        <dd id="box_expectAddr" class="searchlist_expectCity dn">
+                            <span class="bot">
+                            </span>
+                            <span class="top">
+                            </span>
+                            {% if allWorkAddrs.centrals.length>0 %}
+                            <dl>
+                                <dt>
+                                    本部
+                                </dt>
+                                <dd>
+                                    {% for wa in allWorkAddrs.centrals %}
+                                    <span>{{ wa.value }}</span>
+                                    {% endfor %}
+                                </dd>
+                            </dl>
+                            {% endif %}
+                            {% if allWorkAddrs.preschools.length>0 %}
+                            <dl>
+                                <dt>
+                                    幼稚园
+                                </dt>
+                                <dd>
+                                    {% for wa in allWorkAddrs.preschools %}
+                                    <span>{{ wa.value }}</span>
+                                    {% endfor %}
+                                </dd>
+                            </dl>
+                            {% endif %}
+                            {% if allWorkAddrs.primaryschools.length>0 %}
+                            <dl>
+                                <dt>
+                                    小学
+                                </dt>
+                                <dd>
+                                    {% for wa in allWorkAddrs.primaryschools %}
+                                    <span>{{ wa.value }}</span>
+                                    {% endfor %}
+                                </dd>
+                            </dl>
+                            {% endif %}
+                            {% if allWorkAddrs.middleschools.length>0 %}
+                            <dl>
+                                <dt>
+                                    中学
+                                </dt>
+                                <dd>
+                                    {% for wa in allWorkAddrs.middleschools %}
+                                    <span>{{ wa.value }}</span>
+                                    {% endfor %}
+                                </dd>
+                            </dl>
+                            {% endif %}
+                            {% if allWorkAddrs.highschools.length>0 %}
+                            <dl>
+                                <dt>
+                                    高中
+                                </dt>
+                                <dd>
+                                    {% for wa in allWorkAddrs.highschools %}
+                                    <span>{{ wa.value }}</span>
+                                    {% endfor %}
+                                </dd>
+                            </dl>
+                            {% endif %}
+                            {% if allWorkAddrs.trainschools.length>0 %}
+                            <dl>
+                                <dt>
+                                    培训学校
+                                </dt>
+                                <dd>
+                                    {% for wa in allWorkAddrs.trainschools %}
+                                    <span>{{ wa.value }}</span>
+                                    {% endfor %}
+                                </dd>
+                            </dl>
+                            {% endif %}
+                        </dd>
+                    </dl>
+                    <ul class="hot_pos reset">
+                        {% if positions.length==0 %}
+                            <div class="no_resume_tip no_resume_home">暂时还没有职位发布~</div>
+                        {% endif %}
+                        {% for vo in positions %}
+	                        <li class="odd clearfix" style="margin-bottom: 10px">
+	                            <div class="hot_pos_l">
+	                                <div class="mb10">
+	                                    <a href="/job/{{vo._id}}" title="点击详情" target="_blank">
+	                                        {{vo.name}}
+	                                    </a>
+	                                    <span class="c9">
+	                                        [{{vo.city}}]
+	                                    </span>
+	                                </div>
+	                                <span>
+	                                    <em class="c7">
+	                                        月薪：
+	                                    </em>
+                                        {% if vo.negotiable %}
+                                            面议
+                                        {% else %}
+	                                        {{vo.salaryLow}}k-{{vo.salaryHigh}}k
+                                        {% endif %}
+	                                </span>
+	                                <span>
+	                                    <em class="c7">
+	                                        经验：
+	                                    </em>
+	                                    {{vo.experience}}
+	                                </span>
+	                                <span>
+	                                    <em class="c7">
+	                                        最低学历：
+	                                    </em>
+	                                    {{vo.certificate}}
+	                                </span>
+	                                <br />
+                                    <span>
+	                                    {{vo.updated}} 发布
+	                                </span>
+                                    <br />
+                                    <span>
+                                        {% if vo.welfare.length>0 %}
+                                            <ul class="companyTags reset">
+                                            {% for wel in vo.welfare %}
+                                                <li>{{wel}}</li>
+                                            {% endfor %}
+                                            </ul>
+                                        {% endif %}
+                                    </span>
+	                                <br />
+	                            </div>
+	                            <div class="hot_pos_r">
+	                                <div class="apply">
+	                                    <a href="/job/{{vo._id}}" target="_blank">
+	                                        投个简历
+	                                    </a>
+	                                </div>
+	                                <div class="mb10">
+	                                    <a href="{:U('Home/Index/showCompany', array('id'=>$vo[company][id]))}" title="" target="_blank">
+	                                        {{vo.workAddr}}
+	                                    </a>
+	                                </div>
+
+	                                <span>
+                                        {% if vo.companyInfo.scale %}
+	                                    <em class="c7">
+	                                        单位规模：
+	                                    </em>
+	                                    {{vo.companyInfo.scale}}
+                                        {% endif %}
+	                                </span>
+
+                                    <br/>
+                                    {% if vo.companyInfo.address %}
+                                    <span>
+	                                    <em class="c7">
+	                                        单位地址：
+	                                    </em>
+	                                    {{vo.companyInfo.address}}
+	                                </span>
+                                    {% endif %}
+                                    <br/>
+                                    {% if vo.companyInfo.tele %}
+                                    <span>
+	                                    <em class="c7">
+	                                        单位电话：
+	                                    </em>
+	                                    {{vo.companyInfo.tele}}
+	                                </span>
+                                    {% endif %}
+	                            </div>
+	                        </li>
+                        {% endfor %}
+                    </ul>
+                    <!--<div class="Pagination">-->
+
+                    <!--</div>-->
+                </div>
+                <div class="clear">
+                </div>
+                <input type="hidden" id="resubmitToken" value="" />
+                <a id="backtop" title="回到顶部" rel="nofollow">
+                </a>
+            </div>
+            <!-- end #container -->
+        </div>
+        <!-- end #body -->
+        <div id="footer">
+            <div class="wrapper">
+                <a href="h/about.html" target="_blank" rel="nofollow">
+                    联系我们
+                </a>
+                <a class="footer_qr" href="javascript:void(0)" rel="nofollow">
+                    微信二维码
+                    <i>
+                    </i>
+                </a>
+                <div class="copyright">
+                    <a target="_blank" href="#">
+                        <!--京ICP备-->
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <script type="text/javascript" src="javascripts/jquery.1.10.1.min.js"></script>
+        <script type="text/javascript" src="javascripts/jquery.lib.min.js"></script>
+        <script type="text/javascript" src="javascripts/ajaxfileupload.js" ></script>
+        <script type="text/javascript" src="javascripts/additional-methods.js"></script>
+        <script type="text/javascript" src="javascripts/excanvas.js" ></script>
+        <script type="text/javascript" src="javascripts/conv.js"></script>
+        <script type="text/javascript" src="javascripts/search.min.js" ></script>
+        <script type="text/javascript" src="javascripts/core.min.js"></script>
+        <script type="text/javascript" src="javascripts/remodal.min.js"></script>
+    </body>
+    <script>
+    	//热门城市的搜索
+        $('#workCitySelect').children('dd').children('a').click(function (){
+            $('#cityInput').val($(this).html());
+            $('#searchform').submit();
+        });
+    	$('#workplaceSelect').children('dd').children('a').click(function (){
+    		$('#addressInput').val($(this).html());
+    		$('#searchform').submit();
+    	});
+    	//全部城市的搜索
+    	$('#box_expectCity').children('dl').children('dd').children('span').click(function (){
+    		$('#cityInput').val($(this).html());
+    		$('#searchform').submit();
+    	});
+        $('#box_expectAddr').children('dl').children('dd').children('span').click(function (){
+            $('#addressInput').val($(this).html());
+            $('#searchform').submit();
+        });
+    	//热门职位的搜索
+    	$('.hotSearch').children('dd').children('a').click(function(){
+    		$('#search_input').val($(this).html());
+    		$('#searchform').submit();
+    	});
+    	//薪资栏搜索
+    	$('#options').children('dl').children('dd').eq(0).children('div').click(function(){
+    		$('#salaryInput').val($(this).html());
+    		$('#searchform').submit();
+    	});
+    	//工作经验搜索
+    	$('#options').children('dl').children('dd').eq(1).children('div').click(function(){
+    		$('#experienceInput').val($(this).html());
+    		$('#searchform').submit();
+    	});
+    	//学历搜索
+    	$('#options').children('dl').children('dd').eq(2).children('div').click(function(){
+    		$('#certificateInput').val($(this).html());
+    		$('#searchform').submit();
+    	});
+    	//工作性质搜索
+    	$('#options').children('dl').children('dd').eq(3).children('div').click(function(){
+    		$('#natureInput').val($(this).html());
+    		$('#searchform').submit();
+    	});
+    </script>
+</html>

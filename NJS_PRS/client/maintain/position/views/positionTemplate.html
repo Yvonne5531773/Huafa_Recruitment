@@ -1,0 +1,217 @@
+<style>
+  div label{
+    font: 16px "微软雅黑",Arial;
+    color: #999;
+  }
+  form[name='positionForm'] input,option,span{
+    font: 16px "微软雅黑",Arial;
+    color: #333;
+  }
+  .modal-content{
+    width: 800px;
+    margin-left: -120px;
+  }
+  .btn-default {
+    color: #333;
+    background-color: rgb(251, 195, 35);
+    border-color: #ccc;
+  }
+  span .irs-line-right {
+    background-position:inherit;
+  }
+</style>
+
+<link rel="stylesheet" type="text/css" href="lib/AdminLTE/plugins/ionslider/ion.rangeSlider.css" />
+<link rel="stylesheet" type="text/css" href="lib/AdminLTE/plugins/ionslider/ion.rangeSlider.skinNice.css" />
+<link rel="stylesheet" href="lib/AdminLTE/plugins/iCheck/all.css">
+<div class="modal-body position">
+  <form name="positionForm">
+    <div class="form-group row">
+      <div class="col-md-6">
+        <label class="control-label">职位类型<span style="color:red">*</span></label>
+        <select ng-model="position.jobType" class="form-control" required>
+          <option ng-repeat="positionTypes in allPositionTypes" value="{{positionTypes}}">{{positionTypes}}</option>
+        </select>
+      </div>
+      <div class="col-md-6">
+        <label class="control-label">职位名称<span style="color:red">*</span></label>
+        <input type="text" name="name" class="form-control" ng-model="position.name" required>
+      </div>
+    </div>
+    <div class="form-group row">
+      <div class="col-md-6">
+        <label class="control-label">工作单位<span style="color:red">*</span></label>
+        <select ng-model="position.workAddr" class="form-control" required>
+          <option ng-repeat="workAddr in workAddrs" value="{{workAddr}}">{{workAddr}}</option>
+        </select>
+      </div>
+      <div class="col-md-6">
+        <label class="control-label">招聘人数<span style="color:red">*</span></label>
+        <input type="number" name="count" class="form-control" ng-model="position.count" min="1" required>
+      </div>
+    </div>
+    <div class="form-group row">
+      <div class="col-md-6">
+        <label class="control-label">工作城市<span style="color:red">*</span></label>
+        <div>
+          <input type="text" placeholder="请输入工作城市，如：珠海" name="city" class="form-control" ng-model="position.city" required>
+        </div>
+      </div>
+      <div class="col-md-6">
+        <label class="control-label">工作地址</label>
+        <div>
+          <input type="text" name="location" class="form-control" ng-model="position.location">
+        </div>
+      </div>
+    </div>
+    <div class="form-group row">
+      <div class="col-md-6">
+        <label class="control-label">工作经验<span style="color:red">*</span></label>
+        <select ng-model="position.experience" class="form-control" required>
+          <option ng-repeat="experience in allExperiences" value="{{experience}}">{{experience}}</option>
+        </select>
+      </div>
+      <div class="col-md-6">
+        <label class="control-label">第一学历<span style="color:red">*</span></label>
+        <select ng-model="position.certificate" class="form-control" required>
+          <option ng-repeat="certificateTypes in allCertificateTypes" value="{{certificateTypes}}">{{certificateTypes}}</option>
+        </select>
+      </div>
+    </div>
+    <div class="form-group row">
+      <div class="col-md-6 salary-range">
+        <label class="control-label">月薪范围</label>
+        <input id="range_1" type="text" name="range_1">
+        <input id="salaryLow" name="salaryLow" type="text" placeholder="最低">
+        <span style="margin-right:15px;top: 4px;position: relative;">K </span>
+        <input id="salaryHigh" name="salaryHigh" type="text" placeholder="最高">
+        <span style="top: 4px;position: relative;">K </span>
+        <div style="float:right;margin-top:6px">
+          <span style="top: 4px;position: relative;">显示面议</span>
+          <input type="checkbox" class="flat-red">
+        </div>
+      </div>
+      <div class="col-md-6">
+        <label class="control-label">福利</label>
+        <ui-select style="padding: 6px 3px 0;" multiple theme="bootstrap" ng-model="position.welfare">
+          <ui-select-match>
+            {{$item.value}}
+          </ui-select-match>
+          <ui-select-choices repeat="item in (allWelfareTypes | filter: $select.search)">
+            <span ng-bind="item.value"></span>
+          </ui-select-choices>
+        </ui-select>
+      </div>
+    </div>
+    <div class="form-group row">
+      <div class="col-md-6">
+        <label class="control-label">回复信息("/"表示换行)</label>
+        <input type="text" name="successMessage" class="form-control" ng-model="position.successMessage" >
+      </div>
+      <div class="col-md-6">
+        <td>
+          <ul class="profile_radio clearfix reset">
+            <li ng-class="{'current': position.nature === '全职' }">
+              全职
+              <em></em>
+              <input type="radio" name="nature" value="全职" ng-model="position.nature">
+            </li>
+            <li ng-class="{'current': position.nature === '实习'}">
+              实习
+              <em></em>
+              <input type="radio" name="nature" value="实习" ng-model="position.nature">
+            </li>
+            <li ng-class="{'current': position.nature === '返聘'}">
+              返聘
+              <em></em>
+              <input type="radio" name="nature" value="返聘" ng-model="position.nature">
+            </li>
+          </ul>
+        </td>
+      </div>
+    </div>
+      <div class="form-group row">
+          <div class="col-md-6">
+              <label class="control-label">职位描述</label>
+              <div class="ueditor" ng-model="position.description" config="_simpleConfig" style="height: 200px"></div>
+          </div>
+          <div class="col-md-6">
+              <label id="detailabel" class="control-label">职位要求</label>
+              <div class="ueditor" ng-model="position.descriptionDetail" config="_simpleConfig" style="height: 200px"></div>
+          </div>
+      </div>
+    <div class="form-group" style="margin-top: 25px;margin-bottom: 0px;">
+      <button id="submitButton" type="submit" class="btn  btn-primary" ng-click="submit(positionForm.$valid)">保存</button>
+      <button type="reset" class="btn  btn-primary" ng-click="cancel()">取消</button>
+    </div>
+  </form>
+</div>
+<script src="lib/AdminLTE/plugins/iCheck/icheck.min.js"></script>
+<script src="lib/AdminLTE/plugins/ionslider/ion.rangeSlider.min.js"></script>
+<script type="text/javascript">
+    $(function() {
+        $(".profile_radio li input").click(function() {
+            $(this).parent("li").siblings("li").removeClass("current"), $(this).parent("li").addClass("current");
+        });
+
+        $("#range_1").ionRangeSlider({
+            min: 0,
+            max: 100,
+            from: 0,
+            to: 100,
+            type: 'double',
+            step: 1,
+            postfix: "k",
+            prettify: false,
+            hasGrid: true
+        });
+        var range_1 = $("#range_1");
+        var range = $("#range_1").data("ionRangeSlider");
+        range_1.on('change', function(){
+            var $this = $(this),
+                value = $this.prop("value").split(";");
+            $('#salaryLow').val(value[0])
+            $('#salaryHigh').val(value[1])
+        });
+        $("#salaryLow").keyup(function(){
+            range.update({
+                from: $('#salaryLow').val()
+            });
+        });
+        $("#salaryHigh").keyup(function(){
+            range.update({
+                to: $('#salaryHigh').val()
+            });
+        });
+        var scope= $('#range_1').scope();
+        if(scope.position) {
+            $('#salaryLow').val(scope.position.salaryLow)
+            $('#salaryHigh').val(scope.position.salaryHigh)
+            range.update({
+                from: scope.position.salaryLow,
+                to: scope.position.salaryHigh
+            });
+            if(scope.position.negotiable)
+                $('input[type="checkbox"].flat-red').iCheck('check');
+            else $('input[type="checkbox"].flat-red').iCheck('uncheck');
+        }
+        $('#submitButton').on('click',function(){
+            scope.position.salaryLow = $('#salaryLow').val();
+            scope.position.salaryHigh = $('#salaryHigh').val();
+        });
+
+        //Flat red color scheme for iCheck
+        $('input[type="checkbox"].flat-red').iCheck({
+            checkboxClass: 'icheckbox_flat-green',
+            radioClass: 'iradio_flat-green'
+        });
+        $('input[type="checkbox"].flat-red').on("ifClicked",function(event){
+            if(event.target.checked){
+                scope.position.negotiable = false
+            }else{
+                scope.position.negotiable = true
+            }
+        });
+    });
+
+</script>

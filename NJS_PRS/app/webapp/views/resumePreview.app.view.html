@@ -1,0 +1,161 @@
+<html>
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+	<title>Huafa Education Recruitment</title>
+	<link rel="Shortcut Icon" href="#">
+	<link rel="stylesheet" type="text/css" href="../../../css/style.css" />
+</head>
+<body>
+
+<div id="previewWrapper">
+	<div class="preview_header">
+		<h1 title="{{resume.resumename}}的简历">{{resume.resumename}}的简历</h1>
+	</div>
+
+	<div class="preview_content">
+		<div id="basicInfo" class="profile_box">
+			<h2>基本信息</h2>
+			<div class="basicShow">
+                   <span>
+					   {% if resume.name %} {{resume.name}} {% endif %}
+					   {% if resume.gender %} | {{resume.gender}} {% endif %}
+					   {% if resume.nation %} | {{resume.nation}} {% endif %}
+					   {% if resume.birthed %} | {{resume.birthed}}<br> {% endif %}
+					   {% if resume.origin %}  籍贯 {{resume.origin}} {% endif %}
+					   {% if resume.experience %} | {{resume.experience}} {% endif %}
+					   {% if resume.domicile %} | {{resume.domicile}} {% endif %}
+					   {% if resume.politic %} | {{resume.politic}}<br> {% endif %}
+					   {% if resume.phone %} {{resume.phone}} {% endif %}
+					   {% if resume.idCard %} | {{resume.idCard}} {% endif %}
+					   {% if resume.email %} | {{resume.email}}<br> {% endif %}
+					   {% if resume.address %} {{resume.address}}<br> {% endif %}
+					   {% if resume.workunit %} {{resume.workunit}} {% endif %}
+					   {% if resume.post %} | {{resume.post}} {% endif %}
+					   {% if resume.status %} | {{resume.status}}<br> {% endif %}
+					   {% if resume.height %} 身高{{resume.height}}cm {% endif %}
+					   {% if resume.weight %} | 体重{{resume.weight}}kg {% endif %}
+					   {% if resume.married %} | {{resume.married}} {% endif %}
+					   {% if resume.child %} | {{resume.child}} {% endif %}
+					   {% if resume.health %} | 身体状况 {{resume.health}} {% endif %}
+					   {% if resume.honor %} | {{resume.honor}} {% endif %}
+				   </span>
+				<div class="m_portrait">
+					<div></div>
+					<img src="../../../{{resume.icon}}" alt="{{resume.resumename}}" height="120" width="120">
+				</div>
+			</div>
+		</div>
+
+		<div id="educationalBackground" class="profile_box">
+			<h2>教育背景</h2>
+			<div class="educationalShow">
+				<ul class="elist clearfix">
+					{% for vo in resume.education %}
+						<li class="clear">
+							<span class="c9">{{vo.began}} - {{vo.ended}}</span>
+							<div>
+								<h3>{{vo.school}}</h3>
+								<h4>{{vo.profession}}，{{vo.degree}}, {{vo.nature}}</h4>
+							</div>
+						</li>
+					{% endfor %}
+				</ul>
+			</div>
+		</div>
+
+		<div id="workExperience" class="profile_box">
+			<h2>工作经历</h2>
+			<div class="experienceShow">
+				<ul class="wlist clearfix">
+					{% for vo in resume.work %}
+						<li class="clear">
+							<span class="c9">{{vo.yearStart}}.{{vo.monthStart}} - {{vo.yearEnd}}.{{vo.monthEnd}}</span>
+							<div>
+								<h3>{{vo.company}}</h3>
+								<h4>{{vo.position}}</h4>
+							</div>
+						</li>
+					{% endfor %}
+				</ul>
+			</div>
+		</div>
+
+		<div id="projectExperience" class="profile_box">
+			<h2>项目经验</h2>
+			<div class="projectShow">
+				<ul class="plist clearfix">
+					{% for vo in resume.project %}
+						<li class="noborder">
+							<div class="projectList">
+								<div class="f16 mb10">{{vo.name}}，{{vo.position}}
+									<span class="c9">（{{vo.yearStart}}.{{vo.monthStart}} - {{vo.yearEnd}}.{{vo.monthEnd}}）</span>
+									}
+								</div>
+								<div class="dl1">
+									{{vo.description}}
+								</div>
+							</div>
+						</li>
+					{% endfor %}
+				</ul>
+			</div>
+		</div>
+
+		<div id="certificate" class="profile_box">
+			<h2>证书等级</h2>
+			<div class="certificateShow">
+				<ul class="clist clearfix">
+					{% for vo in resume.certificate %}
+					<li class="clear">
+						<span class="c9">{{vo.gotYear}}.{{vo.gotMonth}}</span>
+						<div>
+							<h3>{{vo.name}}</h3>
+							<h4>{{vo.nature}}</h4>
+						</div>
+					</li>
+					{% endfor %}
+				</ul>
+			</div>
+		</div>
+
+		<!--<div id="worksShow" class="profile_box">-->
+			<!--<h2>作品展示</h2>-->
+			<!--<div class="workShow">-->
+				<!--<ul class="slist clearfix">-->
+					<!--<foreach name="data['res_show_works_value']" item="vo" >-->
+						<!--<li class="noborder">-->
+							<!--<div class="workList c7">-->
+								<!--<div class="f16">-->
+									<!--网址：<a href="http://{$vo.link}/" target="_blank">{$vo.link}</a>-->
+								<!--</div>-->
+								<!--<p>{$vo.description}</p>-->
+							<!--</div>-->
+						<!--</li>-->
+					<!--</foreach>-->
+				<!--</ul>-->
+			<!--</div>-->
+		<!--</div>-->
+	</div>
+</div>
+
+<!--<div style="display:none;">-->
+	<!--&lt;!&ndash; 下载简历 &ndash;&gt;-->
+	<!--<div id="downloadOnlineResume" class="popup">-->
+		<!--<table width="100%">-->
+			<!--<tbody><tr>-->
+				<!--<td class="c5 f18">请选择下载简历格式：</td>-->
+			<!--</tr>-->
+			<!--<tr>-->
+				<!--<td>-->
+					<!--<a href="" class="btn_s">word格式</a>-->
+					<!--<a href="" class="btn_s">html格式</a>-->
+					<!--<a href="" class="btn_s">pdf格式</a>-->
+				<!--</td>-->
+			<!--</tr>-->
+			<!--</tbody></table>-->
+	<!--</div>-->
+<!--</div>-->
+
+</body>
+</html>

@@ -1,0 +1,55 @@
+<div class="views">
+    <div class="view view-main" data-page="form-elements">
+        <!-- Top Navbar-->
+        <div class="navbar">
+            <div class="navbar-inner">
+                <div class="left">
+                    <a href="#" id="btn_back1" class="back link icon-only"><i class="icon icon-back"></i></a>
+                </div>
+                <div class="center sliding">报名表</div>
+                <div class="right">
+                    <a href="#" class="link icon-only open-panel"><i class="icon icon-bars"></i></a>
+                </div>
+            </div>
+        </div>
+        <!-- Pages container, because we use fixed-through navbar and toolbar, it has additional appropriate classes-->
+        <div class="pages navbar-through toolbar-through">
+            <!-- Page, "data-page" contains page name -->
+            <div data-page="myFastRegister" class="page page-on-center" id="myFastRegister">
+                <!-- Scrollable page content -->
+                <div class="page-content">
+
+                    <div class="content-block-title">报名信息</div>
+                    <!-- ko foreach: items -->
+                    <div class="list-block">
+                        <ul data-bind="foreach: {data: fields, as: 'registerItem'}">
+                            <li>
+                                <div class="item-content">
+                                    <!--<div class="item-media"><i class="icon icon-form-name"></i></div>-->
+                                    <div class="item-inner">
+                                        <div class="item-title label"><span data-bind="text: fieldName"> </span></div>
+                                        <div class="item-input">
+                                            <input type="text" style="color: gray; font-size: 1rem;"
+                                                   data-bind="attr: {placeholder: fieldName, name: fieldKey}, value : fieldValue">
+                                        </div>
+                                    </div>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                    <!-- /ko -->
+
+                    <div class="row" style="padding-left: 2%;  padding-right: 2%; margin-bottom: 20px;">
+                        <div class="col-50">
+                            <a href="#" class="button button-fill color-red">取消报名</a>
+                        </div>
+                        <div class="col-50">
+                            <a href="javascript:myFastRegister.saveData()" class="button button-fill color-green">报名</a>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

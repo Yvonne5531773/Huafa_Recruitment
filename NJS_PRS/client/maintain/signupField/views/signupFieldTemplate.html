@@ -1,0 +1,58 @@
+<div class="modal-body">
+    <form name="signupFieldForm" class="form-horizontal inline-block">
+
+        <input type="text" name="fieldKey" class="form-control hidden" ng-model="signupField._id">
+
+        <div class="form-group row">
+            <div class="col-md-3 col-sm-3" >
+                <label class="control-label label-font">字段Key<span style="color:red">*</span></label>
+            </div>
+            <div class="col-md-9 col-sm-9">
+                <input type="text" name="fieldKey" class="form-control" ng-model="signupField.fieldKey" required>
+            </div>
+        </div>
+
+        <div class="form-group row">
+            <div class="col-md-3 col-sm-3" >
+                <label class="control-label label-font">字段名称<span style="color:red">*</span></label>
+            </div>
+            <div class="col-md-9 col-sm-9">
+                <input type="text" name="fieldName" class="form-control" ng-model="signupField.fieldName" required>
+            </div>
+        </div>
+
+        <div class="form-group row">
+            <div class="col-md-3 col-sm-3" >
+                <label class="control-label label-font">字段类型<span style="color:red">*</span></label>
+            </div>
+            <div class="col-md-9 col-sm-9">
+                <!--<input type="text" name="fieldType" class="form-control" ng-model="signupField.fieldType" required>-->
+                <select class="js-example-basic-single js-states form-control" style="width:100%" ng-model="signupField.fieldType">
+                    <option value=""></option>
+                    <option value="text" selected>文本</option>
+                    <option value="choice">选项</option>
+                    <!--<option value="number">数值</option>-->
+                </select>
+            </div>
+        </div>
+
+        <div class="form-group row" ng-hide="signupField.fieldType != 'choice'">
+            <div class="col-md-3 col-sm-3" >
+                <label class="control-label label-font">菜单选项</label>
+            </div>
+            <div class="col-md-9 col-sm-9">
+                <textarea name="fieldOption" row='3' class="form-control" 
+                ng-model="signupField.fieldOption" ng-required="">
+                </textarea>
+            </div>
+        </div>
+
+        <div class="form-group row">
+            <div class="col-md-12 col-sm-12" style="text-align: right">
+                <button type="reset" class="btn btn-default" ng-click="cancel()">取消</button>
+                <button type="submit" class="btn btn-primary" ng-click="submit(signupFieldForm.$valid)">保存</button>
+            </div>
+        </div>
+
+    </form>
+</div>

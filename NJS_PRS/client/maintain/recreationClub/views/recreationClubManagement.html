@@ -1,0 +1,132 @@
+<section class="content-header">
+	<div class="col-md-6 col-sm-6">
+		<span style="font-size: x-large">俱乐部管理</span>
+	</div>
+	<div class="col-md-6 col-sm-6">
+		<ol class="breadcrumb" style="margin: 5px 0 5px 0; float: right">
+			<li><a ui-sref="home"><i class="fa fa-dashboard"></i> 主页</a></li>
+			<li class="active">俱乐部管理</li>
+		</ol>
+	</div>
+</section>
+
+<!-- Main content -->
+<section class="content" style="margin-top: 5px;">
+    <div ng-if='role === "admin"' class="panel panel-default col-md-6 col-sm-8" style="padding: 0">
+        <div class="panel-heading">
+            <h4 class="panel-title">
+                <span class="fa fa-th-list"></span>
+                <span class="pull-right pointer-cursor"><i ng-class="vm.collapsed?'fa fa-chevron-down':'fa fa-chevron-up'" ng-click="vm.collapsed = !vm.collapsed"></i></span>
+                <label class="control-label">搜索</label>
+            </h4>
+        </div>
+        <div class="panel-collapse collapse" ng-class="{in: vm.collapsed}">
+            <div class="panel-body">
+                <div class="form-group row">
+                    <div class="col-md-6 col-sm-6">
+                        <label class="control-label">俱乐部名称</label>
+                        <input  type="text" class="form-control"  ng-model="vm.criteria.name" />
+                    </div>
+                     <div class="col-md-6 col-sm-6">
+                            <label class="control-label">状态</label>
+                            <select class="form-control" ng-model="vm.criteria.status">
+                                <option ng-repeat="accountType in accountTypeList" value="{{accountType}}">{{accountType}}</option>
+                            </select>
+                    </div>
+                </div>
+                <div class="row col-md-6 col-sm-6 pull-right">
+                    <div class="col-md-6 col-sm-6">
+                        <button type="button" class="btn btn-primary btn-block" ng-click="vm.searchClub()">搜索</button>
+                    </div>
+                    <div class="col-md-6 col-sm-6">
+                        <button type="button" class="btn btn-info btn-block" ng-click="vm.resetSearch()">重置</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div ng-if='role === "admin"' class="carrier-section-position col-md-12 col-sm-12" style="padding: 0">
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <label class="control-label">俱乐部列表</label>
+                <div class="text-right" style="float: right; margin-top: -6px;">
+					<button class="btn btn-primary" ng-click="addRecreationClub()">添加</button>
+				</div>
+            </div>
+            <div class="panel-body">
+                <!--
+                <div class="text-right" style="margin-bottom:5px;">
+                    <button class="btn btn-primary" ng-click="addRecreationClub()">添加</button>
+                </div>
+                -->
+                <div class="col-md-3 col-sm-6 col-xs-12" ng-repeat="club in vm.clubList">
+                    <div class="info-box" style="{{club.status=='待发布' ? 'background: rgb(232, 233, 234);' : 'background: #99ff99;' }}">
+                        <div class="box-tools pull-right">
+                            <button type="button" ng-click="updateRecreationClub(club)"
+                                    class="btn btn-box-tool" style="padding-right: 0px;"><i class="fa fa-fw fa-edit"></i>
+                            </button>
+                            <button type="button" ng-click="deleteRecreationClub(club)"
+                                    class="btn btn-box-tool" style="padding-left: 0px;padding-right: 5px;"><i
+                                    class="fa fa-fw fa-trash-o"></i></button>
+                        </div>
+                        <span class="info-box-icon bg-blue"><img ng-src="{{club.icon}}" style="margin-top: -11px"></span>
+                        <div class="info-box-content">
+                            <span class="info-box-text" style="margin-top: 3px;"><strong>俱乐部名称：</strong>{{club.name}}</span>
+                            <span class="info-box-text" style="margin-top: 5px;"><strong>俱乐部队长：</strong>{{club.captain.userid}}</span>
+                            <span class="info-box-text" style="margin-top: 5px;"><strong>俱乐部状态：</strong>{{club.status}}</span>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+    <div ng-if='role === "captain"' id=main class=min_contain>
+        <div class=info-show>
+            <div class=same-content>
+                <div class=info-area>
+                    <div class=opera-userinfo>
+                        <div ng-if="club.status == '待发布'" class="scene-oper fr" ng-click=publish(club,0)>
+                            <a class="btn btn-border opa-btn background-color-width-change">
+                                <span></span> &nbsp;发布俱乐部
+                            </a>
+                        </div>
+                        <div ng-if="club.status == '已发布'" class="scene-oper fr" ng-click=publish(club,1)>
+                            <a class="btn btn-border opa-btn background-color-width-change">
+                                <span></span> &nbsp;取消发布
+                            </a>
+                        </div>
+                    </div>
+                    <div class="u-photo fl" ng-mouseenter="showMask=true" ng-mouseleave="showMask=false">
+                        <div class=p-mask ng-show=showMask>
+                            <a ng-click = uploadFile(club)><em class="eqf-top-pic background-color-width-change" style=font-size:18px></em>
+                                <span>更换</span></a>
+                        </div>
+                        <div ng-class="{'p-svg': !icon}">
+                            <span class=eqf-top-contact ng-show=!icon></span>
+                        </div>
+                        <img ng-src="{{icon}}" ng-show=icon>
+                    </div>
+                    <div class=u-detail>
+                        <div class="u-col pt20">
+                            <div class=first-col style=display:inline-block>俱乐部名称：<span >{{club.name}}</span></div>
+                        </div>
+                        <div class=u-col>
+                            <div class="first-col fl">创建时间：&nbsp;&nbsp;{{createDateTime}}</div>
+                        </div>
+                        <div class=u-col>
+                            <div class="first-col fl">状态：&nbsp;&nbsp;{{club.status}}</div>
+                        </div>
+                    </div>
+                </div>
+                <div class=spread-tab></div>
+            </div>
+        </div>
+        <div class="same-content u-content min_contain">
+            <div ng-include="'client/maintain/recreationClub/views/recreationClubForm.html'"></div>
+        </div>
+    </div>
+    <toaster-container toaster-options="{'time-out': 3000, 'animation-class': 'toast-center'}"></toaster-container>
+</section>

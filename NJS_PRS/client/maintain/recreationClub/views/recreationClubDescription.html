@@ -1,0 +1,19 @@
+<div class=modal-header>
+    <button type=button class=close data-dismiss=modal aria-label=Close ng-click=cancel()>
+        <span aria-hidden=true>×</span></button>
+    <h4 class=modal-title>俱乐部介绍</h4>
+</div>
+<div class="modal-body">
+    <form name="recreationclubForm" class="form-horizontal inline-block">
+        <div class="form-group">
+            <div class="col-md-12">
+                <div class="ueditor" ng-model="recreationclub.description" config="_simpleConfig" style="height:100px"></div>
+            </div>
+        </div>
+        <div class=modal-footer>
+            <a class=modal-cancle ng-click=cancel()>取消</a>
+            <a class="btn btn-primary" ng-click=submit(recreationclubForm.$valid)>保存</a>
+        </div>
+    </form>
+</div>
+<p ng-show=authError style=text-align:center;color:#ff5448>{{authError}}</p>

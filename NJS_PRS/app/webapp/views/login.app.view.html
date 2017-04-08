@@ -1,0 +1,75 @@
+
+<link rel="stylesheet" type="text/css" href="../../../css/remodal.css" />
+<link rel="stylesheet" type="text/css" href="../../../css/remodal-default-theme.css" />
+<div class="login_wrapper" data-remodal-id="login" style="background: #08b291;bottom: 150px">
+    <div class="login_header">
+    </div>
+    <input type="hidden" id="resubmitToken" value="" />
+    <div class="login_box login_check">
+        <form id="loginForm">
+            <input style="margin-right: 60px" type="text" id="email" name="email" value="" tabindex="1" placeholder="请输入登录邮箱地址" />
+            <span class="error" style="display:none;" id="beError"></span>
+            <input style="margin-right: 60px" type="password" id="password" name="password" tabindex="2" placeholder="请输入密码" />
+            <span class="error" style="display:none;" id="beError"></span>
+            <label class="fl" for="remember">
+                <!--<input type="checkbox" id="remember" value="" checked="checked" name="autoLogin" /> 记住我-->
+            </label>
+            <a href="reset.html" class="fr" target="_blank">忘记密码？</a>
+            <!--<input type="submit" id="submitLogin" value="登 &nbsp; &nbsp; 录" />-->
+            <a style="color:#fff;" class="submitLogin" title="登 &nbsp; &nbsp; 录"/>登 &nbsp; &nbsp; 录</a>
+        </form>
+        <div class="login_right">
+            <div>没有帐号？</div>
+            <a class="registor_now">立即注册</a>
+        </div>
+    </div>
+    <div class="login_box_btm"></div>
+</div>
+<script type="text/javascript" src="../../../javascripts/jquery.1.10.1.min.js"></script>
+<script type="text/javascript" src="../../../javascripts/jquery.lib.min.js"></script>
+<script src="../../../javascripts/remodal.js"></script>
+<script type="text/javascript">
+    var ep=false;
+    $('.login_check #email').blur(function(){
+        $.post('/login/checkUsername',{'email':$('.login_check #email').val()},function(obj){
+            if(obj){
+                $('.login_check #email').next().html('');
+                ep=true;
+            }else{
+                $('.login_check #email').next().css({display:'block',color:'red'});
+                $('.login_check #email').next().html('用户名不存在');
+            }
+        });
+    });
+    $('.login_check .submitLogin').click(function(){
+        if(ep){
+            $.post('/login/checkApplicant',{'email':$('.login_check #email').val(),'password':$('.login_check #password').val()},function(obj){
+                if(obj){
+                    $('.login_check #password').next().html('');
+                    $.cookie('applicant', obj.username, { expires: 1/24 });
+                    $.ajax({
+                        url: "/applicant/login",
+                        type: "POST",
+                        data: {email: $('.login_check #email').val()},
+                        dataType: "json"
+                    }).done(function (res) {
+                        if (!res.error) {
+                            var val = $('.locationIndex').val();
+                            if($('.locationIndex').val()==='3') location.href='/resume';
+                            else location.href='/index';
+                        }
+                    });
+                }else{
+                    $('.login_check #password').next().css({display:'block',color:'red'});
+                    $('.login_check #password').next().html('密码错误');
+                }
+            });
+        }else{
+            return false;
+        }
+    });
+    $('.registor_now').click(function(){
+        var inst = $('[data-remodal-id=register]').remodal();
+        inst.open();
+    })
+</script>

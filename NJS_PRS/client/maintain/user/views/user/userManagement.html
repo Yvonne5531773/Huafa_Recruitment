@@ -1,0 +1,69 @@
+<section class="content-header">
+	<div class="col-md-6 col-sm-6">
+	</div>
+	<div class="col-md-6 col-sm-6">
+		<ol class="breadcrumb" style="margin: 5px 0 5px 0; float: right">
+			<li><a ui-sref="home"><i class="fa fa-dashboard"></i> 主页</a></li>
+			<li class="active">用户管理</li>
+		</ol>
+	</div>
+</section>
+
+<!-- Main content -->
+<section class="content" style="margin-top: 5px;" ng-app="userManagement" ng-controller="userController">
+    <div class="panel panel-default col-md-6 col-sm-8" style="padding: 0">
+        <div class="panel-heading">
+            <h4 class="panel-title">
+                <span class="fa fa-th-list"></span>
+                <span class="pull-right pointer-cursor"><i ng-class="vm.collapsed?'fa fa-chevron-down':'fa fa-chevron-up'" ng-click="vm.collapsed = !vm.collapsed"></i></span>
+                <label class="control-label">搜索</label>
+            </h4>
+        </div>
+        <div class="panel-collapse collapse" ng-class="{in: vm.collapsed}">
+            <div class="panel-body">
+                <div class="form-group row">
+                    <div class="col-md-6 col-sm-6">
+                        <label class="control-label" style="margin-bottom: 8px">用户名</label>
+                        <select class="form-control" ng-model="username">
+                            <option ng-repeat="user in userList" value="{{user.userid}}">{{user.userid}}</option>
+                        </select>
+                    </div>
+                    <div class="col-md-6 col-sm-6">
+                        <label class="control-label" style="margin-bottom: 8px">权限</label>
+                        <select class="form-control" ng-model="roleName">
+                            <option ng-repeat="role in roleList" value="{{role}}">{{role}}</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="row col-md-6 col-sm-6 pull-right">
+                    <div class="col-md-6 col-sm-6">
+                        <button type="button" class="btn btn-primary btn-block" ng-click="searchUser()">搜索</button>
+                    </div>
+                    <div class="col-md-6 col-sm-6">
+                        <button type="button" class="btn btn-info btn-block" ng-click="resetSearch()">重置</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Your Page Content Here -->
+    <div class="carrier-section-position col-md-12 col-sm-12" style="padding: 0">
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <label class="control-label">用户列表</label>
+            </div>
+            <div class="panel-body" style="padding:5px">
+                <div class="text-right" style="margin-bottom:5px;">
+                    <button class="btn btn-primary" ng-click="addUser()" ng-show="isAdminLogin">添加</button>
+                    <button class="btn btn-primary" ng-click="updateUser()" ng-show="isAdminLogin">修改</button>
+                    <button class="btn btn-danger" ng-click="deleteUser()" ng-show="isAdminLogin">删除</button>
+                    <button class="btn btn-info" ng-click="batchInsert()" ng-show="isAdminLogin">批量插入</button>
+                </div>
+                <div ui-grid="userGrid" ui-grid-pagination ui-grid-cellnav ui-grid-resize-columns ui-grid-pinning ui-grid-selection ui-grid-move-columns ui-grid-exporter></div>
+                <!--</section>-->
+            </div>
+        </div>
+    </div>
+    <toaster-container toaster-options="{'time-out': 3000, 'animation-class': 'toast-center'}"></toaster-container>
+</section>

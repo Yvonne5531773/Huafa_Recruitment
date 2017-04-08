@@ -1,0 +1,98 @@
+<section class="content-header">
+    <div class="col-md-6 col-sm-6"></div>
+    <div class="col-md-6 col-sm-6">
+        <ol class="breadcrumb" style="margin: 5px 0 5px 0; float: right">
+            <li><a ui-sref="home"><i class="fa fa-dashboard"></i> 主页</a></li>
+            <li class="active">应聘者管理</li>
+            <li class="active">待处理简历</li>
+        </ol>
+    </div>
+</section>
+<!-- Main content -->
+<section class="content" style="margin-top: 30px;" ng-app="applicant" ng-controller="ApplicantController">
+    <div class="panel panel-default" style="width:60%;">
+        <div class="panel-heading">
+            <h4 class="panel-title">
+                <span class="fa fa-th-list"></span>
+                <span class="pull-right pointer-cursor"><i ng-class="vm.collapsed?'fa fa-chevron-down':'fa fa-chevron-up'" ng-click="vm.collapsed = !vm.collapsed"></i></span>
+                <label class="control-label">搜索</label>
+            </h4>
+        </div>
+        <div class="panel-collapse collapse" ng-class="{in: vm.collapsed}">
+            <div class="panel-body">
+                <div class="form-group row">
+                    <div class="col-md-6">
+                        <label class="control-label">申请职位名称</label>
+                        <select class="form-control" ng-model="positionName">
+                            <option ng-repeat="position in selectForShow" value={{position.name}}>{{position.name}}</option>
+                        </select>
+                        <!--<input type="text"  class="form-control"-->
+                               <!--ng-model="positionName">-->
+                    </div>
+                    <div class="col-md-6">
+                        <label class="control-label">应聘者</label>
+                        <input type="text"  class="form-control" ng-keyup="entersearch($event)"
+                               ng-model="applicantName">
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <div class="col-md-4">
+                        <label class="control-label">第一学历</label>
+                        <select class="form-control" ng-model="firstEducationDegree">
+                            <option ng-repeat="degree in selectForDegree" value={{degree}}>{{degree}}</option>
+                        </select>
+                    </div>
+                    <div class="col-md-4">
+                        <label class="control-label">第一学历毕业学校</label>
+                        <select class="form-control" ng-model="firstEducationSchool">
+                            <option ng-repeat="data in myData.data" value={{data.firstEducation.degree}}>{{data.firstEducation.degree}}</option>
+                        </select>
+                    </div>
+                    <div class="col-md-4">
+                        <label class="control-label">第一学历专业</label>
+                        <select class="form-control" ng-model="firstEducationProfession">
+                            <option ng-repeat="data in myData.data" value={{data.firstEducation.profession}}>{{data.firstEducation.profession}}</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <div class="col-md-6">
+                    <label class="control-label">工作经验</label>
+                        <select class="form-control" ng-model="experience">
+                            <option ng-repeat="experience in selectForExperience" value={{experience}}>{{experience}}</option>
+                        </select>
+                    </div>
+                    <div class="col-md-6">
+                        <label class="control-label">投递时间</label>
+                        <p class="input-group">
+                            <input type="text" class="form-control" uib-datepicker-popup="{{format}}" ng-model="applyTime" is-open="popup2.opened" datepicker-options="dateOptions" ng-required="true" close-text="Close" alt-input-formats="altInputFormats" />
+                            <span class="input-group-btn">
+                               <button type="button" class="btn btn-default" ng-click="open2()"><i class="glyphicon glyphicon-calendar"></i></button>
+                            </span>
+                        </p>
+                    </div>
+                </div>
+                <div class="row col-md-5">
+                    <div style="float:left; width:45%">
+                        <button type="button" class="btn btn-primary  btn-block" ng-click="searchApplicant()">搜索</button>
+                    </div>
+                    <div style="float:right; width:45%">
+                        <button type="button" class="btn btn-info btn-block" ng-click="cancelPosition()">重置</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Your Page Content Here -->
+    <div class="panel panel-default" >
+        <div class="panel-heading"><label class="control-label">应聘者列表</label></div>
+        <div class="panel-body" style="padding: 5px">
+        <div class="tab-content tab-bordered">
+            <section>
+                <div ui-grid="myData" ui-grid-pagination ui-grid-cellNav  ui-grid-resize-columns ui-grid-pinning ui-grid-selection ui-grid-move-columns ui-grid-exporter></div>
+            </section>
+        </div>
+        </div>
+    </div>
+    <toaster-container toaster-options="{'time-out': 3000, 'animation-class': 'geo-toast-top-right'}"></toaster-container>
+</section>

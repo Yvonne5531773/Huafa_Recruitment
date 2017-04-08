@@ -1,0 +1,364 @@
+<html>
+<head>
+	<meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=0">
+	<meta charset="UTF-8">
+	<meta http-equiv="Cache-Control" content="no-siteapp" />
+	<link rel="alternate" media="handheld" />
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+	<title>Huafa Education Recruitment</title>
+	<link rel="Shortcut Icon" href="#">
+	<link rel="stylesheet" type="text/css" href="../../../css/style.css" />
+</head>
+<body>
+
+<div id="body">
+	{% include "./header.app.view.html" %}
+	<div id="container">
+		<div class="clearfix">
+			<div class="content_l">
+				<dl class="c_delivery">
+					<dt>
+						<h1>
+							<em>
+							</em>
+							我投递的职位
+						</h1>
+					</dt>
+					<dd>
+						<div class="delivery_tabs">
+							<ul class="reset">
+								<li {% if resumeApplyAll %} class="current"{% endif %}>
+									<a onclick="javascript:location.href='/jobApply/0'">全部</a>
+								</li>
+								<li {% if resumeView %} class="current"{% endif %}>
+									<a onclick="javascript:location.href='/jobApply/1'">被查看</a>
+								</li>
+								<li {% if resumeNotic %} class="current"{% endif %}>
+									<a onclick="javascript:location.href='/jobApply/2'">通知面试</a>
+								</li>
+							</ul>
+						</div>
+						<form id="deliveryForm">
+							<ul class="reset my_delivery">
+								{% for apply in applied %}
+									<li>
+										<div class="d_item">
+											<h2 title="{{apply.position.name}}">
+												<a target="_blank" href="#">
+													<em>
+														{{apply.position.name}}
+													</em>
+													<span>
+														({{apply.position.salaryLow}}k-{{apply.position.salaryHigh}}k）
+													</span>
+												</a>
+											</h2>
+											<div class="clear">
+											</div>
+											<a title="{{apply.companyInfo.type}}" class="d_jobname" target="_blank" href="">
+												{{apply.position.workAddr}}
+												<span>
+													[{{apply.position.city}}]
+												</span>
+											</a>
+											<span class="d_time">
+                                                    {{apply.position.updated}}
+											</span>
+											<div class="clear"></div>
+											<a class="btn_showprogress" href="javascript:;">
+												进度详情<i></i>
+											</a>
+										</div>
+										<div class="progress_status dn">
+											<ul class="status_steps">
+												<li class="status_done done">
+													1
+												</li>
+												<li {% if apply.progress.viewed %} class="status_line status_line_done"
+													{% else %} class="status_line status_line_grey" {% endif %}>
+                                                        <span></span>
+												</li>
+												<li {% if apply.progress.viewed %} class="status_done"
+													{% else %} class="status_grey" {% endif %}>
+                                                        <span>2</span>
+												</li>
+												<li {% if apply.progress.accepted %} class="status_line status_line_done"
+													{% else %} class="status_line status_line_grey" {% endif %}>
+                                                        <span></span>
+												</li>
+												<li {% if apply.progress.accepted %} class="status_done"
+													{% else %} class="status_grey" {% endif %}>
+                                                        <span>3</span>
+												</li>
+											</ul>
+											<ul class="status_text">
+												<li>
+													投递成功
+												</li>
+												<li class="status_text_2">
+													简历被查看
+												</li>
+												<li class="status_text_3">
+													通知面试
+												</li>
+											</ul>
+											<ul class="status_list">
+												<li class="top">
+													<div class="list_time">
+														<em></em>
+														{{apply.time}}
+													</div>
+													<div class="list_body">
+														简历投递成功
+													</div>
+												</li>
+												{% if apply.progress.viewed %}
+												<li class="top">
+													<div class="list_time">
+														<em></em>
+														{{apply.progress.viewed}}
+													</div>
+													<div class="list_body">
+														招聘单位已查看简历
+													</div>
+												</li>
+												{% endif %}
+												{% if apply.progress.accepted %}
+												<li class="top">
+													<div class="list_time">
+														<em></em>
+														{{apply.progress.accepted}}
+													</div>
+													<div class="list_body">
+														通过简历筛选，已通知面试
+													</div>
+												</li>
+												{% endif %}
+											</ul>
+											<a class="btn_closeprogress" href="javascript:;">
+											</a>
+										</div>
+									</li>
+								{% endfor %}
+							</ul>
+							<input type="hidden" value="-1" name="tag" />
+							<input type="hidden" value="" name="r" />
+						</form>
+					</dd>
+				</dl>
+			</div>
+			<div class="content_r">
+				<div class="mycenterR" id="myInfo">
+					<h2>我的信息</h2>
+					<a target="_blank" href="/jobCollect">我收藏的职位</a><br>
+					<a target="_blank" href="/jobApply/0">我投递的职位<span class="red dn" id="noticeNoPage">&nbsp;(0)</span></a><br>
+				</div>
+				<!--end #myInfo-->
+				<div class="mycenterR" id="myRecommend">
+					<h2>
+						可能适合你的职位
+					</h2>
+					<ul class="reset">
+						<!--<li>-->
+							<!--<a target="_blank" href="http://www.lagou.com/jobs/22194.html">-->
+                                        <!--<span class="f16">-->
+                                            <!--经理-->
+                                        <!--</span>-->
+								<!--<span class="c7">-->
+                                            <!--华发教育-->
+                                        <!--</span>-->
+								<!--<em>-->
+									<!--92%-->
+								<!--</em>-->
+							<!--</a>-->
+						<!--</li>-->
+					</ul>
+				</div>
+				<!--end #myRecommend-->
+				<div class="greybg qrcode mt20">
+					<!--<img width="242" height="242" alt="微信公众号二维码" src=""/>-->
+					<!--<span class="c7">-->
+						<!--扫描二维码，微信轻松搜工作-->
+					<!--</span>-->
+				</div>
+			</div>
+		</div>
+		<input type="hidden" id="userid" name="userid" value="314873" />
+		<div class="dn" id="recordPopBox">
+			<dl>
+				<dt>
+					评价面试体验
+					<a class="boxclose" href="javascript:;">
+					</a>
+				</dt>
+				<dd>
+					<form id="recordForm">
+						<input type="hidden" value="" id="recordId" />
+						<ul id="interviewResult" class="record_radio clearfix">
+							<li class="mr35">
+								已收到offer
+								<input type="radio" name="type" value="1" />
+							</li>
+							<li>
+								未收到offer
+								<input type="radio" name="type" value="2" />
+							</li>
+						</ul>
+						<div class="dividebtm">
+							<table>
+								<tbody>
+								<tr>
+									<td width="80" valign="top" align="right">
+										面试评分：
+									</td>
+									<td>
+										<ul id="recordStarSelect">
+											<li>
+											</li>
+											<li>
+											</li>
+											<li>
+											</li>
+											<li>
+											</li>
+											<li>
+											</li>
+										</ul>
+										<input type="hidden" id="recordStar" value="" name="recordStar" />
+										<div class="clear">
+										</div>
+									</td>
+								</tr>
+								<tr>
+									<td valign="top" align="right" class="dividebtman">
+										面试短评：
+									</td>
+									<td>
+										<input type="hidden" class="error" id="select_record_hidden" value=""
+											   name="record" />
+										<input type="text" autocomplete="off" placeholder="15字以内对面试的简单描述哦" id="select_record"
+											   class="selectr_340" maxlength="15" />
+										<div class="boxUpDownan boxUpDown_340 dn" id="box_record" style="display: none;">
+											<ul>
+												<p>
+													热门短评：
+												</p>
+												<li>
+												</li>
+												<li>
+												</li>
+												<li>
+												</li>
+												<li>
+												</li>
+												<li>
+												</li>
+												<li>
+												</li>
+											</ul>
+										</div>
+									</td>
+								</tr>
+								<tr>
+									<td valign="top" align="right" class="dividebtman">
+										面试经历：
+									</td>
+									<td>
+                                                    <textarea id="interviewDesc" placeholder="记录下自己的面试经历" style="width: 320px;">
+                                                    </textarea>
+										<div class="word_count">
+											你还可以输入
+											<span>
+                                                            500
+                                                        </span>
+											字
+										</div>
+										<div id="showName" class="f14 c7">
+											<label class="checkbox">
+												<input type="checkbox" />
+												<i>
+												</i>
+											</label>
+											匿名提交
+										</div>
+										<input type="hidden" value="" id="isShowName" />
+										<input type="hidden" value="" id="senduid" />
+										<input type="hidden" value="" id="poid" />
+										<input type="hidden" value="" id="deid" />
+									</td>
+								</tr>
+								<tr>
+									<td align="right" colspan="2">
+										<input type="submit" value="确认提交" class="submitRecord btn_small" />
+									</td>
+								</tr>
+								</tbody>
+							</table>
+						</div>
+					</form>
+				</dd>
+			</dl>
+		</div>
+		<div class="clear">
+		</div>
+	</div>
+
+	<div class="clear"></div>
+		<input type="hidden" value="success" id="resubmitToken">
+		<a rel="nofollow" title="回到顶部" id="backtop" style="display: none;"></a>
+	</div>
+	<div id="footer">
+		<div class="wrapper">
+			<a href="h/about.html" target="_blank" rel="nofollow">
+				联系我们
+			</a>
+			<a class="footer_qr" href="javascript:void(0)" rel="nofollow">
+				微信二维码
+				<i>
+				</i>
+			</a>
+			<div class="copyright">
+				<a target="_blank" href="#">
+					<!--京ICP备-->
+				</a>
+			</div>
+		</div>
+		<script type="text/javascript" src="../../../javascripts/collections.js"></script>
+		<script type="text/javascript" src="../../../javascripts/core.min.js"></script>
+		<script type="text/javascript" src="../../../javascripts/delivery.js"></script>
+	</div>
+<div id="sublist" style="display:none"></div>
+<script>
+    $(function() {
+
+        $('.Pagination').pager({
+            currPage: 1,
+            pageNOName: "pageNo",
+            form: "deliveryForm",
+            pageCount: 1,
+            pageSize: 5
+        });
+
+        $('.delCollect').click(function(){
+            var _id = $(this).attr("data-id");
+            href="/jobDelCollect"
+            $.ajax({
+                url: '/jobDelCollect',
+                type:'POST',
+                async:false,
+                data:{
+                    _id: _id,
+                },
+                dataType:'json'
+            }).done(function (res) {
+                if(!res.error){
+                    top.location.reload();
+                }else{
+                    errorTips("取消收藏：" + res.error, "取消收藏");
+                }
+            });
+        })
+    });
+</script>
+</body>
+</html>

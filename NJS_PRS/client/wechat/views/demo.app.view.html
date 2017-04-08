@@ -1,0 +1,375 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <!-- Required meta tags-->
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no, minimal-ui">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black">
+  <title>Recreation Club</title>
+  <link rel="stylesheet" href="../../lib/Framework7/dist/css/framework7.ios.css">
+  <link rel="stylesheet" href="../../lib/Framework7/dist/css/framework7.ios.min.css">
+  <link rel="stylesheet" href="../../lib/Framework7/dist/css/framework7.ios.colors.css">
+  <link rel="stylesheet" href="../../lib/Framework7/dist/css/framework7.ios.colors.min.css">
+  <link rel="stylesheet" href="../../lib/Framework7/dist/css/my-app.css">
+  <link rel="stylesheet" href="../../stylesheets/lambert-test.css">
+  <link rel="stylesheet" href="../../stylesheets/index.css">
+  <script type="text/javascript" src="../../lib/jquery/dist/jquery.min.js"></script>
+  <script type="text/javascript" src="../../lib/knockout/dist/knockout.js"></script>
+  <script type="text/javascript" src="../../javascripts/common/interfaces.js"></script>
+  <script type="text/javascript" src="../../javascripts/common/commonFunction.js"></script>
+  <script type="text/javascript" src="../../javascripts/initIndexPage.js"></script>
+  <script type="text/javascript" src="../../javascripts/initActivitiesPage.js"></script>
+  <script type="text/javascript" src="../../javascripts/initActivityDetailsPage.js"></script>
+  <script type="text/javascript" src="../../javascripts/initMyClubPage.js"></script>
+  <script type="text/javascript" src="../../javascripts/initAllClubPage.js"></script>
+  <script type="text/javascript" src="../../javascripts/myRoute.js"></script>
+  <style>
+    .demo-card-header-pic .card-lambert {
+      height: 40vw;
+      background-size: cover;
+      background-position: center;
+    }
+    .demo-font-large-lambert {
+      font-size: large;
+    }
+    .demo-panel-raw-lambert {
+      padding-top: 7px;
+      padding-bottom: 9px;
+      width: 100%;
+    }
+    .demo-panel-icon-lambert {
+      padding-top: 7px;
+    }
+    .demo-panel-item-lambert {
+      padding-top: 6px;
+      font-size: x-large;
+      color: white;
+    }
+    .demo-click-link:active {
+      -webkit-transition-duration: 0s;
+      transition-duration: 0s;
+      background-color: #d9d9d9;
+      /*background-color: #8e8e93;*/
+    }
+/*    .demo-click-link:active .demo-click-link.active-state .demo-click-link:after {
+      background-color: transparent;
+    }*/
+  </style>
+</head>
+<body>
+<!-- Status bar overlay for full screen mode (PhoneGap) -->
+<div class="statusbar-overlay"></div>
+<!-- Panels overlay-->
+<div class="panel-overlay"></div>
+<!-- Left panel with reveal effect-->
+<div class="panel panel-left panel-reveal" style="background:#273238">
+  <div class="" style="color:#f4f6f8;margin: 35px 0 0 0;padding: 0px 15px;">
+    <div class="row center">
+      <form class="searchbar" style="background:#525260">
+        <div class="searchbar-input">
+          <input type="search" placeholder="Search"><a href="#" class="searchbar-clear"></a>
+        </div>
+        <a href="#" class="searchbar-cancel">Cancel</a>
+      </form>
+    </div>
+    <div class="row center demo-panel-raw-lambert">
+      <div class="col-40" ><img class="club-img" src="../images/badminton.jpg" width="100%"></div>
+      <div class="col-60">
+        <div class="demo-font-large-lambert"><span>Lambert</span></div>
+        <P>ITA - Club</P>
+      </div>
+    </div>
+  </div>
+  <div class="list-block" style="margin-top: 0;">
+    <a href="home" class="item-content item-link" id="id_route2Home_disable" style="color: inherit;">
+      <div class="row center demo-panel-raw-lambert">
+        <div class="col-20 demo-panel-icon-lambert"><i class="icon icon-form-url"></i></div>
+        <div class="col-60 demo-panel-item-lambert">Home</div>
+        <div class="col-20"></div>
+      </div>
+    </a>
+    <a href="allClubs" class="item-content item-link" id="id_route2Clubs_disable" style="color: inherit;">
+        <div class="row center demo-panel-raw-lambert">
+          <div class="col-20 demo-panel-icon-lambert"><i class="icon icon-form-url"></i></div>
+          <div class="col-60 demo-panel-item-lambert">Clubs</div>
+          <div class="col-20"></div>
+        </div>
+    </a>
+    <a href="/" class="item-content item-link external" style="color: inherit;">
+      <div class="row center demo-panel-raw-lambert">
+        <div class="col-20 demo-panel-icon-lambert"><i class="icon icon-form-email"></i></div>
+        <div class="col-60 demo-panel-item-lambert">Messages</div>
+        <div class="col-20 demo-panel-item-lambert"><span class="badge bg-green">2</span></div>
+      </div>
+    </a>
+    <a href="fastRegister" class="item-content item-link" style="color: inherit;">
+      <div class="row center demo-panel-raw-lambert">
+        <div class="col-20 demo-panel-icon-lambert"><i class="icon icon-form-settings"></i></div>
+        <div class="col-60 demo-panel-item-lambert">Setting</div>
+        <div class="col-20"></div>
+      </div>
+    </a>
+    <a href="#" class="item-content item-link" style="color: inherit;">
+      <div class="row center demo-panel-raw-lambert">
+        <div class="col-20 demo-panel-icon-lambert"><i class="icon icon-form-password"></i></div>
+        <div class="col-60 demo-panel-item-lambert">Logout</div>
+        <div class="col-20"></div>
+      </div>
+    </a>
+  </div>
+
+</div>
+<!-- Views -->
+<div class="views">
+  <div class="view view-main">
+    <div class="navbar">
+      <div class="navbar-inner">
+        <!-- We need cool sliding animation on title element, so we have additional "sliding" class -->
+        <div class="center sliding">OOCL Recreation Club</div>
+        <div class="right">
+          <!--
+            Right link contains only icon - additional "icon-only" class
+            Additional "open-panel" class tells app to open panel when we click on this link
+          -->
+          <a href="#" class="link icon-only open-panel"><i class="icon icon-bars"></i></a>
+        </div>
+      </div>
+    </div>
+    <div class="pages navbar-through toolbar-through">
+      <div  class="page">
+        <!-- Search bar -->
+        <form data-search-list=".list-block-search" data-search-in=".item-title" data-found=".searchbar-found" data-not-found=".searchbar-not-found" class="searchbar searchbar-init">
+          <div class="searchbar-input">
+            <input type="search" placeholder="Search"><a href="#" class="searchbar-clear"></a>
+          </div>
+          <a href="#" class="searchbar-cancel">Cancel</a>
+        </form>
+        <!-- Search bar overlay-->
+        <div class="searchbar-overlay"></div>
+
+        <!-- Scrollable page content -->
+        <div class="page-content">
+
+          <!-- This block will be displayed if nothing found -->
+          <div class="content-block searchbar-not-found">
+            <div class="content-block-inner">Nothing found</div>
+          </div>
+          <!-- This block will be displayed if anything found, and this list block is used a searbar target -->
+          <div class="list-block list-block-search searchbar-found">
+            <ul>
+              <li class="item-content item-link">
+                <div class="item-inner">
+                  <div class="item-title">2016男子秋季篮球赛</div>
+                  <div class="item-after"><span class="badge bg-green">40</span></div>
+                </div>
+              </li>
+              <li class="item-content item-link">
+                <div class="item-inner">
+                  <div class="item-title">2016男子羽毛球赛</div>
+                  <div class="item-after"><span class="badge bg-orange">30</span></div>
+                </div>
+              </li>
+              <li class="item-content item-link">
+                <div class="item-inner">
+                  <div class="item-title">2017男子秋季篮球赛</div>
+                  <div class="item-after"><span class="badge bg-orange">30</span></div>
+                </div>
+              </li>
+              <li class="item-content item-link">
+                <div class="item-inner">
+                  <div class="item-title">2017游泳注册</div>
+                  <div class="item-after"><span class="badge bg-orange">30</span></div>
+                </div>
+              </li>
+              <li class="item-content item-link">
+                <div class="item-inner">
+                  <div class="item-title">2018男子秋季篮球赛</div>
+                  <div class="item-after"><span class="badge bg-grey">10</span></div>
+                </div>
+              </li>
+              <li class="item-content item-link">
+                <div class="item-inner">
+                  <div class="item-title">2019男子秋季篮球赛</div>
+                  <div class="item-after"><span class="badge bg-red">0</span></div>
+                </div>
+              </li>
+            </ul>
+          </div>
+          <!--new content for testing-->
+          <div class="content-block-title">测试复合列表</div>
+          <div class="list-block media-list list-block-search searchbar-found">
+            <ul>
+              <li>
+                <a href="javascript:myRoute.loadClubActivities()" class="item-link item-content">
+                  <div class="item-media"><img src="./images/demo/basketball.gif" width="80"></div>
+                  <div class="item-inner">
+                    <div class="item-title-row">
+                      <div class="item-title">2016秋季篮球赛</div>
+                      <div class="item-after" style="font-size: small;">进行中</div>
+                    </div>
+                    <div class="item-subtitle" style="font-size: small;">2016/03/24 -- 2016/09/09</div>
+                    <div class="item-text" style="font-size: small;">好消息，OOCL新一期的篮球争霸赛开始啦。与赛者可以就近选择到</div>
+                  </div>
+                </a>
+              </li>
+              <li>
+                <a href="#" class="item-link item-content">
+                  <div class="item-media"><img src="./images/demo/badminton.jpg" width="80"></div>
+                  <div class="item-inner">
+                    <div class="item-title-row">
+                      <div class="item-title">2016 ZHA RC 羽毛球赛</div>
+                      <div class="item-after" style="font-size: small;">进行中</div>
+                    </div>
+                    <div class="item-subtitle" style="font-size: small;">2016/11/01 -- 2016/11/09</div>
+                    <div class="item-text" style="font-size: small;">2016 ZHA RC 羽毛球赛即将在11月火热开赛，全新赛制，邀你一起来体验。欢迎各位羽毛球爱好者踊跃报名参加！
+                      增进友谊，交流球技，挑战自己，欢迎加入我们！
+                    </div>
+                  </div>
+                </a>
+              </li>
+              <li>
+                <a href="#" class="item-link item-content">
+                  <div class="item-media"><img src="./images/demo/swimming.jpg" width="80"></div>
+                  <div class="item-inner">
+                    <div class="item-title-row">
+                      <div class="item-title">OOCL游泳俱乐部登记</div>
+                      <div class="item-after"><span class="badge bg-green">10/40</span></div>
+                    </div>
+                    <div class="item-subtitle" style="font-size: small;">子标题，写时间？</div>
+                    <div class="item-text" style="font-size: small;">这里是内容区域，不知道写什么。。。</div>
+                  </div>
+                </a>
+              </li>
+            </ul>
+          </div>
+
+          <!--new content for testing simple list-->
+          <div class="content-block-title">测试简单复合列表</div>
+          <div class="list-block media-list list-block-search searchbar-found">
+            <ul>
+              <li>
+                <a href="#" class="item-link item-content">
+                  <div class="item-media"><img src="./images/demo/basketball.gif" width="80"></div>
+                  <div class="item-inner">
+                    <div class="item-title-row">
+                      <div class="item-title demo-font-weight-lambert">2016秋季篮球赛</div>
+                    </div>
+                    <div class="item-subtitle demo-font-smaller-lambert">2016/03/24 -- 2016/09/09</div>
+                  </div>
+                </a>
+              </li>
+              <li>
+                <a href="#" class="item-link item-content">
+                  <div class="item-media"><img src="./images/demo/badminton.jpg" width="80"></div>
+                  <div class="item-inner">
+                    <div class="item-title-row">
+                      <div class="item-title demo-font-weight-lambert">2016 ZHA RC 羽毛球赛</div>
+                    </div>
+                    <div class="item-subtitle demo-font-smaller-lambert">2016/11/01 -- 2016/11/09</div>
+                  </div>
+                </a>
+              </li>
+              <li>
+                <a href="#" class="item-link item-content">
+                  <div class="item-media"><img src="./images/demo/swimming.jpg" width="80"></div>
+                  <div class="item-inner">
+                    <div class="item-title-row">
+                      <div class="item-title demo-font-weight-lambert">OOCL游泳俱乐部登记</div>
+                    </div>
+                    <div class="item-subtitle demo-font-smaller-lambert">子标题，写时间？</div>
+                  </div>
+                </a>
+              </li>
+            </ul>
+          </div>
+
+          <!--new content for testing up-down list-->
+          <!--<div class="content-block-title">测试上图下文复合列表</div>
+          <div class="list-block media-list list-block-search searchbar-found">
+            <ul>
+              <li>
+                <div class="content-block">
+                  <a href="#" class="item-link">
+                    <div class="row"><img src="./images/demo/demo_small.jpg" width="100%"></div>
+                    <div class="item-inner">
+                      <div class="item-title">Thomas J. Watson</div>
+                      <div class="item-text">Would you like me to give you a formula for success? It’s quite simple, really. Double your rate of failure. You’re thinking of failure as the enemy of success. But it isn’t at all… You can be discouraged by failure – or you can learn from it. So go ahead and make mistakes. Make all you can. Because, remember that’s where you’ll find success. On the far side
+                      </div>
+                    </div>
+                  </a>
+                </div>
+              </li>
+            </ul>
+          </div>-->
+
+          <!--style card layout-->
+          <div class="content-block-title">卡片式布局1</div>
+          <div class="card demo-card-header-pic">
+            <div style="background-image:url(./images/demo/demo_small.jpg)" valign="bottom" class="card-lambert card-header color-white no-border">2016 ZHA RC 羽毛球赛</div>
+            <div class="card-content">
+              <div class="card-content-inner">
+                <p class="color-gray">Nov 1,2016 - Nov 9,2016</p>
+                <p class="color-gray">羽毛球赛即将在11月火热开赛，全新赛制，邀你一起来体验。欢迎各位羽毛球爱好者踊跃报名参加！增进友谊，交流球技，挑战自己，欢迎加入我们！</p>
+              </div>
+            </div>
+            <div class="card-footer">
+              <span>报名中</span>
+              <span>人数： 10/20</span>
+              <a href="#" class="link">我要报名</a>
+            </div>
+          </div>
+
+          <!--style card layout 2-->
+          <div class="content-block-title">卡片式布局2</div>
+          <div class="card demo-card-header-pic">
+            <div style="background-image:url(./images/demo/swimming.jpg)" valign="bottom" class="card-lambert card-header color-white no-border"></div>
+            <div class="card-content">
+              <div class="card-content-inner">
+                <span class="demo-font-large-lambert">2016 ZHA RC 羽毛球赛</span>
+                <p class="color-gray">羽毛球赛即将在11月火热开赛，全新赛制，邀你一起来体验。欢迎各位羽毛球爱好者踊跃报名参加！增进友谊，交流球技，挑战自己，欢迎加入我们！</p>
+              </div>
+            </div>
+            <div class="card-footer">
+              <span>报名中</span>
+              <span>人数： 10/20</span>
+              <a href="#" class="link">我要报名</a>
+            </div>
+          </div>
+
+          <!--style card layout 3-->
+          <!--<div class="content-block-title">卡片式布局3，标题下移</div>
+          <div class="card demo-card-header-pic">
+            <div style="background-image:url(./images/demo/demo_small.jpg)" valign="bottom" class="card-lambert color-white no-border"></div>
+            <div class="card-header">2016 ZHA RC 羽毛球赛</div>
+            <div class="card-content">
+              <div class="card-content-inner">
+                <p class="color-gray">Nov 1,2016 - Nov 9,2016</p>
+                <p>羽毛球赛即将在11月火热开赛，全新赛制，邀你一起来体验。欢迎各位羽毛球爱好者踊跃报名参加！增进友谊，交流球技，挑战自己，欢迎加入我们！</p>
+              </div>
+            </div>
+            <div class="card-footer">
+              <span>报名中</span>
+              <span>人数： 10/20</span>
+              <a href="#" class="link">我要报名</a>
+            </div>
+          </div>-->
+
+        </div>
+      </div>
+    </div>
+    <!-- Bottom Toolbar-->
+<!--    <div class="toolbar">
+      <div class="toolbar-inner">
+        &lt;!&ndash; Toolbar links &ndash;&gt;
+        <a href="#" class="link">Link 1</a>
+        <a href="#" class="link">Link 2</a>
+      </div>
+    </div>-->
+  </div>
+</div>
+<script type="text/javascript" src="../../lib/Framework7/dist/js/framework7.min.js"></script>
+<!-- Path to your app js-->
+<!--<script type="text/javascript" src="../../javascripts/my-app.js"></script>-->
+</body>
+</html>   

@@ -1,0 +1,110 @@
+
+<div ng-controller="CompanySegment" ng-init="greeting='Hi,'">
+    <section class="content-header">
+        <div class="col-md-6 col-sm-6"></div>
+        <div class="col-md-6 col-sm-6">
+            <ol class="breadcrumb" style="margin: 5px 0 5px 0; float: right">
+                <li><a ui-sref="home"><i class="fa fa-dashboard"></i> 主页</a></li>
+                <li class="active">{{pageTitle}}</li>
+            </ol>
+        </div>
+    </section>
+    <!-- Main content -->
+    <section class="content">
+        <form name="companyForm">
+            <div class="row" ng-if="alertMsg">
+                <uib-alert type="danger" style="color: red !important;" close="closeAlert($index)">{{alertMsg}}
+                </uib-alert>
+            </div>
+            <div class="row">
+                <div class="col-md-8">
+                    <div class="row">
+                        <dl class=" col-md-6 form-group c_section c_stages">
+                            <dt>
+                                <h2>
+                                    <em></em>
+                                    标题
+                                </h2>
+                            </dt>
+                            <dd>
+                                <div class="input-group">
+                                    <span class="input-group-addon"><i class="fa fa-header"></i></span>
+                                    <input type="text" class="form-control" ng-model="entity.title" autofocus>
+                                </div>
+                            </dd>
+                        </dl>
+                        <dl class="col-md-6 form-group c_section c_stages">
+                            <dt>
+                            <h2>
+                                <em></em>
+                                页码
+                            </h2>
+                            </dt>
+                            <dd>
+                                <div class="input-group">
+                                    <span class="input-group-addon"><i class="fa fa-arrows-v"></i></span>
+                                    <input type="number" class="form-control" ng-model="entity.sequence" min="0"
+                                           required/>
+                                </div>
+                            </dd>
+                        </dl>
+                        <!--<div class="col-md-12 edit_content_company">-->
+                            <!--<dl class="c_section c_stages">-->
+                                <!--<dt>-->
+                                <!--<h2>-->
+                                    <!--<em></em>-->
+                                    <!--内容-->
+                                <!--</h2>-->
+                                <!--</dt>-->
+                                <!--<div class=" form-group">-->
+                                    <!--<label class="control-label" style="margin-bottom: 5px;"></label>-->
+                                    <!--<div id="bdEditor" class="ueditor" config="editorConfig"-->
+                                         <!--ng-model="entity.content"></div>-->
+                                <!--</div>-->
+                            <!--</dl>-->
+                        <!--</div>-->
+                        <div class="col-md-12 form-group edit_content_company">
+                            <dl class="c_section">
+                                <dt>
+                                    <h2>
+                                        <em></em>
+                                        内容
+                                    </h2>
+                                </dt>
+                                <div>
+                                    <label class="control-label" style="margin-bottom: 30px;"></label>
+                                    <div id="bdEditor" class="ueditor" config="editorConfig"
+                                         ng-model="entity.content"></div>
+                                </div>
+                            </dl>
+                        </div>
+                        <div class="col-md-12">
+                            <div class="pull-right">
+                                <button class="btn btn-success" ng-click="submit(companyForm.$valid)">保存</button>
+                                <button class="btn btn-warning" ng-click="back()">取消</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4" style="margin-top: 18px;">
+                    <div class="oocl ios-device ios-device--white ios-device--medium iphone-6s-plus iphone-6s-plus--large">
+                        <div class="container-con mobile-content">
+                            <div class="container-con-hd">
+                                <h1 ng-if="entity.title" class="oocl-title">{{entity.title}}</h1>
+                            </div>
+                            <div class="container-con-bd" ng-bind-html="entity.content|to_trusted">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+
+        </form>
+
+
+        <toaster-container
+                toaster-options="{'time-out': 3000, 'animation-class': 'geo-toast-top-right'}"></toaster-container>
+    </section>
+</div>

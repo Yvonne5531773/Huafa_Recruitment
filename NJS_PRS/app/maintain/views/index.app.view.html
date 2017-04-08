@@ -1,0 +1,238 @@
+{% extends 'layout.app.view.html' %} {% block content %}
+<div class="wrapper">
+
+	<!-- Main Header -->
+	<header class="main-header">
+
+		<!-- Logo -->
+		<a ui-sref="home" class="logo">
+			<!-- logo for regular state and mobile devices -->
+			<span class="logo-mini"><b>R</b>BE</span>
+			<span class="logo-lg"><b>R</b>ecruitment <b>B</b>ackend</span>
+		</a>
+
+		<!-- Header Navbar -->
+		<nav class="navbar navbar-static-top" role="navigation">
+			<!-- Sidebar toggle button-->
+			<a href="#" class="sidebar-toggle" data-toggle="offcanvas" role="button">
+				<span class="sr-only">Toggle navigation</span>
+			</a>
+			<!-- Navbar Right Menu -->
+			<div class="navbar-custom-menu">
+				<ul class="nav navbar-nav">
+					<!--User Account Menu-->
+					<li class="dropdown user user-menu">
+						<!-- Menu Toggle Button -->
+						<a ui-sref="logout" title="Logout" class="dropdown-toggle" data-toggle="dropdown">
+							<span class="fa fa-sign-out" id="username"></span>
+						</a>
+
+					</li>
+
+				</ul>
+			</div>
+
+		</nav>
+	</header>
+	<!-- Left side column. contains the logo and sidebar -->
+	<aside class="main-sidebar">
+
+		<!-- sidebar: style can be found in sidebar.less -->
+		<section class="sidebar">
+
+			<!-- Sidebar Menu -->
+			<aside class="main-sidebar">
+				<ul class="sidebar-menu">
+					{% if userInfo.role == '管理' %}
+					<li>
+						<a ui-sref="userManagement">
+							<i class="fa fa-users"></i>
+							<span>用户管理</span>
+							<span class="pull-right-container">
+							  <i class="fa"></i>
+							</span>
+						</a>
+					</li>
+					{% endif %}
+					<li ui-sref-active="active">
+						<a ui-sref="position">
+							<i class="fa fa-cog"></i>
+							<span>职位管理</span>
+							<span class="pull-right-container">
+							  <i class="fa"></i>
+							</span>
+						</a>
+					</li>
+					<li class="treeview">
+						<a href="#">
+							<i class="fa fa-child"></i>
+							<span>应聘者管理</span>
+							<span class="pull-right-container">
+						  		<i class="fa fa-angle-left pull-right"></i>
+							</span>
+						</a>
+						<ul class="treeview-menu">
+							<li style="margin-bottom: 5px"><a ui-sref="applicant"><i class="fa fa-circle-o"></i> 待处理简历</a></li>
+							<li><a ui-sref="acceptedApplicant"><i class="fa fa-circle-o"></i> 已通知面试简历</a></li>
+						</ul>
+					</li>
+					<li ui-sref-active="active">
+						<a ui-sref="companyIntroduction">
+							<i class="fa fa-university"></i>
+							<span>用人单位</span>
+							<span class="pull-right-container">
+							  <i class="fa"></i>
+							</span>
+						</a>
+					</li>
+					<!--<li ui-sref-active="active">-->
+						<!--<a ui-sref="templateManagement">-->
+							<!--<i class="fa fa-html5"></i>-->
+							<!--<span>模板管理</span>-->
+							<!--<span class="pull-right-container">-->
+							  <!--<i class="fa"></i>-->
+							<!--</span>-->
+						<!--</a>-->
+					<!--</li>-->
+					{% if userInfo.role == '管理' %}
+					<li ui-sref-active="active">
+						<a ui-sref="dictionary">
+							<i class="fa fa-book"></i>
+							<span>字典维护</span>
+							<span class="pull-right-container">
+							  <i class="fa"></i>
+							</span>
+						</a>
+					</li>
+					{% endif %}
+				</ul>
+			</aside>
+			<!-- /.sidebar-menu -->
+		</section>
+		<!-- /.sidebar -->
+	</aside>
+
+	<!-- Content Wrapper. Contains page content -->
+	<div class="content-wrapper" style="overflow: auto;">
+		<!-- Main content -->
+		<section ui-view=""></section>
+		<!-- /.content -->
+	</div>
+	<!-- /.content-wrapper -->
+
+	<!-- Main Footer -->
+	<footer class="main-footer">
+		<!-- To the right -->
+		<div class="pull-right hidden-xs">
+			粤ICP备11094507号-1
+		</div>
+		<!-- Default to the left -->
+		<strong>Copyright &copy; 2011 - 2016 <a href="#">华发教育</a>.</strong> All rights reserved.
+	</footer>
+
+	<!-- Control Sidebar -->
+	<aside class="control-sidebar control-sidebar-dark">
+		<!-- Create the tabs -->
+		<ul class="nav nav-tabs nav-justified control-sidebar-tabs">
+			<li class="active"><a href="#control-sidebar-home-tab" data-toggle="tab"><i class="fa fa-home"></i></a></li>
+			<li><a href="#control-sidebar-settings-tab" data-toggle="tab"><i class="fa fa-gears"></i></a></li>
+		</ul>
+		<!-- Tab panes -->
+		<div class="tab-content">
+			<!-- Home tab content -->
+			<div class="tab-pane active" id="control-sidebar-home-tab">
+				<h3 class="control-sidebar-heading">Recent Activity</h3>
+				<ul class="control-sidebar-menu">
+					<li>
+						<a href="javascript::;">
+							<i class="menu-icon fa fa-birthday-cake bg-red"></i>
+
+							<div class="menu-info">
+								<h4 class="control-sidebar-subheading">Langdon's Birthday</h4>
+
+								<p>Will be 23 on April 24th</p>
+							</div>
+						</a>
+					</li>
+				</ul>
+				<!-- /.control-sidebar-menu -->
+
+				<h3 class="control-sidebar-heading">Tasks Progress</h3>
+				<ul class="control-sidebar-menu">
+					<li>
+						<a href="javascript::;">
+							<h4 class="control-sidebar-subheading">
+								Custom Template Design
+								<span class="label label-danger pull-right">70%</span>
+							</h4>
+
+							<div class="progress progress-xxs">
+								<div class="progress-bar progress-bar-danger" style="width: 70%"></div>
+							</div>
+						</a>
+					</li>
+				</ul>
+				<!-- /.control-sidebar-menu -->
+
+			</div>
+			<!-- /.tab-pane -->
+			<!-- Stats tab content -->
+			<div class="tab-pane" id="control-sidebar-stats-tab">Stats Tab Content</div>
+			<!-- /.tab-pane -->
+			<!-- Settings tab content -->
+			<div class="tab-pane" id="control-sidebar-settings-tab">
+				<form method="post">
+					<h3 class="control-sidebar-heading">General Settings</h3>
+
+					<div class="form-group">
+						<label class="control-sidebar-subheading">
+                            Report panel usage
+                            <input type="checkbox" class="pull-right" checked>
+                        </label>
+
+						<p>
+							Some information about this general settings option
+						</p>
+					</div>
+					<!-- /.form-group -->
+				</form>
+			</div>
+			<!-- /.tab-pane -->
+		</div>
+	</aside>
+	<!-- /.control-sidebar -->
+	<!-- Add the sidebar's background. This div must be placed
+         immediately after the control sidebar -->
+	<div class="control-sidebar-bg"></div>
+</div>
+<script type="text/javascript">
+    {% if userInfo == null %} document.cookie = "USER_INFO=;path=/;expires=Thu, 01 Jan 1970 00:00:00 GMT"; {% endif %}
+    var userInfoStr  = getCookie('USER_INFO');
+    var userInfo;
+    var userDomainId;
+    if(userInfoStr != null){
+        userInfo = JSON.parse(userInfoStr);
+    }
+    if(userInfo != null){
+        userDomainId = userInfo.userid;
+    }
+    if(userDomainId !=null)
+        document.getElementById('username').innerText = userDomainId;
+    function getCookie(cookieName){
+        var cookieObj={},
+                cookieSplit=[],
+                cookieArr=document.cookie.split(";");
+        for(var i=0,len=cookieArr.length;i<len;i++)
+            if(cookieArr[i]) {
+                cookieSplit=cookieArr[i].split("=");
+                cookieObj[cookieSplit[0].trim()]=cookieSplit[1].trim();
+            }
+        if(cookieObj[cookieName] != null){
+            return decodeURIComponent(cookieObj[cookieName]);
+        }else{
+            return null;
+        }    
+    }
+
+</script> 
+{% endblock %}

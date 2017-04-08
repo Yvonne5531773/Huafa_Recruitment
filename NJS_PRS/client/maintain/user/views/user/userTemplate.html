@@ -1,0 +1,111 @@
+<div class="modal-body" style="padding: 20px 50px 30px 50px;">
+  <!-- <div class="modal-content user_content_box"> -->
+  <div class="modal-header" style="margin-bottom: 20px;">
+    <h4 class="modal-title expireTitle"></h4>
+  </div>
+
+  <form name="user_create_form" novalidate>
+          <div class="form-group row privilege">
+                <div class="col-md-2">
+                  <label class="control-label">权限<span style="color:red">*</span></label>
+                </div>
+                <div class="col-md-7">
+                  <td>
+                    <ul class="profile_radio clearfix reset">
+                      <li ng-class="{'current': user.role === '管理' }">
+                        管理
+                        <em></em>
+                        <input type="radio" value="管理" ng-model="user.role">
+                      </li>
+                      <li ng-class="{'current': user.role === '普通'}">
+                        普通
+                        <em></em>
+                        <input type="radio" value="普通" ng-model="user.role">
+                      </li>
+                    </ul>
+                  </td>
+                </div>
+          </div>
+          <div class="form-group row">
+            <div class="col-md-2">
+              <label class="control-label">所属单位<span style="color:red">*</span></label>
+            </div>
+            <div class="col-md-7">
+              <select ng-model="user.company" class="form-control" required>
+                <option ng-repeat="companies in allCompanies" value="{{companies}}">{{companies}}</option>
+              </select>
+              <!--<label class="radio-inline"><input type="radio" name="roleRadio" ng-model="user.role" value="admin">Admin</label>-->
+              <!--<label class="radio-inline"><input type="radio" name="roleRadio" ng-model="user.role" value="captain">Captain</label>-->
+            </div>
+            <div  class="col-md-3"
+                 ng-show="user_create_form.selectAccountTypeError">
+              <span>请选择一个角色创建</span>
+            </div>
+          </div>
+
+          <div  class="form-group row">
+            <div class="col-md-2">
+              <label class="control-label">用户名称<span style="color:red">*</span></label>
+            </div>
+            <div class="col-md-7">
+            <input required name="userCreateDomainId" type="text" class="form-control" ng-readonly="isUpdateUserName"
+                   ng-model="user.userid"
+                   ng-blur="validationField(user.userid)"
+                   name="userid"/>
+              </div>
+
+            <div class="col-md-3" ng-show="user_create_form.userCreateDomainId.$error.required && user_create_form.userCreated">
+              <span ng-show="user_create_form.userCreateDomainId.$error.required" style="color:red">用户名称是必填字段</span>
+            </div>
+
+            <div class="col-md-3" ng-show="createUser_domainId_error_show">
+              <span style="color:red">名称已存在</span>
+            </div>
+          </div>
+          <div class="form-group row" ng-show="isAdmin || itself">
+            <div class="col-md-2">
+              <label class="control-label">密码<span style="color:red">*</span></label>
+            </div>
+            <div class="col-md-7">
+              <input name="userCreatePassword" type="password" class="form-control" autocomplete="off" ng-model="user.password" required>
+            </div>
+            <div ng-if="isAdmin || itself" class="col-md-3"
+                 ng-show="user_create_form.userCreatePassword.$error.required && user_create_form.userCreated">
+              <span ng-show="user_create_form.userCreatePassword.$error.required" style="color:red">密码 是必填字段</span>
+            </div>
+          </div>
+          <div  class="form-group row" ng-show="isAdmin || itself">
+            <div class="col-md-2">
+              <label class="control-label">确认密码<span style="color:red">*</span></label>
+            </div>
+            <div class="col-md-7">
+            <input name="userCreateConfirmPassword" type="password" class="form-control"
+                   autocomplete="off"
+                   ng-model="user.confirmPassword" required>
+            </div>
+            <div ng-if="isAdmin || itself" class="errorMsgTip" class="col-md-3"
+                 ng-show="user_create_form.userCreateConfirmPassword.$error.required && user_create_form.userCreated">
+              <span ng-show="user_create_form.userCreateConfirmPassword.$error.required" style="color:red">请再次输入密码确认</span>
+            </div>
+            <div ng-if="isAdmin || itself" class="errorMsgTip col-md-3"
+                 ng-show="user_create_form.userCreateConfirmPasswordNotSameAsBefore">
+              <span style="color:red">输入密码不一致</span>
+            </div>
+          </div>
+        <div class="modal-footer opn_btn expire_opn_box">
+          <button type="submit" class="btn  btn-primary"
+                  ng-disabled="(!createUsernameValidation)"
+                  ng-click="createNewUser()">Submit
+          </button>
+          <button type="reset" class="btn  btn-primary" ng-click="cancel()">Cancel</button>
+        </div>
+      </form>
+</div>
+<script type="text/javascript">
+    $(function() {
+        $(".profile_radio li input").click(function() {
+            $(this).parent("li").siblings("li").removeClass("current"), $(this).parent("li").addClass("current");
+        })
+    })
+</script>
+

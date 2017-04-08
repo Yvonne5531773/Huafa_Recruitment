@@ -1,0 +1,112 @@
+
+<style>
+    .modal-dialog{width:650px}
+</style>
+<div class="modal-body" style="height:455px;">
+    <div id="noticeInterview" class="popup" style="margin-left:-16px;height:430px;width:650px;padding: 0px 10px;">
+        <h1 style="background:#019875;color:#f7f7f7;padding:5px 5px;font-size: 17px;font-weight: 600;margin-bottom: 20px" title="通知面试">通知面试</h1>
+        <form id="noticeInterviewForm" name="noticeInterviewForm">
+            <table class="f16" width="100%">
+                <tbody>
+                <tr>
+                    <td class="c9" width="20%" align="right">
+                        收件人
+                    </td>
+                    <td width="80%">
+                        <span id="receiveEmail" class="c9"></span>
+                        <input name="email" readonly="readonly" class="receiveEmail" type="text" ng-model="data.resume.email">
+                    </td>
+                </tr>
+                <tr>
+                    <td align="right">
+                        <span class="redstar">
+                            *
+                        </span>
+                        主题
+                    </td>
+                    <td>
+                        <input name="subject" placeholder="单位：职位名称面试通知" type="text" ng-model="data.topic" required>
+                    </td>
+                </tr>
+                <tr>
+                    <td align="right">
+                        <span class="redstar">
+                            *
+                        </span>
+                        面试时间
+                    </td>
+                    <td>
+                        <p class="input-group">
+                            <input style="padding: 0 30px;" type="text" id="DateTimePicker" name="startDate" class="form-control" ng-model="data.interviewTime" required>
+                            <span style="padding:6px 6px;right:350px;z-index:30;position: absolute">
+                                <i class="glyphicon glyphicon-calendar"></i>
+                            </span>
+                        </p>
+                    </td>
+                </tr>
+                <tr>
+                    <td align="right">
+                        <span class="redstar">*</span>
+                        面试地点
+                    </td>
+                    <td>
+                        <input name="interAdd" type="text" ng-model="data.positionCompanyLocation" required>
+                    </td>
+                </tr>
+                <tr>
+                    <td align="right">
+                        联系人
+                    </td>
+                    <td>
+                        <input name="contact" type="text" ng-model="data.contact">
+                    </td>
+                </tr>
+                <tr>
+                    <td align="right">
+                        <span class="redstar">*</span>
+                        联系电话
+                    </td>
+                    <td>
+                        <input name="contactPhone" type="text" ng-model="data.contactPhone" required>
+                    </td>
+                </tr>
+                <tr>
+                    <td valign="top" align="right">
+                        补充内容
+                    </td>
+                    <td>
+                        <textarea name="content" ng-model="data.content"></textarea>
+                    </td>
+                </tr>
+                <tr align="right">
+                    <td>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                    </td>
+                    <td>
+                        <input id="submitButton" class="btn" value="发送" type="submit" ng-click="submit(noticeInterviewForm.$valid)">
+                        <a href="javascript:;" class="emailPreview" ng-click="preview()">
+                            预览
+                        </a>
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+        </form>
+    </div>
+</div>
+<script type="text/javascript">
+    var dateTimePickerConfig = {
+        lang:"ch",              //语言选择中文
+        // format:"Y/m/d H:i",  //格式化日期
+        // timepicker:false,    //关闭时间选项
+        step: 5,
+        yearStart:2016,         //设置最小年份
+        yearEnd:2050,           //设置最大年份
+        // todayButton:false    //关闭选择今天按钮
+    };
+
+    $("#DateTimePicker").datetimepicker(dateTimePickerConfig);
+</script>

@@ -1,0 +1,181 @@
+<style type="text/css">
+    .flow-box{
+        display: block;
+        min-height: 90px;
+        width: 100%;
+        border-radius: 2px;
+        overflow: auto;
+    }
+</style>
+
+<div ng-controller="CompanyIntroductionController" id='main'>
+    <section class="content-header">
+        <div class="col-md-6 col-sm-6"></div>
+        <div class="col-md-6 col-sm-6">
+            <ol class="breadcrumb" style="margin: 5px 0 5px 0; float: right">
+                <li><a ui-sref="home"><i class="fa fa-dashboard"></i> 主页</a></li>
+                <li class="active">用人单位</li>
+            </ol>
+        </div>
+    </section>
+    <!-- Main content -->
+    <section class="content" >
+        <div class="row" style="margin-top: 10px;margin-bottom: 40px">
+            <div class="col-md-3 col-sm-6 col-xs-12 col-md-offset-4">
+                <select class="form-control" ng-model="segmentType" ng-options="o for o in allSegmentTypes track by o" ng-change="loadData()">
+                </select>
+            </div>
+        </div>
+        <div class="row info-area">
+            <div class="col-md-6 form-group u-photo fl" ng-mouseenter="showMask=true" ng-mouseleave="showMask=false" style="margin-left: 15px;margin-top: -30px">
+                <div class=p-mask ng-show=showMask style="right: 0px;">
+                    <a ng-click = uploadFile(companyInfo)><em class="eqf-top-pic background-color-width-change" style=font-size:18px></em>
+                        <span>更换</span></a>
+                </div>
+                <div ng-class="{'p-svg': !companyInfo.icon}">
+                    <span class="fa fa-upload" ng-show=!companyInfo.icon></span>
+                </div>
+                <img ng-src="{{companyInfo.icon}}" ng-show=companyInfo.icon>
+            </div>
+            <dl class="col-md-6 form-group c_section c_stages">
+                <dt>
+                    <h2>
+                        <em></em>
+                        规模
+                    </h2>
+                        <a title="编辑规模" class="c_edit scale_edit" ng-click="editScale()" href="javascript:void(0)"></a>
+                </dt>
+                <dd>
+                    <ul class="reset scaleShow">
+                        <li>
+                            规模：
+                            <span class="c5" ng-show="!isEditScale">
+                                {{companyInfo.scale}}
+                            </span>
+                        </li>
+                    </ul>
+                    <div class="row" ng-show="isEditScale">
+                        <div class="input-group scaleOption dn" >
+                            <span class="input-group-addon"><i class="fa fa-bar-chart-o"></i></span>
+                            <select ng-model="companyInfo.scale" class="form-control">
+                                <option ng-repeat="scaleTypes in allScaleTypes" value="{{scaleTypes}}">{{scaleTypes}}</option>
+                            </select>
+                        </div>
+                        <input type="submit" value="保存" class="btn_small" ng-click="updateCompanyInfoScale(companyInfo)">
+                    </div>
+                </dd>
+            </dl>
+            <dl class="col-md-6 form-group c_section c_stages">
+                <dt>
+                <h2>
+                    <em></em>
+                    单位地址
+                </h2>
+                    <a title="编辑单位地址" class="c_edit scale_edit" ng-click="editAddress()" href="javascript:void(0)"></a>
+                </dt>
+                <dd>
+                    <ul class="reset scaleShow">
+                        <li>
+                            单位地址：
+                            <span class="c5" ng-show="!isEditAddress">
+                                {{companyInfo.address}}
+                            </span>
+                        </li>
+                    </ul>
+                    <div class="row" ng-show="isEditAddress">
+                        <div class="input-group">
+                            <span class="input-group-addon"><i class="fa fa-map-marker"></i></span>
+                            <input type="text" class="form-control" ng-model="companyInfo.address" autofocus>
+                        </div>
+                        <input type="submit" value="保存" class="btn_small" ng-click="updateCompanyInfoAddress(companyInfo)">
+                    </div>
+                </dd>
+            </dl>
+            <dl class="col-md-6 form-group c_section c_stages">
+                <dt>
+                <h2>
+                    <em></em>
+                    单位电话
+                </h2>
+                <a title="编辑单位电话" class="c_edit scale_edit" ng-click="editTele()" href="javascript:void(0)"></a>
+                </dt>
+                <dd>
+                    <ul class="reset scaleShow">
+                        <li>
+                            单位电话：
+                            <span class="c5" ng-show="!isEditTele">
+                                {{companyInfo.tele}}
+                            </span>
+                        </li>
+                    </ul>
+                    <div class="row" ng-show="isEditTele">
+                        <div class="input-group">
+                            <span class="input-group-addon"><i class="fa fa-map-marker"></i></span>
+                            <input type="text" class="form-control" ng-model="companyInfo.tele" autofocus>
+                        </div>
+                        <input type="submit" value="保存" class="btn_small" ng-click="updateCompanyInfoTele(companyInfo)">
+                    </div>
+                </dd>
+            </dl>
+        </div>
+        <div class="row" style="margin-top: 20px;margin-left: 16px">
+            <div class="text-left" style="margin-bottom: 25px;">
+                <button class='btn btn-info' ng-click="createCompanyIntroduction()">创建单位介绍</button>
+                <button class='btn btn-primary' ng-click="changeCompanySegmentLayout()">布局转换</button>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-3 col-sm-6 col-xs-12" ng-if="!companyIntroductions[0].isFlow" ng-repeat="companyIntroduction in companyIntroductions">
+                <div class="info-box" style="height: 500px;overflow: auto;">
+                    <span class="label label-success">{{companyIntroduction.sequence}}</span>
+                    <div class="box-tools pull-right">
+                        <button type="button" ng-click="updateCompanyIntroduction(companyIntroduction)"
+                                class="btn btn-box-tool" style="padding-right: 0px;"><i class="fa fa-fw fa-edit"></i>
+                        </button>
+                        <button type="button" ng-click="deleteCompanyIntroduction(companyIntroduction)"
+                                class="btn btn-box-tool" style="padding-left: 0px;padding-right: 5px;"><i
+                                class="fa fa-fw fa-trash-o"></i></button>
+                    </div>
+                    <div class="oocl" style="padding-top: 10px;">
+                        <div class="container-con" >
+                            <div class="container-con-hd">
+                                <h2 class="oocl-title">{{companyIntroduction.title}}</h2>
+                                <!--<p>{{companyIntroduction.subTitle}}</p>-->
+                            </div>
+                            <!--<h3 class="oocl-subTitle" >{{companyIntroduction.subTitle}}</h3>-->
+                            <div class="container-con-bd" ng-bind-html="companyIntroduction.content|to_trusted">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-3 col-sm-6 col-xs-12 col-md-offset-4" ng-if="companyIntroductions[0].isFlow" style="background-color: white;">
+                <div class="flow-box" ng-repeat="companyIntroduction in companyIntroductions" ng-mouseenter="isEnter = true" ng-mouseleave="isEnter = false" ng-style="isEnter? {'background': '#fff','box-shadow':'0 1px 1px rgba(0,0,0,0.1)', border: '1px solid rgba(3, 12, 17, 0.21)'} :{}">
+                    <div class="oocl">
+                        <div style="height: 23px;">
+                            <span class="label label-success" ng-if="isEnter">{{companyIntroduction.sequence}}</span>
+                            <div class="box-tools pull-right" ng-if="isEnter">
+                                <button type="button" ng-click="updateCompanyIntroduction(companyIntroduction)"
+                                        class="btn btn-box-tool" style="padding-right: 0px;padding-bottom: 0px;padding-top: 0px"><i class="fa fa-fw fa-edit"></i>
+                                </button>
+                                <button type="button" ng-click="deleteCompanyIntroduction(companyIntroduction)"
+                                        class="btn btn-box-tool" style="padding-left: 0px;padding-right: 5px;padding-bottom: 0px;padding-top: 0px"><i
+                                        class="fa fa-fw fa-trash-o"></i></button>
+                            </div>
+                        </div>
+                        <div class="container-con" style="margin-top: 0px;">
+                            <div class="container-con-hd" style="margin-top: 0px;">
+                                <h2 class="oocl-title">{{companyIntroduction.title}}</h2>
+                            </div>
+                            <div class="container-con-bd" ng-bind-html="companyIntroduction.content|to_trusted">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <toaster-container toaster-options="{'time-out': 3000, 'animation-class': 'geo-toast-top-right'}"></toaster-container>
+    </section>
+</div>

@@ -1,0 +1,56 @@
+<div class="views">
+    <div class="view view-main">
+        <div class="navbar">
+            <div class="navbar-inner">
+                <div class="left">
+                    <a href="#" class="back link icon-only"><i class="icon icon-back"></i></a>
+                </div>
+                <div class="center sliding">活动列表</div>
+                <div class="right">
+                    <a href="#" class="link icon-only open-panel"><i class="icon icon-bars"></i></a>
+                </div>
+            </div>
+        </div>
+        <div class="pages navbar-through toolbar-through">
+            <div data-page="myActivities" class="page" id="myActivities">
+                <div class="page-content">
+                    <div class="club-top">
+                        <!-- ko foreach: club -->
+                        <div class="logo-center">
+                            <a data-bind="attr: { href: 'javascript:myRoute.loadClubDetails(\'' +_id+ '\');' }">
+                                <img alt="" style="width: 40px; height: 40px; border-radius: 14px;" data-bind="attr:{src:icon}">
+                            </a>
+                            <a data-bind="attr: { href: 'javascript:myRoute.focusClub(\''+ _id +'\');' }" class="item-link item-content">
+                                <div class="set-top"><img class="favorImg" alt="" src="./images/demo/unfocused.png"><span class="favorWord">关注</span></div>
+                            </a>
+                        </div>
+                        <!-- /ko -->
+                    </div>
+
+                    <div class="list-block" data-bind="foreach: {data: items, as: 'item'}" style="margin-top: 15px">
+                        <div class="card demo-card-header-pic lambert-block">
+                            <a data-bind="attr: { href: 'javascript:myRoute.loadActivityDetail(\''+ _id +'\');' }"
+                               class="item-link">
+                                <div valign="bottom" class="card-lambert card-header color-white no-border"
+                                     data-bind="attr: {'style': 'background-image:url('+item.cover+')'}"></div>
+                                <div class="card-content">
+                                    <div class="card-content-inner" style="padding-top: 0px; padding-bottom: 0px;">
+                                        <span class="demo-font-large-lambert" data-bind="text: item.title" style="font-weight: bold;">活动标题</span><br>
+                                        <span class="color-gray" data-bind="text: item.startDateTime +' ~ '+ item.endDateTime" style="font-size: 0.8rem; font-weight: bold; text-decoration: underline;">时间</span>
+                                        <p class="color-gray lambert-content" data-bind="html: item.description" style="margin: 0px; font-size: 0.8rem">活动内容</p>
+                                    </div>
+                                </div>
+                            </a>
+                            <div class="card-footer">
+                                <span data-bind="text: item.status" style="color: orange;">活动状态</span>
+                                <span data-bind="text: '人数: '+item.currentCount+'/'+item.totalCount" style="color: orange;">人数： ？/？</span>
+                                <a class="link" data-bind="attr: { href: 'javascript:myRoute.registerActivity(\''+ _id +'\');' }">我要报名</a>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

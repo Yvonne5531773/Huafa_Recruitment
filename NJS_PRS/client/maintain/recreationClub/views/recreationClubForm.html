@@ -1,0 +1,45 @@
+
+<div class=account-contain>
+  <div class=tab-box-shadow>
+
+    <div class="account-items clearfix">
+      <div class=item-one>
+        <em ng-class="{
+                        'eqf-yes green-color':club.description!=null&&club.description!='',
+                        'eqf-exclamation-sign red-color': club.description==null||club.description=='' }">
+        </em>
+        <span>图文介绍</span>
+      </div>
+      <div class=item-two>
+                <span ng-if="club.description!=null&&club.description!=''">
+                    <span class=action>{{ club.description }}</span>
+                </span>
+        <span ng-if="club.description==null||club.description==''">未填写</span>
+      </div>
+      <div class=item-three>
+        <a ng-click=addDescription() ng-if="club.description==null||club.description==''" class=text-primary>填写</a>
+        <a ng-click=updateDescription(club) ng-if="club.description!=null&&club.description!=''" class=text-primary>修改</a>
+      </div>
+    </div>
+
+    <div class="account-items clearfix">
+      <div class=item-one>
+        <em ng-class="{
+                        'eqf-yes green-color': !noTpl && tpl.type == '1102',
+                        'eqf-exclamation-sign red-color': noTpl || tpl.type != '1102' }">
+        </em>
+        <span>H5介绍</span>
+      </div>
+      <div class=item-two>
+                <span ng-if="!noTpl">
+                    <span class=action>{{ tpl.name }}</span>
+                </span>
+        <span ng-if="noTpl">未选取</span>
+      </div>
+      <div class=item-three>
+        <a ui-sref="templateManagement" ng-if="noTpl" class=text-primary>选取</a>
+        <a ui-sref="templateManagement" ng-if="!noTpl" class=text-primary>重新选取</a>
+      </div>
+    </div>
+  </div>
+</div>

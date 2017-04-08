@@ -1,0 +1,118 @@
+<section class="content-header">
+    <div class="col-md-6 col-sm-6"></div>
+    <div class="col-md-6 col-sm-6">
+        <ol class="breadcrumb" style="margin: 5px 0 5px 0; float: right">
+            <li><a ui-sref="home"><i class="fa fa-dashboard"></i> 主页</a></li>
+            <li class="active">职位管理</li>
+        </ol>
+    </div>
+</section>
+<!-- Main content -->
+<section class="content" ng-app="position" ng-controller="PositionController">
+    <div class="panel panel-default" style="width:40%;">
+        <div class="panel-heading">
+            <h4 class="panel-title">
+                <span class="fa fa-th-list"></span>
+                <span class="pull-right pointer-cursor"><i ng-class="vm.collapsed?'fa fa-chevron-down':'fa fa-chevron-up'" ng-click="vm.collapsed = !vm.collapsed"></i></span>
+                <label class="control-label">搜索</label>
+            </h4>
+        </div>
+        <div class="panel-collapse collapse" ng-class="{in: vm.collapsed}">
+            <div class="panel-body">
+                <div class="form-group row">
+                    <div class="col-md-6">
+                        <label class="control-label">职位名称</label>
+                        <select class="form-control" ng-model="positionName">
+                            <option ng-repeat="position in selectForShow" value={{position.name}}>{{position.name}}</option>
+                        </select>
+                        <!--<input type="text"  class="form-control"
+                               ng-model="positionName">-->
+                    </div>
+                    <div class="col-md-6">
+                        <label class="control-label">职位类型</label>
+                        <select ng-model="positionJobType" class="form-control" >
+                            <option ng-repeat="positionType in allPositionTypes" value="{{positionType}}">{{positionType}}</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="form-group row">
+
+                    <div class="col-md-6">
+                        <label class="control-label">起始时间</label>
+                        <p class="input-group">
+                            <input type="text" class="form-control" uib-datepicker-popup="{{format}}" ng-model="fromDate" is-open="popup1.opened" datepicker-options="dateOptions" ng-required="true" close-text="Close" alt-input-formats="altInputFormats" />
+                            <span class="input-group-btn">
+                               <button type="button" class="btn btn-default" ng-click="open1()"><i class="glyphicon glyphicon-calendar"></i></button>
+                            </span>
+                        </p>
+                    </div>
+                    <div class="col-md-6">
+                        <label class="control-label">结束时间</label>
+                        <p class="input-group">
+                            <input type="text" class="form-control" uib-datepicker-popup="{{format}}" ng-model="toDate" is-open="popup2.opened" datepicker-options="dateOptions" ng-required="true" close-text="Close" alt-input-formats="altInputFormats" />
+                            <span class="input-group-btn">
+                               <button type="button" class="btn btn-default" ng-click="open2()"><i class="glyphicon glyphicon-calendar"></i></button>
+                            </span>
+                        </p>
+                    </div>
+
+                </div>
+                <div class="row col-md-5">
+                <div style="float:left; width:45%">
+                    <button type="button" class="btn btn-primary  btn-block" ng-click="searchPosition()">搜索</button>
+                </div>
+                <div style="float:right; width:45%">
+                    <button type="button" class="btn btn-info btn-block" ng-click="cancelPosition()">重置</button>
+                </div>
+            </div>
+            </div>
+        </div>
+    </div>
+    <!-- Your Page Content Here -->
+    <div class="carrier-section-position" >
+        <!--<h1 class="carrier-title-margin"><a class="no-underline" >Seekers Maintain</a></h1>-->
+        <!--<ul class="nav nav-tabs" ng-init="$scope.activeTab=1">-->
+        <!--<li ng-class="{active: $scope.activeTab == 1}"><a href="javascript:;" ng-click="$scope.activeTab = 1">Search</a></li>-->
+        <!--&lt;!&ndash;<li class="pull-right"><a class="btn btn-primary" id="createbtn" ng-click="createModal()">New Carrier</a></li>&ndash;&gt;-->
+        <!--</ul>-->
+        <div class="panel panel-default" >
+            <div class="panel-heading"><label class="control-label">职位列表</label></div>
+            <div class="panel-body">
+                <!-- <section class="content" >-->
+                <div class="pull-left" style="margin-bottom:5px;">
+                    <select class="form-control" ng-model="batchUpdateType"  style="width:180px;display:inline-block;">
+                        <option value='' disabled selected style='display:none;'>更新字段</option>
+                        <option ng-repeat="type in batchUpdateTypes" value={{type.field}}>{{type.display}}</option>
+                    </select>
+
+                    <input type="text" class="form-control" ng-model="batchUpdateValue" placeholder="更新为..."  style="width:200px;display:inline-block;"/>
+
+                    <button class="btn btn-primary" ng-click="batchUpdate()">批量更新</button>
+                </div>
+
+                <div class="text-right" style="margin-bottom:5px;">
+                    <button class='btn btn-primary'  ng-click="createPosition()">新增</button>
+                    <button class="btn btn-primary" ng-click="updatePosition()">更新</button>
+                    <button class="btn btn-danger" ng-click="deletePosition()">删除</button>
+                    <button class="btn btn-info" ng-click="publishJob()">发布</button>
+                    <button class="btn btn-warning" ng-click="stopPublish()">停止发布</button>
+                    <button class="btn btn-primary" ng-click="copyPosition()">复制并创建</button>
+                    <button class="btn btn-primary" ng-click="batchInsert()">批量插入</button>
+                </div>
+                <div ui-grid="myDataGrid" ui-grid-pagination ui-grid-cellNav  ui-grid-resize-columns ui-grid-pinning ui-grid-selection ui-grid-move-columns ui-grid-exporter></div>
+                <!--</section>-->
+            </div>
+        </div>
+    </div>
+    <toaster-container toaster-options="{'time-out': 3000, 'animation-class': 'toast-center'}"></toaster-container>
+    <!--<ui-select multiple theme="bootstrap" ng-model="selected.value">-->
+        <!--<ui-select-match>-->
+            <!--{{$item.name}}-->
+        <!--</ui-select-match>-->
+        <!--<ui-select-choices repeat="item in (itemArray | filter: $select.search) track by item.id">-->
+            <!--<span ng-bind="item.name"></span>-->
+        <!--</ui-select-choices>-->
+    <!--</ui-select>-->
+    <!--<p>1232{{selected.value}}</p>-->
+    <!--<button ng-click="abc()">123</button>-->
+</section>

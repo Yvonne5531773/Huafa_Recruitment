@@ -1,0 +1,116 @@
+
+<section class="content-header" >
+  <div class="col-md-6 col-sm-6">
+  </div>
+  <div class="col-md-6 col-sm-6">
+    <ol class="breadcrumb" style="margin: 5px 0 5px 0; float: right">
+      <li><a ui-sref="home"><i class="fa fa-dashboard"></i> 主页</a></li>
+      <li class="active">模版管理</li>
+    </ol>
+  </div>
+</section>
+<!-- Main content -->
+<section class="content" style="padding:35px" ng-controller="RecreationClubTMController">
+  <div id=main class=min-contain>
+    <div class=info-show>
+      <div class=same-content>
+        <div class=info>
+          <ul class="clearfix tab-line">
+            <li>
+              <a ng-class="{active : 0 == childcat}" ng-click=allpage()>全部</a>
+            </li>
+            <li ng-repeat="pageTplType in pageTplTypesList">
+              <a ng-click=getPageTplsByType(pageTplType.type) ng-class="{active : pageTplType.type === childcat}">
+                {{pageTplType.name}}
+              </a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    <div class=same-content>
+      <div class="scene-type clearfix">
+        <div class=search-tab></div>
+        <div class=scene-select ng-class={selected:!selete} ng-click="new=true;filterTpl(new,'default')">
+          <a><span>默认排序</span></a>
+        </div>
+        <div class=scene-select ng-class={selected:selete,iconChange:new} ng-init="new=true;" ng-click="new =!new; filterTpl(new,'new')">
+          <a><span>最新模板</span>
+            <em class="eqf-more all-change"></em>
+          </a>
+        </div>
+      </div>
+      <div style=position:relative>
+        <ul class="square-scene clearfix">
+          <li class="tab-box-shadow creat-blank all-change" ng-if=blankSample style=cursor:pointer>
+              <a class=edit-same ng-click=createTplByH5() target=_blank ng-href="{{h5Url}}">
+                <!--<em style=font-size:20px></em>-->
+                <div class="creat-content background-color-width-change">
+                  <i class=eqf-plus2></i>
+                  <span>Create H5</span>
+                </div>
+              </a>
+          </li>
+          <li ng-show=tpls ng-repeat="tpl in tpls track by $index" class="tab-box-shadow animation-zoom all-change">
+            <div ng-if=tpl.isSelect class="ribbon ribbon-badge">
+              <span class="ribbon-inner new">已选定</span>
+            </div>
+            <div class=image>
+              <div ng-show=!tpl.show class="front face" ng-style=getStyle(tpl.cover) style=background-size:cover></div>
+              <div class=overlay ng-show=!tpl.show>
+                <div class=edit>
+                  <a class=edit-same target=_blank ng-href="{{tpl.url}}">
+                    <em class=eqf-eye style=font-size:20px></em>
+                    <span>预览</span>
+                  </a>
+                  <a ng-if=!tpl.isSelect class=edit-same ng-click=selectTpl(tpl,'1101')>
+                    <em class=eqf-xiuziti style=font-size:18px></em>
+                    <span>活动模板</span>
+                  </a>
+                  <a ng-if=!tpl.isSelect class=edit-same ng-click=selectTpl(tpl,'1102')>
+                    <em class=eqf-xiuziti style=font-size:18px></em>
+                    <span>俱乐部模板</span>
+                  </a>
+                  <a ng-if=tpl.isSelect class=edit-same ng-click=cancelSelectTpl(tpl,'1100')>
+                    <em class=eqf-xiuziti style=font-size:18px></em>
+                    <span>取消选定</span>
+                  </a>
+                </div>
+              </div>
+            </div>
+            <div class=project-info>
+              <p class=ellipsis>{{tpl.name}}</p>
+              <p class=ellipsis>{{tpl.createTime}}</p>
+              <p class=ellipsis>{{tpl.typeName}}</p>
+              <div class="buttons sample clearfix" ng-if=!branchid>
+                <div class="set sample-scene">
+                  <span class=scene-name>{{tpl.userName}}</span>
+                </div>
+              </div>
+              <div class="buttons clearfix">
+                <div class=set>
+                  <a class="delete background-color-width-change button" ng-click=deleteTpl(tpl)>
+                    <em class=eqf-scene-delete></em>
+                    <span>删除</span>
+                  </a>
+                </div>
+              </div>
+            </div>
+          </li>
+        </ul>
+        <div class=info>
+          <div ng-if="noTpl" class=creat ng-show=!branchid ng-click=createTplByH5()>
+            <a ng-click=createTplByH5() target=_blank ng-href="{{h5Url}}" class="clearfix opacity-width-change">
+              <em class=eqf-plus2></em>
+              <span class=opacity-width-change>点击开始创建</span>
+            </a>
+          </div>
+        </div>
+        <div style="text-align:center;margin:90px 0" ng-if="noTpl">
+          <h2 class=mb20>无模板</h2>
+          <img ng-src = 'images/templates/notfound.svg'>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

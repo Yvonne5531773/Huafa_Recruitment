@@ -1,0 +1,105 @@
+
+<div class="modal-body">
+    <div class="preview_header">
+      <h1 title="{{resume.resumename}}的简历">{{resume.resumename}}的简历</h1>
+      <a style="padding:2px 15px;margin-left:10px;" ng-click="interview()" class="inline cboxElement" title="通知面试">通知面试</a>
+      <a href="" class="inline cboxElement" title="下载简历">下载该简历</a>
+    </div>
+    <div class="preview_content">
+      <div id="basicInfo" class="profile_box">
+        <h2>基本信息</h2>
+        <div class="basicShow">
+          <span>
+            <span ng-if="resume.name"> 姓名-{{resume.name}} </span>
+            <span ng-if="resume.gender"> | 性别-{{resume.gender}}</span>
+            <span ng-if="resume.nation"> | 民族-{{resume.nation}}</span>
+            <span ng-if="resume.birthed"> | 出生日期-{{resume.birthed}}</span><br>
+            <span ng-if="resume.origin"> 籍贯-{{resume.origin}}</span>
+            <span ng-if="resume.experience"> | 工作年限-{{resume.experience}}</span>
+            <span ng-if="resume.domicile"> | 现户籍地-{{resume.domicile}}</span>
+            <span ng-if="resume.politic"> | 政治面貌-{{resume.politic}}</span><br>
+            <span ng-if="resume.phone"> 手机-{{resume.phone}}</span>
+            <span ng-if="resume.idCard"> | 身份证-{{resume.idCard}}</span>
+            <span ng-if="resume.email"> | 邮箱-{{resume.email}}</span><br>
+            <span ng-if="resume.address"> 地址-{{resume.address}}</span><br>
+            <span ng-if="resume.workunit"> 现工作单位-{{resume.workunit}}</span>
+            <span ng-if="resume.post"> | 职务-{{resume.post}}</span><br>
+            <span ng-if="resume.status"> 目前状态-{{resume.status}}</span><br>
+            <span ng-if="resume.height"> 身高-{{resume.height}}</span>
+            <span ng-if="resume.weight"> | 体重-{{resume.weight}}</span>
+            <span ng-if="resume.married"> | 婚姻状况-{{resume.married}}</span>
+            <span ng-if="resume.child"> | 子女状况{{resume.child}}</span>
+            <span ng-if="resume.health"> | 身体状况-{{resume.health}}</span><br>
+            <span ng-if="resume.honor"> 最高荣誉-{{resume.honor}}</span>
+          </span>
+          <div class="m_portrait">
+            <img ng-src="{{resume.icon}}" height="120" width="120">
+          </div>
+        </div>
+      </div>
+
+      <div id="educationalBackground" class="profile_box">
+        <h2>教育背景</h2>
+        <div class="educationalShow">
+          <ul class="elist clearfix">
+            <li class="clear" ng-repeat="vo in resume.education">
+              <span class="c9">{{vo.began}} - {{vo.ended}}</span>
+              <div>
+                <h3>{{vo.school}}</h3>
+                <h4>{{vo.profession}}，{{vo.degree}}, {{vo.nature}}</h4>
+              </div>
+            </li>
+          </ul>
+        </div>
+      </div>
+
+      <div id="workExperience" class="profile_box">
+        <h2>工作经历</h2>
+        <div class="experienceShow">
+          <ul class="wlist clearfix">
+            <li class="clear" ng-repeat="vo in resume.work">
+              <span class="c9">{{vo.yearStart}}.{{vo.monthStart}} - {{vo.yearEnd}}.{{vo.monthEnd}}</span>
+              <div>
+                <h3>{{vo.company}}</h3>
+                <h4>{{vo.position}}</h4>
+              </div>
+            </li>
+          </ul>
+        </div>
+      </div>
+
+      <div id="projectExperience" class="profile_box">
+        <h2>项目经验</h2>
+        <div class="projectShow">
+          <ul class="plist clearfix">
+            <li class="noborder" ng-repeat="vo in resume.project">
+              <div class="projectList">
+                <div class="f16 mb10">{{vo.name}}，{{vo.position}}
+                  <span class="c9">（{{vo.yearStart}}.{{vo.monthStart}} - {{vo.yearEnd}}.{{vo.monthEnd}}）</span>
+                  }
+                </div>
+                <div class="dl1">
+                  {{vo.description}}
+                </div>
+              </div>
+            </li>
+          </ul>
+        </div>
+      </div>
+
+      <div id="certificate" class="profile_box">
+        <h2>证书等级</h2>
+        <div class="certificateShow">
+          <ul class="clist clearfix">
+            <li class="clear" ng-repeat="vo in resume.certificate">
+              <span class="c9">{{vo.gotYear}}.{{vo.gotMonth}}</span>
+              <div>
+                <h3>{{vo.name}}</h3>
+                <h4>{{vo.nature}}</h4>
+              </div>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+</div>

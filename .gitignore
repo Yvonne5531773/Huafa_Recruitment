@@ -1,0 +1,8 @@
+*.idea
+*.dll
+node_modules/
+*/public/lib/
+*/*.log
+NJS_DOM/app.log
+*/public/upload/*
+

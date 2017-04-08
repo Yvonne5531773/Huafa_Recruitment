@@ -1,0 +1,30 @@
+<section class="content-header">
+    <h1>
+        报名表字段管理
+    </h1>
+    <ol class="breadcrumb">
+        <li><a ui-sref="home"><i class="fa fa-dashboard"></i> 主页</a></li>
+        <li class="active">报名表字段管理</li>
+    </ol>
+</section>
+
+<section class="content" style="margin-top: 5px;">
+    <!-- Your Page Content Here -->
+    <div class="carrier-section-position">
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <label class="control-label">字段列表</label>
+            </div>
+            <div class="panel-body">
+                <div class="text-right" style="margin-bottom:5px;">
+                    <button class="btn btn-primary" ng-click="addSignupField()">添加</button>
+                    <button class="btn btn-primary" ng-click="updateSignupField()">修改</button>
+                    <button class="btn btn-primary" ng-click="deleteSignupField()">删除</button>
+                </div>
+                <div ui-grid="vm.fieldList" ui-grid-pagination ui-grid-cellnav ui-grid-resize-columns ui-grid-pinning ui-grid-selection ui-grid-move-columns ui-grid-exporter></div>
+                <!--</section>-->
+            </div>
+        </div>
+    </div>
+    <toaster-container toaster-options="{'time-out': 3000, 'animation-class': 'toast-center'}"></toaster-container>
+</section>

@@ -1,0 +1,40 @@
+
+<section class="background fullscreen" ng-controller="loginCtrl">
+    <div class="login-box">
+        <div class="login-logo">
+            <h3 class="login-title">Login</h3>
+        </div>
+        <!-- /.login-logo -->
+        <div class="">
+            <div class="form-group text-center">
+                <form role="form">
+                    <div class="input-group input-group-lg">
+                        <span class="input-group-addon"><i class="glyphicon glyphicon-user red"></i></span>
+                        <input type="text" class="form-control" placeholder="Username" id="account" ng-model="userId">
+                    </div>
+                    <div class="clearfix"></div>
+                    <br>
+                    <div class="input-group input-group-lg">
+                        <span class="input-group-addon"><i class="glyphicon glyphicon-lock red"></i></span>
+                        <input type="password" class="form-control" placeholder="Password"  ng-model="password">
+                    </div>
+                    <div class="clearfix"></div>
+                    <br>
+                    <div>
+                        <a href="#" style="width: 120px; margin-right: 15px; border: none;" type="submit"
+                           id="supportLoginBtn" class="btn btn-success btn-lg hvr-shutter-in-vertical button" ng-click="login()">Sign In</a>
+                    </div>
+                </form>
+                <toaster-container toaster-options="{'time-out': 3000, 'animation-class': 'geo-toast-top-right'}"></toaster-container>
+            </div>
+        </div>
+    </div>
+    <div class="navbar-fixed-bottom" style="text-align: center;">
+        <div style="padding: 15px; color: white;">
+            <strong>Copyright &copy; 2011 - 2016 <a href="#" style="color: white"></a>.</strong>
+            All rights reserved.
+            <span>华发教育</span>
+        </div>
+    </div>
+
+</section>

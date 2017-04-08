@@ -1,0 +1,64 @@
+<section class="content-header">
+	<div class="col-md-6 col-sm-6">
+		<span style="font-size: x-large">俱乐部管理</span>
+	</div>
+	<div class="col-md-6 col-sm-6">
+		<ol class="breadcrumb" style="margin: 5px 0 5px 0; float: right">
+			<li><a ui-sref="home"><i class="fa fa-home"></i>主页</a></li>
+			<li class="active"><i class="fa fa-trophy"></i>俱乐部管理</li>
+		</ol>
+	</div>
+</section>
+<!-- Main content -->
+<section class="invoice" style="margin-top: 50px;">
+	<!-- title row -->
+	<div class="row page-header" style="margin-top: 0px;">
+		<div class="col-sm-2">
+			<div style="margin-top: 10px;">
+				<h5><strong>俱乐部名字：</strong>{{recreationClub.name}}</h5>
+			</div>
+		</div>
+		<div class="col-sm-2">
+			<div style="margin-top: 10px;">
+				<h5><strong>队长：</strong>{{recreationClub.captain.userid}}</h5>
+			</div>
+		</div>
+		<div class="col-sm-2">
+			<div style="margin-top: 10px;">
+				<h5><strong>状态：</strong>{{recreationClub.status}}</h5>
+			</div>
+		</div>
+		<div class="col-sm-3">
+			<div style="margin-top: 10px;">
+				<h5><strong>创建时间：</strong>{{recreationClub.createDateTime | date: 'yyyy-MM-dd HH:mm' }}</h5>
+			</div>
+		</div>
+		<div class="col-sm-3">
+			<div style="margin-top: 10px;">
+				<h5><strong>更新时间：</strong>{{recreationClub.updateDateTime | date: 'yyyy-MM-dd HH:mm' }}</h5>
+			</div>
+		</div>
+		<!-- /.col -->
+	</div>
+	<!-- info row -->
+	<div class="row invoice-info">
+		<div class="col-sm-8 col-sm-offset-2 invoice-col">
+			<div class="clubDescription" style="word-wrap: break-word;" ng-bind-html="recreationClub.description|to_trusted"></div>
+		</div>
+	</div>
+
+    <hr class="row" />
+	<!-- /.row -->
+	<div class="row no-print">
+		<div class="col-xs-12" ng-show="recreationClub.status=='待发布'">
+			<button type="button" ng-click="publishRecreationClub()" class="btn btn-success pull-right">发布</button>
+		</div>
+		<div class="col-xs-12" ng-show="recreationClub.status=='已发布'">
+			<button type="button" ng-click="stopPublishRecreationClub()" class="btn btn-success pull-right">撤销</button>
+		</div>
+	</div>
+</section>
+
+<style>
+  .clubDescription img{max-width:100%;}
+</style>

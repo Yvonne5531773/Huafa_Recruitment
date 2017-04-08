@@ -1,0 +1,71 @@
+
+<link rel="stylesheet" type="text/css" href="../../../css/remodal.css" />
+<link rel="stylesheet" type="text/css" href="../../../css/remodal-default-theme.css" />
+<div id="header">
+    <div class="wrapper">
+        {% include "./login.app.view.html" %}
+        {% include "./register.app.view.html" %}
+        <a onclick="javascript:location.href='/index'" class="logo">
+            <img src="../../../img/logo.png" width="229" height="43" alt="" />
+        </a>
+        <!-- 未登录头部 -->
+        <ul class="reset" id="navheader">
+            <li {% if conditionIndex %} class="current"{% endif %}><a onclick="javascript:location.href='/index'">首页</a></li>
+            <li {% if conditionCompany %} class="current"{% endif %}><a onclick="javascript:location.href='/companylist/0'">单位</a></li>
+            <li {% if conditionResume %} class="current"{% endif %}><a class="myresume">我的简历</a></li>
+        </ul>
+        {% if !applicant.username %}
+        <ul class="loginTop">
+            <li><a class="login" rel="nofollow">登录</a></li>
+            <li>|</li>
+            <li><a class="register" rel="nofollow">注册</a></li>
+        </ul>
+        {% endif %}
+
+        <input type="hidden" class="locationIndex" value=''>
+
+        {% if applicant.username %}
+        <ul class="reset" id="navheader"></ul>
+        <dl class="collapsible_menu">
+            <dt>
+                <span>{{applicant.username}}&nbsp;</span>
+                <span class="red dn" id="noticeDot-0"></span>
+                <i></i>
+            </dt>
+            <dd><a target="_blank" href="/jobCollect">收藏的职位</a></dd>
+            <dd><a target="_blank" href="/jobApply/0">投递的职位</a></dd>
+            <dd><a target="_blank" href="/applicant/upsertShow">帐号设置</a></dd>
+            <dd class="logout"><a rel="nofollow" href="/applicant/logout">退出</a></dd>
+        </dl>
+        {% endif %}
+        <input type="hidden" id="applicantname" value={{applicant.username}}>
+    </div>
+</div>
+<script type="text/javascript" src="../../../javascripts/jquery.1.10.1.min.js"></script>
+<script type="text/javascript" src="../../../javascripts/jquery.lib.min.js"></script>
+<script src="../../../javascripts/remodal.js"></script>
+<script>
+    $(".login").click(function(){
+        $('.locationIndex').val(1);
+        var inst = $('[data-remodal-id=login]').remodal();
+        inst.open();
+    })
+    $(".register").click(function(){
+        var inst = $('[data-remodal-id=register]').remodal();
+        inst.open();
+    })
+    $(".myresume").click(function(){
+        $('.locationIndex').val(3);
+        var inst = $('[data-remodal-id=login]').remodal();
+        var cookie = $('#applicantname').val();
+        if(!cookie) inst.open();
+        else location.href='/resume';
+    })
+    $(".logout").click(function(){
+        $.cookie('applicant', null)
+    })
+//    if(!$('#applicantname').val()){
+//        var inst = $('[data-remodal-id=login]').remodal();
+//        inst.open();
+//    }
+</script>

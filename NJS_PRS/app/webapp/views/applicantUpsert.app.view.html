@@ -1,0 +1,143 @@
+<html>
+<head>
+	<meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=0">
+	<meta charset="UTF-8">
+	<meta http-equiv="Cache-Control" content="no-siteapp" />
+	<link rel="alternate" media="handheld" />
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+	<title>Huafa Education Recruitment</title>
+	<link rel="Shortcut Icon" href="#">
+	<link rel="stylesheet" type="text/css" href="../../../css/style.css" />
+	<link rel="stylesheet" type="text/css" href="../../../css/external.css">
+	<link rel="stylesheet" type="text/css" href="../../../css/popup.css">
+</head>
+<body>
+<div id="body">
+	{% include "./header.app.view.html" %}
+	<div id="container">
+		<div class="user_bindSidebar">
+			<dl class="user_sideBarmenu" id="user_sideBarmenu">
+				<dt>
+				<h3>
+					帐号设置
+				</h3>
+				</dt>
+				<dd>
+					<a href="/applicant/upsertShow" class="hover">
+						修改密码
+					</a>
+				</dd>
+			</dl>
+		</div>
+		<div class="content user_modifyContent">
+			<dl class="c_section">
+				<dt>
+					<h2>
+						<em></em>
+						修改密码
+					</h2>
+				</dt>
+				<dd>
+					<form id="updatePswForm">
+						<table class="savePassword">
+							<tbody>
+							<tr>
+								<td>
+									登录邮箱
+								</td>
+								<td class="c7">
+									{{applicant.username}}
+								</td>
+							</tr>
+							<tr>
+								<td class="label">
+									当前密码
+								</td>
+								<td>
+									<input name="oldpassword" id="oldpassword" maxlength="16" type="password">
+									<span class="error" style="display:none;" id="updatePwd_beError"></span>
+								</td>
+							</tr>
+							<tr>
+								<td class="label">
+									新密码
+								</td>
+								<td>
+									<input name="newpassword" id="newpassword" maxlength="16" type="password">
+								</td>
+							</tr>
+							<tr>
+								<td class="label">
+									确认密码
+								</td>
+								<td>
+									<input name="comfirmpassword" id="comfirmpassword" maxlength="16" type="password">
+								</td>
+							</tr>
+							<tr>
+								<td>
+									&nbsp;
+								</td>
+								<td>
+									<input value="保 存" type="submit">
+								</td>
+							</tr>
+							</tbody>
+						</table>
+					</form>
+				</dd>
+			</dl>
+		</div>
+		<div style="display:none;">
+			<!-- 修改密码 -->
+			<div id="updatePassword" class="popup" style="overflow:hidden">
+				<h3>
+					修改密码成功，请重新登录
+				</h3>
+				<h4>
+					<span>
+						5
+					</span>
+					秒后将自动退出
+				</h4>
+				<a href="/applicant/logout" class="btn">
+					直接退出
+				</a>
+			</div>
+		</div>
+	</div>
+	<div class="clear"></div>
+	<a id="backtop" title="回到顶部" rel="nofollow"></a>
+</div>
+	<div id="footer">
+		<div class="wrapper">
+			<a href="h/about.html" target="_blank" rel="nofollow">
+				联系我们
+			</a>
+			<a class="footer_qr" href="javascript:void(0)" rel="nofollow">
+				微信二维码
+				<i></i>
+			</a>
+			<div class="copyright">
+				<a target="_blank" href="#">
+					<!--京ICP备-->
+				</a>
+			</div>
+		</div>
+		<script type="text/javascript" src="../../../javascripts/setting.js"></script>
+		<script type="text/javascript" src="../../../javascripts/core.min.js"></script>
+		<script type="text/javascript" src="../../../javascripts/popup.js"></script>
+	</div>
+<div id="sublist" style="display:none"></div>
+<script>
+    $(function(){
+
+        if(!$('#applicantname').val()){
+            var inst = $('[data-remodal-id=login]').remodal();
+            inst.open();
+        }
+	});
+</script>
+</div>
+</body>
+</html>

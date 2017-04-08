@@ -1,0 +1,84 @@
+
+
+<div class="modal-header no-line">
+    <button type=button class=close data-dismiss=modal aria-label=Close ng-click=cancel()>
+        <span aria-hidden=true>×</span>
+    </button>
+    <h4 class=modal-title>上传图片
+        <span ng-show=!authError class=action>单击使用</span>
+    </h4>
+</div>
+<div class=dialog-contain>
+    <div class="dialog-content bg_console sound-flex clearfix">
+        <div class=cate-title>
+            <ul class="nav tabs-left" style=padding-top:0>
+                <li class="my-bg-upload bg-img-upload blue">
+                    <div class="hint--top hint--rounded">
+                        <span class=eqf-update></span>
+                        <em>上传</em>
+                        <input type=file ng-model="club.icon" ngf-select="upload($files)" style="width:200px;height: 55px;overflow: hidden;position: absolute;top: 0;right: 0;left:0px;bottom:0;cursor: pointer;opacity:0">
+                    </div>
+                </li>
+            </ul>
+        </div>
+        <div class="cate-list bg-rig">
+            <div id=bg_contain>
+                <div class="tab-pane active tab-head">
+                    <div class=my-bg>
+                        <span>
+                            <a class=manage-all ng-show=!manageAll ng-click="manageAll = true;">
+                                <em>管理</em>
+                            </a>
+                            <a class=mul-del ng-show=manageAll ng-click=deleteFile();>
+                                <em>删除</em>
+                            </a>
+                            <a class=cancel-all ng-show=manageAll ng-click="cancelSelect();manageAll = false;">
+                                <em>取消选择</em>
+                            </a>
+                        </span>
+                        <span style=float:right ng-if=userTagId>
+                            <span></span>
+                            <a class=cancel-all ng-show=manageAll ng-click="cancelSelect();manageAll = false;">
+                                <em>取消选择</em>
+                            </a>
+                            <a class=manage-all ng-show=!manageAll ng-click="manageAll = true;">
+                                <em>管理</em>
+                            </a>
+                        </span>
+                    </div>
+                </div>
+                <div class=img_list>
+                    <div class="img_list_container photo_list">
+                        <ul class="img_box clearfix">
+                            <li ng-repeat="upfile in upfiles" ng-click="replaceByClick(upfile);switchSelect(upfile);" >
+                                <img ng-src="{{ upfile.fileThumbSrc }}">
+                                <div class=img-mask ng-show="selectedImages.length || upfile.show || upfile.selected || manageAll">
+                                    <a class="sel-file ope-img" ng-class="{'sel-active': upfile.selected, 'hide-del': manageAll}">
+                                        <span class="eqf-yes ope-icon"></span>
+                                    </a>
+                                </div>
+                            </li>
+                            <li id=userlist class=imageList ng-repeat="img in imgList" ng-if="sysTagId == 'pure'|| sysCatId == 'pure'" resource=img ng-click=replaceByClick(img) ng-class="{'add-shadow': img.show && systemImages && type != 'p' && type != 'n'}">
+                                <div ng-style="{'background-color': img.color}" style="position: relative;height:100%;width:63px;margin: 0 auto">
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="modal-footer bg-pagination clearfix no-line">
+            <!--<div class="fl mr20" ng-show="numPages > 1 && userTagId!='history'">-->
+                <!--<pagination style="float: left" previous-text=&lsaquo; next-text=&rsaquo; first-text=首页 last-text=尾页 max-size=5 items-per-page=pageSize total-items=totalItems ng-model=$parent.currentPage boundary-links=true rotate=true num-pages=numPages></pagination>-->
+                <!--<div class=current_page>-->
+                    <!--<span class=fl>到</span>-->
+                    <!--<input type=text ng-model=$parent.toPage ng-keyup="$event.keyCode == 13 ? getImgByPage() : null">-->
+                    <!--<span class=fl>页</span>-->
+                    <!--<a ng-click=getImgByPage() class=go>确定</a>-->
+                <!--</div>-->
+            <!--</div>-->
+            <a class=modal-cancle ng-click=cancel()>取消</a>
+            <a class="btn btn-primary" ng-click=replaceImage();>确定</a>
+        </div>
+    </div>
+</div>

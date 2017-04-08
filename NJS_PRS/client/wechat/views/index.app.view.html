@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <!-- Required meta tags-->
+    <meta charset="utf-8">
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no, minimal-ui">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <title>Recreation Club</title>
+    <link rel="stylesheet" href="../../lib/Framework7/dist/css/framework7.ios.css">
+    <link rel="stylesheet" href="../../lib/Framework7/dist/css/framework7.ios.min.css">
+    <link rel="stylesheet" href="../../lib/Framework7/dist/css/framework7.ios.colors.css">
+    <link rel="stylesheet" href="http://framework7.io/kitchen-sink-ios/css/kitchen-sink.css">
+    <link rel="stylesheet" href="../../lib/Framework7/dist/css/my-app.css">
+    <link rel="stylesheet" href="../../stylesheets/index.css">
+    <link rel="stylesheet" href="../../stylesheets/lambert-test.css">
+    <script type="text/javascript" src="../../lib/jquery/dist/jquery.min.js"></script>
+    <script type="text/javascript" src="../../lib/knockout/dist/knockout.js"></script>
+    <script type="text/javascript" src="../../javascripts/common/interfaces.js"></script>
+    <script type="text/javascript" src="../../javascripts/common/commonFunction.js"></script>
+    <script type="text/javascript" src="../../javascripts/initIndexPage.js"></script>
+    <script type="text/javascript" src="../../javascripts/initMyClubPage.js"></script>
+    <script type="text/javascript" src="../../javascripts/initActivitiesPage.js"></script>
+    <script type="text/javascript" src="../../javascripts/initActivityDetailsPage.js"></script>
+    <script type="text/javascript" src="../../javascripts/initAllClubPage.js"></script>
+    <script type="text/javascript" src="../../javascripts/initRegisterActivitiesPage.js"></script>
+    <script type="text/javascript" src="../../javascripts/initClubDetailsPage.js"></script>
+    <script type="text/javascript" src="../../javascripts/myRoute.js"></script>
+    <style>
+        .demo-card-header-pic .card-lambert {
+            height: 40vw;
+            background-size: cover;
+            background-position: center;
+        }
+
+        .demo-font-large-lambert {
+            font-size: large;
+        }
+
+        .demo-panel-raw-lambert {
+            padding-top: 7px;
+            padding-bottom: 9px;
+            width: 100%;
+        }
+
+        .demo-panel-icon-lambert {
+            padding-top: 7px;
+        }
+
+        .demo-panel-item-lambert {
+            padding-top: 6px;
+            font-size: x-large;
+            color: white;
+        }
+
+        .demo-click-link:active {
+            -webkit-transition-duration: 0s;
+            transition-duration: 0s;
+            background-color: #d9d9d9;
+            /*background-color: #8e8e93;*/
+        }
+    </style>
+</head>
+<body>
+<!-- Status bar overlay for full screen mode (PhoneGap) -->
+<div class="statusbar-overlay"></div>
+<!-- Panels overlay-->
+<div class="panel-overlay"></div>
+<!-- Left panel with reveal effect-->
+<div class="panel panel-left panel-reveal" style="background:#273238">
+    <div class="" style="color:#f4f6f8;margin: 35px 0 0 0;padding: 0px 15px;">
+        <div class="row center">
+            <form class="searchbar" style="background:#525260">
+                <div class="searchbar-input">
+                    <input type="search" placeholder="Search"><a href="#" class="searchbar-clear"></a>
+                </div>
+                <a href="#" class="searchbar-cancel">Cancel</a>
+            </form>
+        </div>
+        <div class="row center demo-panel-raw-lambert">
+            <div class="col-40"><img class="club-img" src="../images/badminton.jpg" width="100%"></div>
+            <div class="col-60">
+                <div class="demo-font-large-lambert"><span>Lambert</span></div>
+                <P>ITA - Club</P>
+            </div>
+        </div>
+    </div>
+    <div class="list-block" style="margin-top: 0;">
+        <a href="/" class="item-content item-link external close-panel"
+           style="color: inherit;">
+            <div class="row center demo-panel-raw-lambert">
+                <div class="col-20 demo-panel-icon-lambert"><i class="icon icon-form-url"></i></div>
+                <div class="col-60 demo-panel-item-lambert">Home</div>
+                <div class="col-20"></div>
+            </div>
+        </a>
+        <a href="allClubs" class="item-content item-link close-panel"
+           style="color: inherit;">
+            <div class="row center demo-panel-raw-lambert">
+                <div class="col-20 demo-panel-icon-lambert"><i class="icon icon-form-url"></i></div>
+                <div class="col-60 demo-panel-item-lambert">Clubs</div>
+                <div class="col-20"></div>
+            </div>
+        </a>
+        <a href="myActivities" class="item-content item-link close-panel"
+           style="color: inherit;">
+            <div class="row center demo-panel-raw-lambert">
+                <div class="col-20 demo-panel-icon-lambert"><i class="icon icon-form-url"></i></div>
+                <div class="col-60 demo-panel-item-lambert">My Activities</div>
+                <div class="col-20"></div>
+            </div>
+        </a>
+        <a href="#" class="item-content item-link close-panel" style="color: inherit;">
+            <div class="row center demo-panel-raw-lambert">
+                <div class="col-20 demo-panel-icon-lambert"><i class="icon icon-form-email"></i></div>
+                <div class="col-60 demo-panel-item-lambert">Messages</div>
+                <div class="col-20 demo-panel-item-lambert"><span class="badge bg-green">2</span></div>
+            </div>
+        </a>
+        <a href="fastRegister" class="item-content item-link close-panel" style="color: inherit;">
+            <div class="row center demo-panel-raw-lambert">
+                <div class="col-20 demo-panel-icon-lambert"><i class="icon icon-form-settings"></i></div>
+                <div class="col-60 demo-panel-item-lambert">Setting</div>
+                <div class="col-20"></div>
+            </div>
+        </a>
+        <a href="#" class="item-content item-link close-panel" style="color: inherit;">
+            <div class="row center demo-panel-raw-lambert">
+                <div class="col-20 demo-panel-icon-lambert"><i class="icon icon-form-password"></i></div>
+                <div class="col-60 demo-panel-item-lambert">Logout</div>
+                <div class="col-20"></div>
+            </div>
+        </a>
+    </div>
+
+</div>
+<!-- Views -->
+<div class="views">
+    <div class="view view-main">
+        <div class="navbar">
+            <div class="navbar-inner">
+                <div class="center sliding">OOCL Recreation Club</div>
+                <div class="right">
+                    <a href="#" class="link icon-only open-panel"><i class="icon icon-bars"></i></a>
+                </div>
+            </div>
+        </div>
+        <div class="pages navbar-through toolbar-through">
+            <div data-page="myClubList" class="page" id="myClubList">
+
+                <div class="page-content pull-to-refresh-content">
+
+                    <div class="content-block-title" style="margin-top: 10px;"><img style="width: 28px; height: 28px" src="../images/club.png">俱乐部</div>
+                    <div class="content-block inset">
+                        <div class="content-block-inner">
+                            <div class="toolbar tabbar tabbar-labels">
+                                <div class="toolbar-inner">
+                                    <a href="#tab1" class="tab-link active">
+                                        <i class="icon demo-icon-1"></i>
+                                        <span class="tabbar-label">已关注</span>
+                                    </a>
+                                    <a href="#tab2" class="tab-link ">
+                                        <i class="icon demo-icon-2"></i>
+                                        <span class="tabbar-label">未关注</span>
+                                    </a>
+                                </div>
+                            </div>
+
+                            <div class="tabs">
+                                <div id="tab1" class="tab active">
+                                    <div data-pagination=".swiper-pagination-c3" data-space-between="15" data-slides-per-view="3" class="swiper-container swiper-init ks-carousel-slider swiper-container-horizontal" style="margin: 5px 0;height: 120px;">
+                                        <div class="swiper-pagination swiper-pagination-c3 swiper-pagination-bullets"></div>
+                                        <div class="swiper-wrapper" data-bind="foreach:{data:clubs, as :'club'}">
+                                            <div class="swiper-slide" style="border: none; display: block;">
+                                                <a data-bind="attr: { href: 'javascript:myRoute.loadClubActivities(\''+ _id +'\');' }" class="item-link item-content">
+                                                    <img class="club-img" data-bind="attr: { 'src': icon}" style="margin:auto; display: block; width: 70%;">
+                                                    <span data-bind="text: name" style="font-size: 0.8rem; color: grey;text-align: center; display: block; margin: 2px;"></span>
+                                                </a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div id="tab2" class="tab ">
+                                    <div id="aaa" data-pagination=".swiper-pagination-c3" data-space-between="15" data-slides-per-view="3" class="swiper-container swiper-init ks-carousel-slider swiper-container-horizontal" style="margin: 5px 0;height: 120px;">
+                                        <div class="swiper-pagination swiper-pagination-c3 swiper-pagination-bullets"></div>
+                                        <div class="swiper-wrapper" data-bind="foreach:{data:noFocusClubs, as :'club'}">
+                                            <div class="swiper-slide" style="border: none; display: block;">
+                                                <a data-bind="attr: { href: 'javascript:myRoute.loadClubActivities(\''+ _id +'\');' }" class="item-link item-content">
+                                                    <img class="club-img" data-bind="attr: { 'src': icon }" style="margin:auto; display: block; width: 70%;">
+                                                    <span data-bind="text: name" style="font-size: 0.8rem; color: grey;text-align: center; display: block; margin: 2px;"></span>
+                                                </a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="content-block-title" style="margin-top: 10px;"><img style="width: 28px; height: 28px" src="../images/fire.png">热门活动</div>
+                    <div class="list-block" data-bind="foreach: {data: items, as: 'item'}" style="margin-top: 15px">
+                        <div class="card demo-card-header-pic lambert-block">
+                            <a data-bind="attr: { href: 'javascript:myRoute.loadActivityDetail(\''+ _id +'\');' }"
+                               class="item-link">
+                                <div valign="bottom" class="card-lambert card-header color-white no-border" data-bind="attr: {'style': 'background-image:url('+item.cover+');padding-bottom: 0px'}"></div>
+                                <div class="card-content">
+                                    <div class="card-content-inner" style="padding-top: 0px; padding-bottom: 0px;">
+                                        <span class="demo-font-large-lambert" data-bind="text: item.title" style="font-weight: bold;">活动标题</span><br>
+                                        <span class="color-gray" data-bind="text: item.startDateTime +' ~ '+ item.endDateTime" style="font-size: 0.8rem; font-weight: bold; text-decoration: underline;">时间</span>
+                                        <span class="color-gray lambert-content" data-bind="html: item.description" style="margin: 0px; font-size: 0.8rem">活动内容</span>
+                                    </div>
+                                </div>
+                            </a>
+                            <div class="card-footer" style="padding-top: 0px; padding-bottom: 0px;">
+                                <span data-bind="text: item.status" style="color: orange;">活动状态</span>
+                                <span data-bind="text: '人数: '+item.currentCount+'/'+item.totalCount" style="color: orange;">人数： ？/？</span>
+                                <a class="link" data-bind="attr: { href: 'javascript:myRoute.registerActivity(\''+ _id +'\');' }">我要报名</a>
+                            </div>
+                        </div>
+                    </div>
+
+
+                </div>
+
+
+            </div>
+
+        </div>
+    </div>
+</div>
+<script type="text/javascript" src="../../lib/Framework7/dist/js/framework7.min.js"></script>
+</body>
+</html>   

@@ -1,0 +1,173 @@
+﻿<html>
+<head>
+    <meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=0">
+    <meta charset="UTF-8">
+    <meta http-equiv="Cache-Control" content="no-siteapp" />
+    <link rel="alternate" media="handheld" />
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <title>Huafa Education Recruitment</title>
+    <link rel="Shortcut Icon" href="#">
+    <link rel="stylesheet" type="text/css" href="../../../css/style.css" />
+    <link rel="stylesheet" type="text/css" href="../../../css/external.min.css"/>
+    <link rel="stylesheet" type="text/css" href="../../../css/popup.css" />
+    <link rel="stylesheet" href="../../../css/remodal.css">
+    <link rel="stylesheet" href="../../../css/remodal-default-theme.css">
+    <link rel="stylesheet" type="text/css" href="../../../css/app.css" />
+    <link rel="stylesheet" type="text/css" href="../../../css/app-common.css" />
+    <link rel="stylesheet" type="text/css" href="../../../lib/font-awesome/css/font-awesome.min.css" />
+    <script type="text/javascript">
+        var youdao_conv_id = 271546;
+        var ctx = "h";
+    </script>
+</head>
+    <body>
+        <div id="body">
+            {% include "./header.app.view.html" %}
+            <div id="container">
+                <section style="padding:35px">
+                    <div id=main class=min-contain>
+                        <div class=info-show style="background-color: #019875">
+                            <div class=same-content>
+                                <div class=info>
+                                    <ul class="clearfix tab-line">
+                                        <li>
+                                            <a {% if condition==0 %} class="active"{% endif %} onclick="javascript:location.href='/companylist/0'">全部</a>
+                                        </li>
+                                        {% if allWorkAddrs.centrals.length>0 %}
+                                        <li>
+                                            <a {% if condition==1 %} class="active"{% endif %} onclick="javascript:location.href='/companylist/1'">
+                                                本部
+                                            </a>
+                                        </li>
+                                        {% endif %}
+                                        {% if allWorkAddrs.preschools.length>0 %}
+                                        <li>
+                                            <a {% if condition==2 %} class="active"{% endif %} onclick="javascript:location.href='/companylist/2'">
+                                                幼稚园
+                                            </a>
+                                        </li>
+                                        {% endif %}
+                                        {% if allWorkAddrs.primaryschools.length>0 %}
+                                        <li>
+                                            <a {% if condition==3 %} class="active"{% endif %} onclick="javascript:location.href='/companylist/3'">
+                                                小学
+                                            </a>
+                                        </li>
+                                        {% endif %}
+                                        {% if allWorkAddrs.middleschools.length>0 %}
+                                        <li>
+                                            <a {% if condition==4 %} class="active"{% endif %} onclick="javascript:location.href='/companylist/4'">
+                                                中学
+                                            </a>
+                                        </li>
+                                        {% endif %}
+                                        {% if allWorkAddrs.highschools.length>0 %}
+                                        <li>
+                                            <a {% if condition==5 %} class="active"{% endif %} onclick="javascript:location.href='/companylist/5'">
+                                                高中
+                                            </a>
+                                        </li>
+                                        {% endif %}
+                                        {% if allWorkAddrs.trainschools.length>0 %}
+                                        <li>
+                                            <a {% if condition==6 %} class="active"{% endif %} onclick="javascript:location.href='/companylist/6'">
+                                                培训学校
+                                            </a>
+                                        </li>
+                                        {% endif %}
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                        <div class=same-content style="width: 900px;">
+                            <div class="scene-type clearfix"></div>
+                            <div style=position:relative>
+                                <ul class="square-scene clearfix">
+                                    {% for companyInfo in companyInfos %}
+                                    <li class="tab-box-shadow animation-zoom all-change">
+                                        <div class=image>
+                                            <img class="front face" src="../../../{{companyInfo.icon}}" style='background-size:cover;'/>
+                                            <div class=overlay>
+                                                <div class=edit>
+                                                    <a class=edit-same target=_blank href='/showCompany/{{companyInfo._id}}'>
+                                                        <em class=eqf-eye style=font-size:20px></em>
+                                                        <span>详细介绍</span>
+                                                    </a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class=project-info style="text-align: left">
+                                            {% if companyInfo.type %}<p class=ellipsis> {{companyInfo.type}}</p>{% endif %}
+                                            {% if companyInfo.scale %}<p class='ellipsis fa fa-bar-chart-o'> {{companyInfo.scale}}</p><br/>{% endif %}
+                                            {% if companyInfo.address %}<p class='ellipsis fa fa-map-marker'> {{companyInfo.address}}</p><br/>{% endif %}
+                                        </div>
+                                    </li>
+                                    {% endfor %}
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+                <input type="hidden" value="" name="userid" id="userid" />
+                <div class="clear"></div>
+                <input type="hidden" id="resubmitToken" value="" />
+                <a id="backtop" title="回到顶部" rel="nofollow"></a>
+            </div>
+            <!-- end #container -->
+        </div>
+        <script type="text/javascript" src="../../../javascripts/core.min.js"></script>
+        <script type="text/javascript">
+            jQuery(function($) {
+                    $('.hc_list li:nth-child(1)').css('clear', 'both');
+                    $('.hc_list li:nth-child(4)').css('clear', 'both');
+                    $('.hc_list li:nth-child(7)').css('clear', 'both');
+                    $('.hc_list li:nth-child(10)').css('clear', 'both');
+                    $('.hc_list li:nth-child(13)').css('clear', 'both');
+            })
+            $(function() {
+                $(".hc_tag li").not(".more").children("a").bind("click",
+                    function() {
+                        var a = $(".hc_tag").children("dd"),
+                            b = a.find("dl").eq(0).find("a.current").text(),
+                            c = a.find("dl").eq(1).find("a.current").text(),
+                            d = a.find("dl").eq(2).find("a.current").text(),
+                            e = $(this).text();
+                        $("#fs").val(b),
+                            $("#ifs").val(c),
+                            $("#ol").val(d),
+                            $("#city").val(e),
+                            $("#companyListForm").submit()
+                    }),
+                    $("#box_expectCity dd span").click(function() {
+                        var a = $(".hc_tag").children("dd"),
+                            b = a.find("dl").eq(0).find("a.current").text(),
+                            c = a.find("dl").eq(1).find("a.current").text(),
+                            d = a.find("dl").eq(2).find("a.current").text(),
+                            e = $(this).text();
+                        $("#fs").val(b),
+                            $("#ifs").val(c),
+                            $("#ol").val(d),
+                            $("#city").val(e),
+                            $("#companyListForm").submit()
+                    }),
+                    $(".hc_tag dd a").bind("click",
+                        function() {
+                            var a, b, c, d, e;
+                            $(this).hasClass("current") ? $(this).removeClass("current") : ($(this).siblings().removeClass("current"), $(this).addClass("current")),
+                                a = $(".hc_tag").children("dd"),
+                                b = a.find("dl").eq(0).find("a.current").text(),
+                                c = a.find("dl").eq(1).find("a.current").text(),
+                                d = a.find("dl").eq(2).find("a.current").text(),
+                                e = $(".hc_tag .workplace a.current").text(),
+                                $("#fs").val(b),
+                                $("#ifs").val(c),
+                                $("#ol").val(d),
+                                $("#city").val(e),
+                                $("#companyListForm").submit()
+                        })
+            });
+        </script>
+        <!-- -->
+    </body>
+
+</html>
